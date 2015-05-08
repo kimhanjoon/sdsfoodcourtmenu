@@ -34,4 +34,9 @@ exports.parse = function (html) {
     });
     return foods;
 };
-    
+
+var swig  = require('swig');
+var template = swig.compileFile('./template.html');
+exports.render = function (foods) {
+    return template({foods: foods});
+}
