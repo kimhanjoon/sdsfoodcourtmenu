@@ -1,4 +1,3 @@
-var request = require('request');
 var cheerio = require('cheerio');
 
 var mapperClassname2Cornername = {"DEPT001-group" : "KOREAN 1"
@@ -10,28 +9,29 @@ var mapperClassname2Cornername = {"DEPT001-group" : "KOREAN 1"
 , "DEPT007-group" : "TAKEOUT"
 , "DSDS011-group" : "KOREAN 1"
 , "DSDS012-group" : "KOREAN 2"
-, "DSDS013-group" : "napolipoli"
-, "DSDS014-group" : ""
-, "DSDS015-group" : ""
-, "DSDS016-group" : ""
-, "DSDS017-group" : ""
-, "DSDS018-group" : ""};
+, "DSDS013-group" : "Napolipoli"
+, "DSDS014-group" : "asian*picks"
+, "DSDS015-group" : "고슬고슬비빈"
+, "DSDS016-group" : "Chef's Counter"
+, "DSDS017-group" : "XingFu China"
+, "DSDS018-group" : "우리미각면"};
 
-request("http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE01", function(error, response, body) {
-    var $ = cheerio.load(body);
-
+exports.parse = function (html) {
+    var $ = cheerio.load(html);
     var foods = $("tr").slice(1).map(function(index, element) {
         var $e = $(element);
         var food = {};
         food.title_kor = $e.find("span:nth-child(1)").text();
         food.title_eng = $e.find("span:nth-child(3)").text();
         food.kcal = Number($e.find("span:nth-child(5)").text().replace(" kcal", ""));
-        food.price = Number($e.find("span:nth-child(7)").text().replace("원", "").replace(",", "")) - 3000;
+        food.soldout = $e.find("del").length > 0 ? true : false;
+        if( !food.soldout ) {
+            food.price = Number($e.find("span:nth-child(7)").text().replace("원", "").replace(",", "")) - 3000;
+        }
         food.img_src = $e.find("img").attr('src');
         food.corner = mapperClassname2Cornername[$e.closest("div[class$=group]").attr("class")];
         return food;
     });
+    return foods;
+};
     
-    console.log(foods);
-    
-});
