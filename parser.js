@@ -32,7 +32,7 @@ exports.parse = function (html) {
         food.corner = mapperClassname2Cornername[$e.closest("div[class$=group]").attr("class")];
         return food;
     });
-    return foods;
+    return foods.get();
 };
 
 var swig  = require('swig');
