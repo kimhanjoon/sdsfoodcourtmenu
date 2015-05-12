@@ -1,5 +1,5 @@
 var request = require('request');
-var request = request.defaults({'proxy':'http://70.10.15.10:8080'});
+//var request = request.defaults({'proxy':'http://70.10.15.10:8080'});
 
 var async = require('async');
 var fs = require('fs');
@@ -8,6 +8,9 @@ var parser = require('./parser.js');
 
 var requestsdsfoodcourtmenu = function(zonename, callback) {
 	return request("http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=" + zonename, function(error, response, body) {
+		console.log(error);
+		console.log(response);
+		console.log(body);
 	    return callback(error, body);
 	});
 };
