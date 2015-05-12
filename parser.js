@@ -42,6 +42,6 @@ exports.parse = function (html) {
 
 var swig  = require('swig');
 var template = swig.compileFile('./template.html');
-exports.render = function (foods) {
-    return template({foods: foods});
+exports.render = function (b1foods, b2foods) {
+    return template({b1foods: b1foods, b2foods: b2foods});
 }
