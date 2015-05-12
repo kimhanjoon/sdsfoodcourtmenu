@@ -1,7 +1,9 @@
 var http = require('http');
 
 var request = require('request');
-var request = request.defaults({'proxy':'http://70.10.15.10:8080'});
+
+//XXX 회사에서 테스트하려면 아래 주석 풀어서 proxy 설정해야함
+//var request = request.defaults({'proxy':'http://70.10.15.10:8080'});
 
 var async = require('async');
 
