@@ -18,7 +18,12 @@ var mapperClassname2Cornername = {"DEPT001-group" : "KOREAN 1"
 
 exports.parse = function (html) {
     var $ = cheerio.load(html);
-    var foods = $("tr").slice(1).map(function(index, element) {
+    var foods = $("tr")
+    	.slice(1)
+    	.filter(function(index, element) {
+    		return $(element).find("span").text().indexOf("운영시간") === -1;
+    	})
+    	.map(function(index, element) {
         var $e = $(element);
         var food = {};
         food.title_kor = $e.find("span:nth-child(1)").text();
