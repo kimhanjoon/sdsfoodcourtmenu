@@ -1,5 +1,18 @@
 var http = require('http');
 
+var request = require('request');
+var request = request.defaults({'proxy':'http://70.10.15.10:8080'});
+
+var async = require('async');
+
+var parser = require('./parser.js');
+
+var requestsdsfoodcourtmenu = function(zonename, callback) {
+	return request("http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=" + zonename, function(error, response, body) {
+	    return callback(error, body);
+	});
+};
+
 var server = http.createServer(function (req, res) {
     res.writeHead(200, { 'Content-Type' : 'text/html' });
     
@@ -9,8 +22,15 @@ var server = http.createServer(function (req, res) {
     	return;
     }
 
-    res.write("foods");
-    res.end();
+	async.map(['ZONE01','ZONE02'], requestsdsfoodcourtmenu, function(err, data){
+	    var menu1 = parser.parse(data[0]);
+	    var menu2 = parser.parse(data[1]);
+	    var html = parser.render(menu1.concat(menu2));
+
+	    res.write(html);
+	    res.end();
+	});
+	
 	return ;
 });
 
