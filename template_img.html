@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>delacourt at a glance</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>delacourt <small>at a glance</small></h1>
+</div>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">B1
+		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE01" class="btn btn-default btn-xs pull-right">Link</a>
+	</div>
+
+<ul class="media-list">
+	{% for food in b1foods %}
+  <li class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:140px;">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{food.title_kor}}</h4>{% if not soldout %}<span class="badge">{{food.corner}}</span>{% endif %}
+      {{food.kcal}} kcal, {{food.price}} 원
+    </div>
+  </li>
+	{% endfor %}
+</ul>
+
+	<div class="list-group">
+	{% for food in b1foods %}
+		<a href="#" class="list-group-item">{{food.title_kor}}
+	{% if not soldout %}<span class="badge">{{food.corner}}</span>{% endif %}
+		</a>
+		<div class="media">
+			<div class="media-left"><a href="#">
+				<img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:140px;">
+			</a></div>
+			<div class="media-body">{{food.kcal}} kcal, {{food.price}} 원
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+</div>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">B2
+		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE02" class="btn btn-default btn-xs pull-right">Link</a>
+	</div>
+
+	<div class="list-group">
+	{% for food in b2foods %}
+		<a href="#" class="list-group-item">{{food.title_kor}}
+	{% if not soldout %}<span class="badge">{{food.corner}}</span>{% endif %}
+		</a>
+	{% endfor %}
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">운영시간 안내</div>
+	<div class="panel-body">
+		<span style="font-size: 13px; color: #737373">아침 06:30 - 08:15</span><br>	
+		<span style="font-size: 13px; color: #737373">점심 11:30 - 13:15</span><br> 
+		<span style="font-size: 13px; color: #737373">저녁 18:00 - 19:00</span><br>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Support</div>
+	<ul class='list-group'>
+		<li class="list-group-item">
+		<a href="mailto:kimhanjoon@gmail.com">Email me</a> for bugs or requests
+		</li>
+		<li class="list-group-item">
+		Any contribution is welcome. <a href="https://github.com/kimhanjoon/sdsfoodcourtmenu">GitHub</a>
+		</li>
+	</ul>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62912065-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
