@@ -16,29 +16,51 @@
 </div>
 
 <div class="panel panel-primary">
-	<div class="panel-heading">B1
+	<div class="panel-heading">지하 1층
 		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE01" class="btn btn-default btn-xs pull-right">Link</a>
 	</div>
 
 	<div class="list-group">
 	{% for food in b1foods %}
-		<a href="#" class="list-group-item">{{food.title_kor}}
-	{% if not soldout %}<span class="badge">{{food.corner}}</span>{% endif %}
-		</a>
+		<div class="list-group-item">
+			<div class="media">
+			  <div class="media-left">
+			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;">
+			  </div>
+			  <div class="media-body">
+			    <h4 class="media-heading">{{food.title_kor}} <span class="badge pull-right">{{food.corner}}</span></h4>
+			    <p>{{food.kcal}} kcal<br />
+			    {% if not soldout %}{{food.price}} 원{% endif %}
+			    {% if soldout %}판매종료{% endif %}
+			    </p>
+			  </div>
+			</div>
+		</div>
 	{% endfor %}
 	</div>
 </div>
 
 <div class="panel panel-primary">
-	<div class="panel-heading">B2
-		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE02" class="btn btn-default btn-xs pull-right">Link</a>
+	<div class="panel-heading">지하 2층
+		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE01" class="btn btn-default btn-xs pull-right">Link</a>
 	</div>
 
 	<div class="list-group">
 	{% for food in b2foods %}
-		<a href="#" class="list-group-item">{{food.title_kor}}
-	{% if not soldout %}<span class="badge">{{food.corner}}</span>{% endif %}
-		</a>
+		<div class="list-group-item">
+			<div class="media">
+			  <div class="media-left">
+			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;">
+			  </div>
+			  <div class="media-body">
+			    <h4 class="media-heading">{{food.title_kor}} <span class="badge pull-right">{{food.corner}}</span></h4>
+			    <p>{{food.kcal}} kcal<br />
+			    {% if not soldout %}{{food.price}} 원{% endif %}
+			    {% if soldout %}판매종료{% endif %}
+			    </p>
+			  </div>
+			</div>
+		</div>
 	{% endfor %}
 	</div>
 </div>
