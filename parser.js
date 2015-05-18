@@ -31,9 +31,18 @@ exports.parse = function (html) {
         food.kcal = Number($e.find("span:nth-child(5)").text().replace(" kcal", ""));
         food.soldout = $e.find("del").length > 0 ? true : false;
         if( !food.soldout ) {
-            food.price = Number($e.find("span:nth-child(7)").text().replace("원", "").replace(",", "")) - 3000;
+            food.price = Number($e.find("span:nth-child(7)").text().replace("원", "").replace(",", ""));
+            if( food.price < 6000 ) {
+            	food.payments = food.price - 3000; 
+            }
+            else {
+            	food.payments = food.price - 2500; 
+            }
         }
         food.img_src = $e.find("img").attr('src');
+        if( food.img_src ) {
+        	food.img_src = food.img_src.replace(/;.*\?/, "?");
+        }
         food.corner = mapperClassname2Cornername[$e.closest("div[class$=group]").attr("class")];
         return food;
     });
