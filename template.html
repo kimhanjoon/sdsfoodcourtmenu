@@ -28,10 +28,10 @@
 			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;">
 			  </div>
 			  <div class="media-body">
-			    <h4 class="media-heading">{{food.title_kor}} <span class="badge pull-right">{{food.corner}}</span></h4>
+			    <h4 class="media-heading">{% if food.soldout %}<del>{% endif %}{{food.title_kor}}{% if food.soldout %}</del>{% endif %} <span class="badge pull-right">{{food.corner}}</span></h4>
 			    <p>{{food.kcal}} kcal<br />
-			    {% if not soldout %}{{food.price}} 원{% endif %}
-			    {% if soldout %}판매종료{% endif %}
+			    {% if not food.soldout %}<del>{{food.price}} 원</del> {{food.payments}} 원{% endif %}
+			    {% if food.soldout %}<span class="text-danger">판매종료</span>{% endif %}
 			    </p>
 			  </div>
 			</div>
@@ -53,10 +53,10 @@
 			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;">
 			  </div>
 			  <div class="media-body">
-			    <h4 class="media-heading">{{food.title_kor}} <span class="badge pull-right">{{food.corner}}</span></h4>
+			    <h4 class="media-heading">{% if food.soldout %}<del>{% endif %}{{food.title_kor}}{% if food.soldout %}</del>{% endif %} <span class="badge pull-right">{{food.corner}}</span></h4>
 			    <p>{{food.kcal}} kcal<br />
-			    {% if not soldout %}{{food.price}} 원{% endif %}
-			    {% if soldout %}판매종료{% endif %}
+			    {% if not food.soldout %}<del>{{food.price}} 원</del> {{food.payments}} 원{% endif %}
+			    {% if food.soldout %}<span class="text-danger">판매종료</span>{% endif %}
 			    </p>
 			  </div>
 			</div>
