@@ -6,363 +6,511 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<style>
+	.media { overflow: visible; }
+	</style>
+	
+	<link href="http://fat.github.io/zoom.js/css/zoom.css" rel="stylesheet">
+	<style>
+	.zoom-overlay-open .zoom-overlay {
+	  filter: "alpha(opacity=85)";
+	  opacity: 0.85;
+	}
+	</style>
 </head>
 <body>
 
 <div class="page-header">
-  <h1>delacourt <small>at a glance</small></h1>
+	<button type="button" class="btn btn-info btn-xs pull-right" id="language"><span class="kor">English</span><span class="eng hidden">한글</span></button>
+	<h1>delacourt <small>at a glance</small></h1>
 </div>
 
+
+
 <div class="panel panel-primary">
-	<div class="panel-heading">지하 1층
+	<div class="panel-heading"><span class="kor">지하 1층</span><span class="eng hidden">B1</span>
 		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE01" class="btn btn-default btn-xs pull-right">Link</a>
 	</div>
 
-	<div class="list-group">
 	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007099" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">돼지고기 김치찌개 <span class="badge pull-right">KOREAN 1</span></h4>
-			    <p>758 kcal<br />
-			    <del>5500 원</del> 2500 원
-			    
-			    </p>
-			  </div>
-			</div>
+<div class="list-group">
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007A10" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">돼지고기당면찌개</span>
+		    	<span class="title_eng hidden">Pork and Glass Noodle Stew</span>
+		    	 
+		    	<span class="corner badge pull-right">KOREAN 1</span>
+		    </h4>
+		    <p><span class="kcal">776 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 5500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 2500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
 		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007774" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">춘천닭갈비&amp;맑은콩나물국 <span class="badge pull-right">KOREAN 2</span></h4>
-			    <p>712 kcal<br />
-			    <del>5500 원</del> 2500 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007261" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">밀양돼지국밥 <span class="badge pull-right">탕맛기픈</span></h4>
-			    <p>881 kcal<br />
-			    <del>6000 원</del> 3500 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007E86" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">오징어불고기전골 <span class="badge pull-right">탕맛기픈</span></h4>
-			    <p>834 kcal<br />
-			    <del>6500 원</del> 4000 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD005070" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">냉메밀소바 <span class="badge pull-right">가츠엔</span></h4>
-			    <p>798 kcal<br />
-			    <del>6000 원</del> 3500 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD005048" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">히레가스 <span class="badge pull-right">가츠엔</span></h4>
-			    <p>838 kcal<br />
-			    <del>6500 원</del> 4000 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD003281" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">안심폭찹 <span class="badge pull-right">WESTERN</span></h4>
-			    <p>862 kcal<br />
-			    <del>5500 원</del> 2500 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007293" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">수제깐풍오므라이스 <span class="badge pull-right">WESTERN</span></h4>
-			    <p>880 kcal<br />
-			    <del>6000 원</del> 3500 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
 	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007869" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">돈육깐풍&amp;콩나물국</span>
+		    	<span class="title_eng hidden">Deep-fried Pork with Sweet Sauce &amp; Peanuts</span>
+		    	 
+		    	<span class="corner badge pull-right">KOREAN 2</span>
+		    </h4>
+		    <p><span class="kcal">719 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 5500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 2500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007256" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">삼태탕</span>
+		    	<span class="title_eng hidden">Spicy Winter-Dried Pollack Hangover Soup</span>
+		    	 
+		    	<span class="corner badge pull-right">탕맛기픈</span>
+		    </h4>
+		    <p><span class="kcal">740 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6000 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 3500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007A85" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">인삼도가니설렁탕</span>
+		    	<span class="title_eng hidden">Thick Ox-knee Soup with Ginseng</span>
+		    	 
+		    	<span class="corner badge pull-right">탕맛기픈</span>
+		    </h4>
+		    <p><span class="kcal">890 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 4000 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD005147" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">니꾸우동</span>
+		    	<span class="title_eng hidden">Udon with Beef</span>
+		    	 
+		    	<span class="corner badge pull-right">가츠엔</span>
+		    </h4>
+		    <p><span class="kcal">850 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6000 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 3500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD003019" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">치즈돈가스</span>
+		    	<span class="title_eng hidden">Cheese Pork Cutlet</span>
+		    	 
+		    	<span class="corner badge pull-right">가츠엔</span>
+		    </h4>
+		    <p><span class="kcal">871 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 4000 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD003A01" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">크림치킨브리또</span>
+		    	<span class="title_eng hidden">Cream Chicken Burrito</span>
+		    	 
+		    	<span class="corner badge pull-right">WESTERN</span>
+		    </h4>
+		    <p><span class="kcal">833 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 5500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 2500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD003534" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">바베큐치킨스테이크</span>
+		    	<span class="title_eng hidden"> Roasted Chicken Steak</span>
+		    	 
+		    	<span class="corner badge pull-right">WESTERN</span>
+		    </h4>
+		    <p><span class="kcal">853 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6000 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 3500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+</div>
+
 </div>
 
 <div class="panel panel-primary">
-	<div class="panel-heading">지하 2층
-		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE01" class="btn btn-default btn-xs pull-right">Link</a>
+	<div class="panel-heading"><span class="kor">지하 2층</span><span class="eng hidden">B2</span>
+		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE02" class="btn btn-default btn-xs pull-right">Link</a>
 	</div>
 
-	<div class="list-group">
 	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007099" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">돼지고기 김치찌개 <span class="badge pull-right">KOREAN 1</span></h4>
-			    <p>758 kcal<br />
-			    <del>5500 원</del> 2500 원
-			    
-			    </p>
-			  </div>
-			</div>
+<div class="list-group">
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007A10" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">돼지고기당면찌개</span>
+		    	<span class="title_eng hidden">Pork and Glass Noodle Stew</span>
+		    	 
+		    	<span class="corner badge pull-right">KOREAN 1</span>
+		    </h4>
+		    <p><span class="kcal">776 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 5500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 2500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
 		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007774" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">춘천닭갈비&amp;맑은콩나물국 <span class="badge pull-right">KOREAN 2</span></h4>
-			    <p>712 kcal<br />
-			    <del>5500 원</del> 2500 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD003652" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading"><del>미트라자냐</del> <span class="badge pull-right">Napolipoli</span></h4>
-			    <p>866 kcal<br />
-			    
-			    <span class="text-danger">판매종료</span>
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD003771" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">불고기포테이토피자 <span class="badge pull-right">Napolipoli</span></h4>
-			    <p>944 kcal<br />
-			    <del>6500 원</del> 4000 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD002171" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">달마크니커리&amp;또띠아칩 <span class="badge pull-right">asian*picks</span></h4>
-			    <p>793 kcal<br />
-			    <del>6000 원</del> 3500 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD002109" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">분차볶음밥(베트남식볶음밥) <span class="badge pull-right">asian*picks</span></h4>
-			    <p>870 kcal<br />
-			    <del>6500 원</del> 4000 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007036" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading"><del>산채비빔밥</del> <span class="badge pull-right">고슬고슬비빈</span></h4>
-			    <p>755 kcal<br />
-			    
-			    <span class="text-danger">판매종료</span>
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007K50" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">삼겹살철판치즈비빔밥 <span class="badge pull-right">고슬고슬비빈</span></h4>
-			    <p>817 kcal<br />
-			    <del>6500 원</del> 4000 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD010027" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">(쉐프)단호박치즈샌드위치 <span class="badge pull-right">Chef&#39;s Counter</span></h4>
-			    <p>508 kcal<br />
-			    <del>6000 원</del> 3500 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD010026" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">(헬스)낫또비빔밥 <span class="badge pull-right">Chef&#39;s Counter</span></h4>
-			    <p>515 kcal<br />
-			    <del>6500 원</del> 4000 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD006005" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">사천매운자장면 <span class="badge pull-right">XingFu China</span></h4>
-			    <p>862 kcal<br />
-			    <del>6000 원</del> 3500 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD006051" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">짬뽕밥 <span class="badge pull-right">XingFu China</span></h4>
-			    <p>853 kcal<br />
-			    <del>6500 원</del> 4000 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD005397" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading"><del>의령메밀소바</del> <span class="badge pull-right">우리미각면</span></h4>
-			    <p>851 kcal<br />
-			    
-			    <span class="text-danger">판매종료</span>
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007181" style="width:80px;">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">초계비빔냉면 <span class="badge pull-right">우리미각면</span></h4>
-			    <p>850 kcal<br />
-			    <del>6500 원</del> 4000 원
-			    
-			    </p>
-			  </div>
-			</div>
-		</div>
-	
 	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007869" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">돈육깐풍&amp;콩나물국</span>
+		    	<span class="title_eng hidden">Deep-fried Pork with Sweet Sauce &amp; Peanuts</span>
+		    	 
+		    	<span class="corner badge pull-right">KOREAN 2</span>
+		    </h4>
+		    <p><span class="kcal">719 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 5500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 2500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD003275" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">버터오징어먹물 리조또</span>
+		    	<span class="title_eng hidden">Risotto with Squid Ink </span>
+		    	 
+		    	<span class="corner badge pull-right">Napolipoli</span>
+		    </h4>
+		    <p><span class="kcal">860 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6000 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 3500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD003691" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">애플 고르곤졸라 피자</span>
+		    	<span class="title_eng hidden">Apple Gorgonzola Pizza</span>
+		    	 
+		    	<span class="corner badge pull-right">Napolipoli</span>
+		    </h4>
+		    <p><span class="kcal">939 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 4000 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD002214" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">쌈바커리&amp;또띠아칩</span>
+		    	<span class="title_eng hidden">Samba Curry</span>
+		    	 
+		    	<span class="corner badge pull-right">asian*picks</span>
+		    </h4>
+		    <p><span class="kcal">851 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6000 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 3500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD002203" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	<del>
+		    	<span class="title_kor">닭고기쌀국수</span>
+		    	<span class="title_eng hidden">Vietnamese Rice Noodles with Chicken</span>
+		    	</del> 
+		    	<span class="corner badge pull-right">asian*picks</span>
+		    </h4>
+		    <p><span class="kcal">745 kcal</span><br />
+		    <span class="soldout text-danger"><span class="kor">판매종료</span><span class="eng hidden">SOLD OUT</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007361" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">김치치즈 돌솥비빔밥</span>
+		    	<span class="title_eng hidden">Kimchi Cheese Bibimbap in a Stone Pot</span>
+		    	 
+		    	<span class="corner badge pull-right">고슬고슬비빈</span>
+		    </h4>
+		    <p><span class="kcal">881 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6000 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 3500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007M18" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">연근산채비빔밥&amp;우렁강된장</span>
+		    	<span class="title_eng hidden">Lotus root and Mountain Vegetables Bibimbap</span>
+		    	 
+		    	<span class="corner badge pull-right">고슬고슬비빈</span>
+		    </h4>
+		    <p><span class="kcal">798 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 4000 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD010027" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">(쉐프)오트밀잡곡빵</span>
+		    	<span class="title_eng hidden">Chef&#39;s Choice</span>
+		    	 
+		    	<span class="corner badge pull-right">Chef&#39;s Counter</span>
+		    </h4>
+		    <p><span class="kcal">525 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6000 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 3500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD010026" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">(헬스)삼색조랭이떡국</span>
+		    	<span class="title_eng hidden">health-giving</span>
+		    	 
+		    	<span class="corner badge pull-right">Chef&#39;s Counter</span>
+		    </h4>
+		    <p><span class="kcal">569 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 4000 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD006041" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">중국식볶음밥&amp;자장</span>
+		    	<span class="title_eng hidden">Fried Rice with Black Soybean Sauce</span>
+		    	 
+		    	<span class="corner badge pull-right">XingFu China</span>
+		    </h4>
+		    <p><span class="kcal">854 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6000 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 3500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD006039" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">중국식냉면</span>
+		    	<span class="title_eng hidden">Chilled Buckwheat Noodle Soup(Chinese-style)</span>
+		    	 
+		    	<span class="corner badge pull-right">XingFu China</span>
+		    </h4>
+		    <p><span class="kcal">830 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 4000 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007E46" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">검은콩국수</span>
+		    	<span class="title_eng hidden">Noodles in Cold black Soy Milk</span>
+		    	 
+		    	<span class="corner badge pull-right">우리미각면</span>
+		    </h4>
+		    <p><span class="kcal">805 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6000 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 3500 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106//foodcourt/menu?menuId=PROD007O34" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	
+		    	<span class="title_kor">돼지불고기비빔국수</span>
+		    	<span class="title_eng hidden">Mixed Noodles with Pork Bulgogi</span>
+		    	 
+		    	<span class="corner badge pull-right">우리미각면</span>
+		    </h4>
+		    <p><span class="kcal">868 kcal</span><br />
+		    <span class="price payments"><del><span class="eng hidden">&#8361;</span> 6500 <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> 4000 <span class="kor">원</span></span>
+		    
+		    </p>
+		  </div>
+		</div>
+	</div>
+
+</div>
+
 </div>
 
 <div class="panel panel-default">
@@ -393,6 +541,16 @@
 
   ga('create', 'UA-62912065-1', 'auto');
   ga('send', 'pageview');
+</script>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://fat.github.io/zoom.js/js/zoom.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#language").click(function() {
+		$(".kor,.eng,.title_kor,.title_eng").toggleClass("hidden");
+	});
+});
 </script>
 </body>
 </html>
