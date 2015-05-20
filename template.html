@@ -6,8 +6,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<style>
+	.media { overflow: visible; }
+	</style>
+	
+	<link href="lib/zoom.css" rel="stylesheet">
+	<style>
+	.zoom-overlay-open .zoom-overlay {
+	  filter: "alpha(opacity=85)";
+	  opacity: 0.85;
+	}
+	</style>
 </head>
 <body>
 
@@ -25,7 +34,7 @@
 		<div class="list-group-item">
 			<div class="media">
 			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;">
+			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;" data-action="zoom">
 			  </div>
 			  <div class="media-body">
 			    <h4 class="media-heading">{% if food.soldout %}<del>{% endif %}{{food.title_kor}}{% if food.soldout %}</del>{% endif %} <span class="badge pull-right">{{food.corner}}</span></h4>
@@ -50,7 +59,7 @@
 		<div class="list-group-item">
 			<div class="media">
 			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;">
+			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;" data-action="zoom">
 			  </div>
 			  <div class="media-body">
 			    <h4 class="media-heading">{% if food.soldout %}<del>{% endif %}{{food.title_kor}}{% if food.soldout %}</del>{% endif %} <span class="badge pull-right">{{food.corner}}</span></h4>
@@ -94,5 +103,8 @@
   ga('create', 'UA-62912065-1', 'auto');
   ga('send', 'pageview');
 </script>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="lib/zoom.js"></script>
 </body>
 </html>
