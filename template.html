@@ -25,61 +25,48 @@
 	<h1>delacourt <small>at a glance</small></h1>
 </div>
 
+{% macro display_foods(foods) %}
+<div class="list-group">
+{% for food in foods %}
+	<div class="list-group-item">
+		<div class="media">
+		  <div class="media-left">
+		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;" data-action="zoom">
+		  </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		    	{% if food.soldout %}<del>{% endif %}
+		    	<span class="title_kor">{{food.title_kor}}</span>
+		    	<span class="title_eng hidden">{{food.title_eng}}</span>
+		    	{% if food.soldout %}</del>{% endif %} 
+		    	<span class="corner badge pull-right">{{food.corner}}</span>
+		    </h4>
+		    <p><span class="kcal">{{food.kcal}} kcal</span><br />
+		    {% if not food.soldout %}<span class="price payments"><del><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{food.payments}} <span class="kor">원</span></span>
+		    {% else %}<span class="soldout text-danger"><span class="kor">판매종료</span><span class="eng hidden">SOLD OUT</span></span>
+		    {% endif %}
+		    </p>
+		  </div>
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endmacro %}
+
 <div class="panel panel-primary">
 	<div class="panel-heading"><span class="kor">지하 1층</span><span class="eng hidden">B1</span>
 		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE01" class="btn btn-default btn-xs pull-right">Link</a>
 	</div>
 
-	<div class="list-group">
-	{% for food in b1foods %}
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;" data-action="zoom">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">
-			    	{% if food.soldout %}<del>{% endif %}
-			    	<span class="title_kor">{{food.title_kor}}</span>
-			    	<span class="title_eng hidden">{{food.title_eng}}</span>
-			    	{% if food.soldout %}</del>{% endif %} 
-			    	<span class="corner badge pull-right">{{food.corner}}</span>
-			    </h4>
-			    <p><span class="kcal">{{food.kcal}} kcal</span><br />
-			    {% if not food.soldout %}<span class="price payments"><del><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{food.payments}} <span class="kor">원</span></span>
-			    {% else %}<span class="soldout text-danger"><span class="kor">판매종료</span><span class="eng hidden">SOLD OUT</span></span>
-			    {% endif %}
-			    </p>
-			  </div>
-			</div>
-		</div>
-	{% endfor %}
-	</div>
+	{{ display_foods(b1foods) }}
 </div>
 
 <div class="panel panel-primary">
-	<div class="panel-heading">지하 2층
+	<div class="panel-heading"><span class="kor">지하 2층</span><span class="eng hidden">B2</span>
 		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE02" class="btn btn-default btn-xs pull-right">Link</a>
 	</div>
 
-	<div class="list-group">
-	{% for food in b2foods %}
-		<div class="list-group-item">
-			<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;" data-action="zoom">
-			  </div>
-			  <div class="media-body">
-			    <h4 class="media-heading">{% if food.soldout %}<del>{% endif %}{{food.title_kor}}{% if food.soldout %}</del>{% endif %} <span class="badge pull-right">{{food.corner}}</span></h4>
-			    <p>{{food.kcal}} kcal<br />
-			    {% if not food.soldout %}<del>{{food.price}} 원</del> {{food.payments}} 원{% endif %}
-			    {% if food.soldout %}<span class="text-danger">판매종료</span>{% endif %}
-			    </p>
-			  </div>
-			</div>
-		</div>
-	{% endfor %}
-	</div>
+	{{ display_foods(b2foods) }}
 </div>
 
 <div class="panel panel-default">
