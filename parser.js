@@ -32,7 +32,22 @@ exports.parse = function (html) {
 	        var food = {};
 	        food.title_kor = $e.find("span:nth-child(1)").text();
 	        food.title_eng = $e.find("span:nth-child(3)").text();
+	        
 	        food.kcal = Number($e.find("span:nth-child(5)").text().replace(" kcal", ""));
+	        
+	        // 초저열량 - 저열량 - 고열량 - 초고열량 구분
+	        if( food.kcal <= 680 ) {
+	        	food.very_low_cal = true;
+	        }
+	        else if( food.kcal <= 720 ) {
+	        	food.low_cal = true;
+	        }
+	        if( food.kcal >= 920 ) {
+	        	food.very_high_cal = true;
+	        }
+	        else if( food.kcal >= 880 ) {
+	        	food.high_cal = true;
+	        }
 	        
 	        // 판매종료된 메뉴는 <del> 태그가 들어가고 가격이 표시되지 않는다.
 	        food.soldout = $e.find("del").length > 0 ? true : false;
