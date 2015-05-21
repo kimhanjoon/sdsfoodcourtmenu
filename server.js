@@ -27,7 +27,7 @@ var server = http.createServer(function (req, res) {
 	async.map(['ZONE01','ZONE02'], requestsdsfoodcourtmenu, function(err, data){
 	    var menu1 = parser.parse(data[0]);
 	    var menu2 = parser.parse(data[1]);
-	    var html = parser.render(menu1, menu2);
+	    var html = parser.render(menu1.concat(menu2));
 
 	    res.write(html);
 	    res.end();
