@@ -21,6 +21,7 @@ var mapperClassname2Cornername = {
 var cheerio = require('cheerio');
 exports.parse = function (html) {
     var $ = cheerio.load(html);
+    var floor = $("img[src*=b1_n]").length > 0 ? "b1" : "b2";
     var foods = $("tr")
     	.slice(1)
     	.filter(function(index, element) {
@@ -55,6 +56,7 @@ exports.parse = function (html) {
 	        }
 	        
 	        food.corner = mapperClassname2Cornername[$e.closest("div[class$=group]").attr("class")];
+	        food.floor = floor;
 	        return food;
 	    });
     return foods.get();
@@ -62,6 +64,6 @@ exports.parse = function (html) {
 
 var swig  = require('swig');
 var template = swig.compileFile('./template.html');
-exports.render = function (b1foods, b2foods) {
-    return template({b1foods: b1foods, b2foods: b2foods});
-}
+exports.render = function (foods) {
+    return template({foods: foods});
+};
