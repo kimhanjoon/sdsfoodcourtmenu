@@ -37,9 +37,11 @@
 </div>
 
 {% macro display_foods(foods, floor) %}
+{% set foods_length = 0 %}
 <div class="list-group">
 {% for food in foods %}
 {% if food.floor === floor %}
+{% set foods_length += 1 %}
 	<div class="list-group-item">
 		<div class="media">
 		  <div class="media-left">
@@ -69,6 +71,11 @@
 	</div>
 {% endif %}
 {% endfor %}
+{% if foods_length === 0 %}
+	<div class="list-group-item">
+		<span class="kor">지금은 영업하지 않습니다.</span><span class="eng hidden">We're closed now</span>
+	</div>
+{% endif %}
 </div>
 {% endmacro %}
 
