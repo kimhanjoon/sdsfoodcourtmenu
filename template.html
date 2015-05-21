@@ -26,7 +26,9 @@
 </head>
 <body>
 
-<button type="button" class="btn btn-info btn-xs pull-right" id="language"><span class="kor">English</span><span class="eng hidden">한글</span></button>
+<button type="button" class="btn btn-primary btn-sm pull-right" id="language" style="margin-top: 5px; margin-right: 5px;">
+	<span class="kor">English</span><span class="eng hidden">한글</span>
+</button>
 
 <div class="container">
 
@@ -51,10 +53,16 @@
 		    	{% if food.soldout %}</del>{% endif %} 
 		    	<span class="corner badge pull-right">{{food.corner}}</span>
 		    </h4>
-		    <p><span class="kcal">{{food.kcal}} kcal</span><br />
-		    {% if not food.soldout %}<span class="price payments"><del><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{food.payments}} <span class="kor">원</span></span>
-		    {% else %}<span class="soldout text-danger"><span class="kor">판매종료</span><span class="eng hidden">SOLD OUT</span></span>
-		    {% endif %}
+		    <p>
+			    <span class="kcal">{{food.kcal}} kcal</span> 
+			    {% if food.very_high_cal %}<span class="label label-danger"><span class="kor">초고칼로리</span><span class="eng hidden">Very High Calorie</span></span>{% endif %}
+			    {% if food.high_cal %}<span class="label label-warning"><span class="kor">고칼로리</span><span class="eng hidden">High Calorie</span></span>{% endif %}
+			    {% if food.low_cal %}<span class="label label-info"><span class="kor">저칼로리</span><span class="eng hidden">Low Calorie</span></span>{% endif %}
+			    {% if food.very_low_cal %}<span class="label label-success"><span class="kor">초저칼로리</span><span class="eng hidden">Very Low Calorie</span></span>{% endif %}
+			    <br />
+			    {% if not food.soldout %}<span class="price payments"><del><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{food.payments}} <span class="kor">원</span></span>
+			    {% else %}<span class="soldout text-danger"><span class="kor">판매종료</span><span class="eng hidden">SOLD OUT</span></span>
+			    {% endif %}
 		    </p>
 		  </div>
 		</div>
