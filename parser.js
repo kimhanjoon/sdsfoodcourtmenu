@@ -39,10 +39,10 @@ exports.parse = function (html) {
 	        if( food.kcal <= 680 ) {
 	        	food.very_low_cal = true;
 	        }
-	        else if( food.kcal <= 720 ) {
+	        else if( food.kcal <= 730 ) {
 	        	food.low_cal = true;
 	        }
-	        if( food.kcal >= 920 ) {
+	        if( food.kcal >= 930 ) {
 	        	food.very_high_cal = true;
 	        }
 	        else if( food.kcal >= 880 ) {
