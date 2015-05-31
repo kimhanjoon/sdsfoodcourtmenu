@@ -26,13 +26,15 @@
 
 ## delacourt at a glance 파일 구조
 
-example/ : 식사시간이 아니어도 테스트할 수 있도록 특정일자의 html을 보관
+jamsilmenu/ : 식사시간이 아니어도 테스트할 수 있도록 특정일자의 html을 보관
 
-example.js : example/의 html으로 테스트
+example.js : jamsilmenu/의 html으로 테스트해서 public의 jamsilmenu.html과 .json 파일 생성
 
-gethtml.js : 실시간의 html 결과로 테스트
+gethtml.js : 실제 서버로 실시간 접속한 html로 테스트
 
 server.js : web server 실행. 80포트 사용
+
+express-server.js : express를 사용한 web server 실행, --port 포트번호 --proxy 프록시주소
 
 parse.js : html 파일을 파싱해서 메뉴정보를 자바스크립트 객체로 만들고 서비스할 결과 html까지 구성
 
