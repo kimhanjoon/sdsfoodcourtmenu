@@ -45,15 +45,7 @@ app.get('/jamsil', function(req, res){
 	
 });
 
-app.use('/static', express.static('public', {
-	setHeaders: function(res, path, stat) {
-		if( path.endsWith("json") ) {	//TODO json인 경우 넣게 한건데 전체적으로 어떻게 안될런지....
-			res.set({
-				'Content-Type' : 'application/json; charset=utf-8',
-			});
-		}
-	}
-}));
+app.use('/static', express.static('public'));
 
 //--port 80
 var port = argv.port || 80;
