@@ -1,9 +1,15 @@
+var argv = require('minimist')(process.argv.slice(2));
+
 var express = require('express');
 var app = express();
 
 var request = require('request');
-//XXX 회사에서 테스트하려면 아래 주석 풀어서 proxy 설정해야함
-var request = request.defaults({'proxy':'http://70.10.15.10:8080'});
+
+// --proxy http://70.10.15.10:8080
+if( argv.proxy ) {
+	console.log('using proxy : %s', argv.proxy);
+	request = request.defaults({'proxy': argv.proxy});
+}
 var async = require('async');
 var parser = require('./parser.js');
 
@@ -26,15 +32,18 @@ app.get('/', function(req, res){
 	
 });
 
-app.use('/static', express.static('public'));
+app.use('/static', express.static('public', {
+	setHeaders: function(res, path, stat) {
+		if( path.endsWith("json") ) {	//TODO json인 경우 넣게 한건데 전체적으로 어떻게 안될런지....
+			res.set({
+				'Content-Type' : 'application/json; charset=utf-8',
+			});
+		}
+	}
+}));
 
-
-
-
-var server = app.listen(80, function () {
-
-	var port = server.address().port;
-
+//--port 80
+var port = argv.port || 80;
+var server = app.listen(port, function () {
 	console.log('listening at %s port', port);
-
 });
