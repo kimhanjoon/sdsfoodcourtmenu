@@ -44,9 +44,13 @@
 {% set foods_length += 1 %}
 	<div class="list-group-item">
 		<div class="media">
-		  <div class="media-left">
-		      <img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;" data-action="zoom">
-		  </div>
+			<div class="media-left">
+				{% if food.img_src_data %}
+				<img class="media-object" src="{{food.img_src}}" style="width:80px;" data-action="zoom">
+				{% else %}
+		    	<img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;" data-action="zoom">
+				{% endif %}
+			</div>
 		  <div class="media-body">
 		    <h4 class="media-heading">
 		    	{% if food.soldout %}<del>{% endif %}
