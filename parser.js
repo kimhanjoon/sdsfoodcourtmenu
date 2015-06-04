@@ -92,7 +92,7 @@ exports.parse = function (html) {
 	        			else {
 	        				console.log('miss');
 	        				loadBase64Image('http://www.sdsfoodmenu.co.kr:9106/' + food.img_src, function (image, prefix) {
-	        					img_cache_map[food.img_src_menuId] = prefix + image;
+	        					img_cache_map[food.img_src_menuId] = "data:image/png;base64," + image;
 	        				});
 	        			}
 	        		}
