@@ -20,6 +20,10 @@ var mapperClassname2Cornername = {
 
 var img_cache_map = {};
 
+var request = require('request');
+var fs = require('fs');
+var easyimg = require('easyimage');
+
 var cheerio = require('cheerio');
 exports.parse = function (html) {
     var $ = cheerio.load(html);
@@ -91,10 +95,17 @@ exports.parse = function (html) {
 	        			}
 	        			else {
 //	        				console.log('miss');
-	        				loadBase64Image('http://www.sdsfoodmenu.co.kr:9106/' + food.img_src, function (image, prefix) {
-	        					img_cache_map[food.img_src_menuId] = "data:image/png;base64," + image;
+	        				request({url: "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src, encoding: 'binary'}, function(error, response, body) {
+//	        					console.log('image');
+	        					fs.writeFile('image/' + food.img_src_menuId + '.png', body, 'binary', function(){
+	        						easyimg.convert({src:'image/' + food.img_src_menuId + '.png', dst: 'image/' + food.img_src_menuId + '.jpg', quality:60, background: 'white'}).then(function (file) {
+//	        							console.log(file);
+	        							img_cache_map[food.img_src_menuId] = '/image/' + food.img_src_menuId + '.jpg';
+	        						});
+	        					});
 	        				});
 	        			}
+	        			
 	        		}
 	        		
 	        	}
@@ -113,23 +124,4 @@ var swig  = require('swig');
 var template = swig.compileFile('./template.html');
 exports.render = function (foods) {
     return template({foods: foods});
-};
-
-var loadBase64Image = function (url, callback) {
-    // Required 'request' module
-    var request = require('request');
-
-    // Make request to our image url
-    request({url: url, encoding: null}, function (err, res, body) {
-        if (!err && res.statusCode == 200) {
-            // So as encoding set to null then request body became Buffer object
-            var base64prefix = 'data:' + res.headers['content-type'] + ';base64,'
-                , image = body.toString('base64');
-            if (typeof callback == 'function') {
-                callback(image, base64prefix);
-            }
-        } else {
-            throw new Error('Can not download image');
-        }
-    });
 };

@@ -46,6 +46,7 @@ app.get('/jamsil', function(req, res){
 });
 
 app.use('/static', express.static('public'));
+app.use('/image', express.static('image'));
 
 //--port 80
 var port = argv.port || 80;
