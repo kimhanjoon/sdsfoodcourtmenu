@@ -76,7 +76,7 @@ exports.parse = function (html) {
 	        	// 이미지 파일이 없는 경우 No Image로 변경
 	        	if( food.img_src.indexOf("food_sold_out_01_01.png") > -1 ) {
 	        		food.img_src_data = true;
-	        		food.img_src = "/static/No_image_available.png";
+	        		food.img_src = "/static/no_image_available.jpg";
 	        	}
 	        	else {
 	        		
