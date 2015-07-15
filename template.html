@@ -152,6 +152,10 @@ $(function() {
 	$("#language").click(function() {
 		$(".kor,.eng,.title_kor,.title_eng").toggleClass("hidden");
 	});
+
+	{% if englishLanguage === true %}
+	$("#language").click();
+	{% endif %}
 });
 </script>
 </body>
