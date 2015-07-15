@@ -31,14 +31,29 @@ app.get('/jamsil', function(req, res){
 	    var menu1 = parser.parse(data[0]);
 	    var menu2 = parser.parse(data[1]);
 	    
+	    // html -> json 순서로 response content-type을 정한다.
 	    if( req.accepts('html') ) {
-	    	res.write(parser.render(menu1.concat(menu2)));
+	    	
+	    	// 운영환경일 때만 google analytics를 붙일 수 있도록 호출함수를 구분한다.
+	    	if( argv.production ) {
+	    		res.write(parser.render(menu1.concat(menu2)));
+	    	}
+	    	else {
+	    		res.write(parser.renderDev(menu1.concat(menu2)));
+	    	}
 	    }
 	    else if( req.accepts('json') ) {
 	    	res.write(JSON.stringify(menu1.concat(menu2)));
 	    }
 	    else {
-	    	res.write(parser.render(menu1.concat(menu2)));
+	    	
+	    	// 운영환경일 때만 google analytics를 붙일 수 있도록 호출함수를 구분한다.
+	    	if( argv.production ) {
+	    		res.write(parser.render(menu1.concat(menu2)));
+	    	}
+	    	else {
+	    		res.write(parser.renderDev(menu1.concat(menu2)));
+	    	}
 	    }
 	    res.end();
 	});
