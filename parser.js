@@ -126,6 +126,6 @@ exports.render = function (option) {
     return template({
     	foods: option.foods
     	, googleAnalytics: option.production === true
-    	, englishLanguage: option.language.indexOf("en") > -1
+    	, englishLanguage: option.english === true
     });
 };

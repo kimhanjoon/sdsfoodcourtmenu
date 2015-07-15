@@ -32,13 +32,16 @@ app.get('/jamsil', function(req, res){
 	    var menu2 = parser.parse(data[1]);
 
     	// 운영환경일 때만 google analytics를 붙일 수 있도록 production 전달
-	    // 영어권 사용자는 바로 영어가 보이게끔 language 전달
 	    var option = {
 	    		foods: menu1.concat(menu2)
 	    		, production: argv.production
-	    		, language: req.acceptsLanguages()
 	    };
-	    
+	    // 영어권 사용자는 바로 영어가 보이게끔 language 전달
+	    var languages = req.acceptsLanguages();
+	    if( languages && languages.length && languages.length > 0 && languages[0].indexOf("en") > -1 ) {
+	    	option.english = true;
+	    }
+
 	    // html -> json 순서로 response content-type을 정한다.
 	    if( req.accepts('html') ) {
 	    	res.write(parser.render(option));
