@@ -122,9 +122,10 @@ exports.parse = function (html) {
 
 var swig  = require('swig');
 var template = swig.compileFile('./template.html');
-exports.render = function (foods) {
-    return template({foods: foods, googleAnalytics: true});
-};
-exports.renderDev = function (foods) {
-    return template({foods: foods, googleAnalytics: false});
+exports.render = function (option) {
+    return template({
+    	foods: option.foods
+    	, googleAnalytics: option.production === true
+    	, englishLanguage: option.language.indexOf("en") > -1
+    });
 };

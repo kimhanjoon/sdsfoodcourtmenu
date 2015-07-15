@@ -30,30 +30,24 @@ app.get('/jamsil', function(req, res){
 	async.map(['ZONE01','ZONE02'], requestsdsfoodcourtmenu, function(err, data){
 	    var menu1 = parser.parse(data[0]);
 	    var menu2 = parser.parse(data[1]);
+
+    	// 운영환경일 때만 google analytics를 붙일 수 있도록 production 전달
+	    // 영어권 사용자는 바로 영어가 보이게끔 language 전달
+	    var option = {
+	    		foods: menu1.concat(menu2)
+	    		, production: argv.production
+	    		, language: req.acceptsLanguages()
+	    };
 	    
 	    // html -> json 순서로 response content-type을 정한다.
 	    if( req.accepts('html') ) {
-	    	
-	    	// 운영환경일 때만 google analytics를 붙일 수 있도록 호출함수를 구분한다.
-	    	if( argv.production ) {
-	    		res.write(parser.render(menu1.concat(menu2)));
-	    	}
-	    	else {
-	    		res.write(parser.renderDev(menu1.concat(menu2)));
-	    	}
+	    	res.write(parser.render(option));
 	    }
 	    else if( req.accepts('json') ) {
-	    	res.write(JSON.stringify(menu1.concat(menu2)));
+	    	res.write(JSON.stringify(option.foods));
 	    }
 	    else {
-	    	
-	    	// 운영환경일 때만 google analytics를 붙일 수 있도록 호출함수를 구분한다.
-	    	if( argv.production ) {
-	    		res.write(parser.render(menu1.concat(menu2)));
-	    	}
-	    	else {
-	    		res.write(parser.renderDev(menu1.concat(menu2)));
-	    	}
+	    	res.write(parser.render(option));
 	    }
 	    res.end();
 	});
