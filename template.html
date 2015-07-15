@@ -42,6 +42,18 @@
 {% for food in foods %}
 {% if food.floor === floor %}
 {% set foods_length += 1 %}
+	{% if food.soldout %}
+	<div class="list-group-item disabled">
+		<div class="pull-left text-center" style="width: 80px; margin-right: 10px;">
+			<span class="soldout text-danger"><span class="kor">판매종료</span><span class="eng hidden">SOLD OUT</span></span>
+		</div>
+		<del>
+			<span class="title_kor">{{food.title_kor}}</span>
+			<span class="title_eng hidden">{{food.title_eng}}</span>
+		</del>
+		<span class="corner badge pull-right">{{food.corner}}</span>
+	</div>
+	{% else %}
 	<div class="list-group-item">
 		<div class="media">
 			<div class="media-left">
@@ -53,10 +65,8 @@
 			</div>
 		  <div class="media-body">
 		    <h4 class="media-heading">
-		    	{% if food.soldout %}<del>{% endif %}
 		    	<span class="title_kor">{{food.title_kor}}</span>
 		    	<span class="title_eng hidden">{{food.title_eng}}</span>
-		    	{% if food.soldout %}</del>{% endif %} 
 		    	<span class="corner badge pull-right">{{food.corner}}</span>
 		    </h4>
 		    <div>
@@ -66,13 +76,12 @@
 			    {% if food.low_cal %}<span class="label label-info"><span class="kor">저칼로리</span><span class="eng hidden">Low Calorie</span></span>{% endif %}
 			    {% if food.very_low_cal %}<span class="label label-success"><span class="kor">초저칼로리</span><span class="eng hidden">Very Low Calorie</span></span>{% endif %}
 			    <br />
-			    {% if not food.soldout %}<span class="price payments"><del><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{food.payments}} <span class="kor">원</span></span>
-			    {% else %}<span class="soldout text-danger"><span class="kor">판매종료</span><span class="eng hidden">SOLD OUT</span></span>
-			    {% endif %}
+			    <span class="price payments"><del><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{food.payments}} <span class="kor">원</span></span>
 		    </div>
 		  </div>
 		</div>
 	</div>
+	{% endif %}
 {% endif %}
 {% endfor %}
 {% if foods_length === 0 %}
