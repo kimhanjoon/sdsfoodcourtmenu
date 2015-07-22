@@ -69,7 +69,7 @@
 		    	<span class="title_eng hidden">{{food.title_eng}}</span>
 		    	<span class="corner badge pull-right">{{food.corner}}</span>
 		    </h4>
-		    <div>
+		    <div class="pull-left">
 			    <span class="kcal">{{food.kcal}} kcal</span> 
 			    {% if food.very_high_cal %}<span class="label label-danger"><span class="kor">초고칼로리</span><span class="eng hidden">Very High Calorie</span></span>{% endif %}
 			    {% if food.high_cal %}<span class="label label-warning"><span class="kor">고칼로리</span><span class="eng hidden">High Calorie</span></span>{% endif %}
@@ -78,6 +78,15 @@
 			    <br />
 			    <span class="price payments"><del><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{food.payments}} <span class="kor">원</span></span>
 		    </div>
+		    {% if food.thumbs_net !== 0 %}
+		    <div class="pull-right">
+		    	<h4>
+			    	{% if food.thumbs_net > 0 %}<span class="glyphicon glyphicon-thumbs-up"></span> + {% endif %}
+			    	{% if food.thumbs_net < 0 %}<span class="glyphicon glyphicon-thumbs-down"></span> - {% endif %}
+			    	{{food.thumbs_net}}
+		    	</h4>
+	    	</div>
+	    	{% endif %}
 		  </div>
 		</div>
 	</div>
