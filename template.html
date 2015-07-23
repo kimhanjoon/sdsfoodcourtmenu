@@ -54,7 +54,7 @@
 		<span class="corner badge pull-right">{{food.corner}}</span>
 	</div>
 	{% else %}
-	<div class="list-group-item">
+	<div class="list-group-item collapse-boundary">
 		<div class="media">
 			<div class="media-left">
 				{% if food.img_src_data %}
@@ -63,7 +63,7 @@
 		    	<img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;" data-action="zoom">
 				{% endif %}
 			</div>
-		  <div class="media-body">
+		  <div class="media-body collapse-trigger">
 		    <h4 class="media-heading">
 		    	<span class="title_kor">{{food.title_kor}}</span>
 		    	<span class="title_eng hidden">{{food.title_eng}}</span>
@@ -78,16 +78,22 @@
 			    <br />
 			    <span class="price payments"><del><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{food.payments}} <span class="kor">원</span></span>
 		    </div>
-		    {% if food.thumbs_net !== 0 %}
 		    <div class="pull-right">
 		    	<h4>
-			    	{% if food.thumbs_net > 0 %}<span class="glyphicon glyphicon-thumbs-up"></span> + {% endif %}
-			    	{% if food.thumbs_net < 0 %}<span class="glyphicon glyphicon-thumbs-down"></span> - {% endif %}
-			    	{{food.thumbs_net}}
+			    	{{food.recommendation}}
 		    	</h4>
 	    	</div>
-	    	{% endif %}
 		  </div>
+		</div>
+		<div class="collapse">
+			<div>
+				<button type="button" class="btn btn-default btn-xs"><span class="kor">실제 사진찍기</span><span class="eng hidden">Take photo</span></button>
+				<div class="pull-right">
+					<span class="glyphicon glyphicon-thumbs-up"></span> {{food.thumbs_up}}
+					&nbsp;&nbsp;
+					<span class="glyphicon glyphicon-thumbs-down"></span> {{food.thumbs_down}}
+				</div>
+			</div>
 		</div>
 	</div>
 	{% endif %}
@@ -165,6 +171,11 @@ $(function() {
 	{% if englishLanguage === true %}
 	$("#language").click();
 	{% endif %}
+
+	// 아코디언 이벤트 걸기
+	$(".collapse-trigger").click(function() {
+		$(this).closest(".collapse-boundary").find(".collapse").collapse("toggle");
+	});
 });
 </script>
 </body>

@@ -115,6 +115,9 @@ exports.parse = function (html) {
 	        
 	        food.corner = mapperClassname2Cornername[$e.closest("div[class$=group]").attr("class")];
 	        food.floor = floor;
+	        food.thumbs_up = 138;	//TODO 임시
+	        food.thumbs_down = 21;	//TODO 임시
+	        food.recommendation = "강추";	//TODO 임시
 	        return food;
 	    });
     return foods.get();
