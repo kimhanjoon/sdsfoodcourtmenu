@@ -1072,6 +1072,9 @@
 </div>
 
 <div id="status"></div>
+
+
+<img id="showPicture" src="blank:">
   
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -1096,7 +1099,7 @@ $(function() {
 	});
 	
 	// 파일을 선택하면 이벤트 발생함, 이벤트를 다 처리하면 form을 지워줘야한다.
-	$("#photo-file-input").change(function() {
+	$("#photo-file-input").change(function(event) {
 		// Get a reference to the taken picture or chosen file
         var files = event.target.files,
             file;
@@ -1131,7 +1134,7 @@ $(function() {
             }
         }
         
-		$("form").ajaxSubmit();
+// 		$("form").ajaxSubmit();
 	});
 	
 	var bar = $('.bar');
