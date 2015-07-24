@@ -200,6 +200,40 @@ $(function() {
 	
 	// 파일을 선택하면 이벤트 발생함, 이벤트를 다 처리하면 form을 지워줘야한다.
 	$("#photo-file-input").change(function() {
+		// Get a reference to the taken picture or chosen file
+        var files = event.target.files,
+            file;
+        if (files && files.length > 0) {
+            file = files[0];
+            try {
+                // Create ObjectURL
+                var imgURL = window.URL.createObjectURL(file);
+
+                // Set img src to ObjectURL
+                $("#showPicture").attr("src", imgURL);
+
+                // Revoke ObjectURL
+                URL.revokeObjectURL(imgURL);
+            }
+            catch (e) {
+                try {
+                    // Fallback if createObjectURL is not supported
+                    var fileReader = new FileReader();
+                    fileReader.onload = function (event) {ObjectURL
+                        $("#showPicture").attr("src", event.target.result);
+                    };
+                    fileReader.readAsDataURL(file);
+                }
+                catch (e) {
+                    //
+                    var error = document.querySelector("#error");
+                    if (error) {
+                        error.innerHTML = "Neither createObjectURL or FileReader are supported";
+                    }
+                }
+            }
+        }
+        
 		$("form").ajaxSubmit();
 	});
 	
