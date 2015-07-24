@@ -57,6 +57,30 @@ app.get('/jamsil', function(req, res){
 	
 });
 
+app.post('/uploadphoto', function(req, res){
+
+	console.log(JSON.stringify(req.files));
+	
+	var serverPath = '/photo/' + req.files.userPhoto.name;
+
+    require('fs').rename(
+		req.files.userPhoto.path,
+		'D:\dev\git\sdsfoodcourtmenu' + serverPath,
+		function(error) {
+			if(error) {
+				res.send({
+		        	error: 'Ah crap! Something bad happened'
+				});
+            	return;
+            }
+	
+            res.send({
+            	path: serverPath
+            });
+		}
+    );
+});
+
 app.use('/static', express.static('public'));
 app.use('/image', express.static('image'));
 

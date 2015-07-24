@@ -87,7 +87,7 @@
 		</div>
 		<div class="collapse">
 			<div>
-				<button type="button" class="btn btn-default btn-xs"><span class="kor">실제 사진찍기</span><span class="eng hidden">Take photo</span></button>
+				<button type="button" class="btn btn-default btn-xs take-photo"><span class="kor">실제 사진찍기</span><span class="eng hidden">Take photo</span></button>
 				<div class="pull-right">
 					<span class="glyphicon glyphicon-thumbs-up"></span> {{food.thumbs_up}}
 					&nbsp;&nbsp;
@@ -159,9 +159,25 @@
   ga('send', 'pageview');
 </script>
 {% endif %}
+
+
+<form class="hidden" action="uploadphoto" method="post" enctype="multipart/form-data">
+	<input type="hidden" id="foodId" />
+	<input type="hidden" id="photographerName" />
+	<input type="file" id="photo-file-input" name="userPhoto" accept="image/*" />
+</form>
+
+<div class="progress">
+	<div class="bar"></div >
+	<div class="percent">0%</div >
+</div>
+
+<div id="status"></div>
+  
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="http://fat.github.io/zoom.js/js/zoom.js"></script>
+<script src="http://malsup.github.com/min/jquery.form.min.js"></script>
 <script type="text/javascript">
 $(function() {
 	$("#language").click(function() {
@@ -175,6 +191,42 @@ $(function() {
 	// 아코디언 이벤트 걸기
 	$(".collapse-trigger").click(function() {
 		$(this).closest(".collapse-boundary").find(".collapse").collapse("toggle");
+	});
+
+	// 사진찍기 버튼은 공통의 form을 사용하도록 별도 file input을 click하게 만든다.
+	$(".take-photo").click(function() {
+		$("#photo-file-input").click();
+	});
+	
+	// 파일을 선택하면 이벤트 발생함, 이벤트를 다 처리하면 form을 지워줘야한다.
+	$("#photo-file-input").change(function() {
+		$("form").ajaxSubmit();
+	});
+	
+	var bar = $('.bar');
+	var percent = $('.percent');
+	var status = $('#status');
+	   
+	$('form').ajaxForm({
+	    beforeSend: function() {
+	        status.empty();
+	        var percentVal = '0%';
+	        bar.width(percentVal)
+	        percent.html(percentVal);
+	    },
+	    uploadProgress: function(event, position, total, percentComplete) {
+	        var percentVal = percentComplete + '%';
+	        bar.width(percentVal)
+	        percent.html(percentVal);
+	    },
+	    success: function() {
+	        var percentVal = '100%';
+	        bar.width(percentVal)
+	        percent.html(percentVal);
+	    },
+		complete: function(xhr) {
+			status.html(xhr.responseText);
+		}
 	});
 });
 </script>
