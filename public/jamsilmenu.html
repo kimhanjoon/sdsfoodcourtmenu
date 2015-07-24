@@ -1107,7 +1107,7 @@ $(function() {
                 var imgURL = window.URL.createObjectURL(file);
 
                 // Set img src to ObjectURL
-                $("#showPicture").attr("src", imgURL);
+                $("#showPicture").get().src = imgURL;
 
                 // Revoke ObjectURL
                 URL.revokeObjectURL(imgURL);
@@ -1117,7 +1117,7 @@ $(function() {
                     // Fallback if createObjectURL is not supported
                     var fileReader = new FileReader();
                     fileReader.onload = function (event) {ObjectURL
-                        $("#showPicture").attr("src", event.target.result);
+                        $("#showPicture").get().src = event.target.result;
                     };
                     fileReader.readAsDataURL(file);
                 }
