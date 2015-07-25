@@ -162,8 +162,8 @@
 
 
 <form class="hidden" action="uploadphoto" method="post" enctype="multipart/form-data">
-	<input type="hidden" id="foodId" />
-	<input type="hidden" id="photographerName" />
+	<input type="hidden" id="foodId" value="PPP" />
+	<input type="hidden" id="photographerName" value="mememem"/>
 	<input type="file" id="photo-file-input" name="userPhoto" accept="image/*" />
 </form>
 
@@ -173,6 +173,8 @@
 </div>
 
 <div id="status"></div>
+
+<img id="show-picture" src="about:blank">
   
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -193,49 +195,41 @@ $(function() {
 		$(this).closest(".collapse-boundary").find(".collapse").collapse("toggle");
 	});
 
-	// 사진찍기 버튼은 공통의 form을 사용하도록 별도 file input을 click하게 만든다.
-	$(".take-photo").click(function() {
-		$("#photo-file-input").click();
-	});
-	
-	// 파일을 선택하면 이벤트 발생함, 이벤트를 다 처리하면 form을 지워줘야한다.
-	$("#photo-file-input").change(function() {
-		// Get a reference to the taken picture or chosen file
-        var files = event.target.files,
-            file;
-        if (files && files.length > 0) {
-            file = files[0];
-            try {
-                // Create ObjectURL
-                var imgURL = window.URL.createObjectURL(file);
+	// window.URL에 ObjectURL관련 함수가 있을 때만 동작한다.
+	if( URL && URL.createObjectURL && URL.revokeObjectURL ) {
+		
+		// 사진찍기 버튼은 공통의 form을 사용하도록 별도 file input을 click하게 만든다.
+		$(".take-photo").show().click(function() {
+			$("#photo-file-input").click();
+		});
+	    
+		// 파일을 선택하면 이벤트 발생함, 이벤트를 다 처리하면 form을 초기화해줘야한다.
+		$("#photo-file-input").change(function (event) {
+			
+			// Get a reference to the taken picture or chosen file
+	        var files = event.target.files;
+	        if (files && files.length > 0) {
+	            var file = files[0];
+	            try {
+	                // Create ObjectURL
+	                var imgURL = URL.createObjectURL(file);
 
-                // Set img src to ObjectURL
-                $("#showPicture").attr("src", imgURL);
-
-                // Revoke ObjectURL
-                URL.revokeObjectURL(imgURL);
-            }
-            catch (e) {
-                try {
-                    // Fallback if createObjectURL is not supported
-                    var fileReader = new FileReader();
-                    fileReader.onload = function (event) {ObjectURL
-                        $("#showPicture").attr("src", event.target.result);
-                    };
-                    fileReader.readAsDataURL(file);
-                }
-                catch (e) {
-                    //
-                    var error = document.querySelector("#error");
-                    if (error) {
-                        error.innerHTML = "Neither createObjectURL or FileReader are supported";
-                    }
-                }
-            }
-        }
-        
-		$("form").ajaxSubmit();
-	});
+	                // Set img src to ObjectURL and Revoke ObjectURL after imagehas loaded
+		        	var showpic = $("#show-picture");
+	                showpic.attr("src", imgURL);
+	                showpic.load(function() {
+	                    URL.revokeObjectURL(imgURL);  
+	                });
+	             	
+	                // 파일을 서버로 전송
+	         		$("form").ajaxSubmit();
+	            }
+	            catch (e) {
+					console.error("URL.createObjectURL() is not are supported");
+	            }
+	        }
+		});
+	}
 	
 	var bar = $('.bar');
 	var percent = $('.percent');
