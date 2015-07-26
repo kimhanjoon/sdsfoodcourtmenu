@@ -14,6 +14,14 @@ var requestsdsfoodcourtmenu = function(zonename, callback) {
 	});
 };
 
+if( argv.examplefile ) {
+	
+	var fs = require('fs');
+	requestsdsfoodcourtmenu = function(zonename, callback) {
+		return fs.readFile('./jamsilmenu/' + zonename + '.html', 'utf8', callback);
+	};
+}
+
 var express = require('express');
 var app = express();
 
