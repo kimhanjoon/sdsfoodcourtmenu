@@ -96,20 +96,19 @@ exports.parse = function (html) {
 	        		var m = re.exec(food.img_src);
 	        		
 	        		if ( m !== null ) {
-	        			food.img_src_menuId = m.input.substr(m.index + 7);
-	        			if( img_cache_map[food.img_src_menuId] ) {
+	        			if( img_cache_map[food.id] ) {
 //	        				console.log('hit');
 	        				food.img_src_data = true;
-	        				food.img_src = img_cache_map[food.img_src_menuId]; 
+	        				food.img_src = img_cache_map[food.id]; 
 	        			}
 	        			else {
 //	        				console.log('miss');
 	        				request({url: "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src, encoding: 'binary'}, function(error, response, body) {
 //	        					console.log('image');
-	        					fs.writeFile('image/' + food.img_src_menuId + '.png', body, 'binary', function(){
-	        						easyimg.convert({src:'image/' + food.img_src_menuId + '.png', dst: 'image/' + food.img_src_menuId + '.jpg', quality:60, background: 'white'}).then(function (file) {
+	        					fs.writeFile('image/' + food.id + '.png', body, 'binary', function(){
+	        						easyimg.convert({src:'image/' + food.id + '.png', dst: 'image/' + food.id + '.jpg', quality:60, background: 'white'}).then(function (file) {
 //	        							console.log(file);
-	        							img_cache_map[food.img_src_menuId] = '/image/' + food.img_src_menuId + '.jpg';
+	        							img_cache_map[food.id] = '/image/' + food.id + '.jpg';
 	        						});
 	        					});
 	        				});
