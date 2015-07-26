@@ -69,11 +69,11 @@ app.post('/uploadphoto', function(req, res){
 
 	console.log(JSON.stringify(req.files));
 	
-	var serverPath = '/photo/' + req.files.userPhoto.name;
+	var serverPath = 'photo/' + req.files.userPhoto.name;
 
     require('fs').rename(
 		req.files.userPhoto.path,
-		'D:\dev\git\sdsfoodcourtmenu' + serverPath,
+		serverPath,
 		function(error) {
 			if(error) {
 				res.send({
