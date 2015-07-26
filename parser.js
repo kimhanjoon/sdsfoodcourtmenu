@@ -24,6 +24,14 @@ var request = require('request');
 var fs = require('fs');
 var easyimg = require('easyimage');
 
+var toHex = function(str) {
+	var hex = '';
+	for(var i=0;i<str.length;i++) {
+		hex += ''+str.charCodeAt(i).toString(16);
+	}
+	return hex;
+};
+
 var cheerio = require('cheerio');
 exports.parse = function (html) {
     var $ = cheerio.load(html);
@@ -38,6 +46,7 @@ exports.parse = function (html) {
 	        var food = {};
 	        food.title_kor = $e.find("span:nth-child(1)").text();
 	        food.title_eng = $e.find("span:nth-child(3)").text();
+	        food.id = toHex(food.title_kor);
 	        
 	        food.kcal = Number($e.find("span:nth-child(5)").text().replace(" kcal", ""));
 	        

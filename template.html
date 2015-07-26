@@ -54,7 +54,7 @@
 		<span class="corner badge pull-right">{{food.corner}}</span>
 	</div>
 	{% else %}
-	<div class="list-group-item collapse-boundary">
+	<div class="list-group-item collapse-boundary food" data-food-id="{{food.id}}">
 		<div class="media">
 			<div class="media-left">
 				{% if food.img_src_data %}
@@ -200,34 +200,14 @@ $(function() {
 		
 		// 사진찍기 버튼은 공통의 form을 사용하도록 별도 file input을 click하게 만든다.
 		$(".take-photo").show().click(function() {
+			$("#foodId").val($(this).closest(".food").data("food-id"));
+			$("#photo-file-input").val("");	// 같은 파일을 업로드해도 업로드 되도록 초기화
 			$("#photo-file-input").click();
 		});
 	    
-		// 파일을 선택하면 이벤트 발생함, 이벤트를 다 처리하면 form을 초기화해줘야한다.
+		// 파일을 서버로 전송
 		$("#photo-file-input").change(function (event) {
-			
-			// Get a reference to the taken picture or chosen file
-	        var files = event.target.files;
-	        if (files && files.length > 0) {
-	            var file = files[0];
-	            try {
-	                // Create ObjectURL
-	                var imgURL = URL.createObjectURL(file);
-
-	                // Set img src to ObjectURL and Revoke ObjectURL after imagehas loaded
-		        	var showpic = $("#show-picture");
-	                showpic.attr("src", imgURL);
-	                showpic.load(function() {
-	                    URL.revokeObjectURL(imgURL);  
-	                });
-	             	
-	                // 파일을 서버로 전송
-	         		$("form").ajaxSubmit();
-	            }
-	            catch (e) {
-					console.error("URL.createObjectURL() is not are supported");
-	            }
-	        }
+     		$("form").ajaxSubmit();
 		});
 	}
 	
