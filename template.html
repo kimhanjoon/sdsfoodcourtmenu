@@ -195,21 +195,18 @@ $(function() {
 		$(this).closest(".collapse-boundary").find(".collapse").collapse("toggle");
 	});
 
-	// window.URL에 ObjectURL관련 함수가 있을 때만 동작한다.
-	if( URL && URL.createObjectURL && URL.revokeObjectURL ) {
-		
-		// 사진찍기 버튼은 공통의 form을 사용하도록 별도 file input을 click하게 만든다.
-		$(".take-photo").show().click(function() {
-			$("#foodId").val($(this).closest(".food").data("food-id"));
-			$("#photo-file-input").val("");	// 같은 파일을 업로드해도 업로드 되도록 초기화
-			$("#photo-file-input").click();
-		});
-	    
-		// 파일을 서버로 전송
-		$("#photo-file-input").change(function (event) {
-     		$("form").ajaxSubmit();
-		});
-	}
+
+	// 사진찍기 버튼은 공통의 form을 사용하도록 별도 file input을 click하게 만든다.
+	$(".take-photo").click(function() {
+		$("#foodId").val($(this).closest(".food").data("food-id"));
+		$("#photo-file-input").val("");	// 같은 파일을 업로드해도 업로드 되도록 초기화
+		$("#photo-file-input").click();
+	});
+    
+	// 파일을 서버로 전송
+	$("#photo-file-input").change(function (event) {
+ 		$("form").ajaxSubmit();
+	});
 	
 	var bar = $('.bar');
 	var percent = $('.percent');
