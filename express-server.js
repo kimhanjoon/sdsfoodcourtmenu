@@ -69,19 +69,20 @@ app.get('/jamsil', function(req, res){
 var multer  = require('multer');
 var storage = multer.diskStorage({
 	destination : function(req, file, cb) {
-		cb(null, 'photo');
+		cb(null, 'uploadphoto');
 	},
 	filename : function(req, file, cb) {
 		cb(null, req.body.foodId + '-' + Date.now());
 	}
 });
 var upload = multer({ storage: storage });
-app.post('/uploadphoto', upload.single('userPhoto'), function(req, res, next) {
+app.post('/uploadphoto', upload.single('foodPhoto'), function(req, res, next) {
 	
 	//TODO EMAIL
 });
 
 
+app.use('/uploadphoto', express.static('uploadphoto'));
 app.use('/static', express.static('public'));
 app.use('/image', express.static('image'));
 

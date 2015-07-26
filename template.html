@@ -160,22 +160,11 @@
 </script>
 {% endif %}
 
-
 <form class="hidden" action="uploadphoto" method="post" enctype="multipart/form-data">
-	<input type="text" id="foodId" name="foodId" value="PPP" />
-	<input type="text" id="photographerName" name="photographerName" value="mememem"/>
-	<input type="file" id="photo-file-input" name="userPhoto" accept="image/*" />
+	<input type="text" id="foodId" name="foodId" />
+	<input type="file" id="foodPhoto" name="foodPhoto" accept="image/*" />
 </form>
 
-<div class="progress">
-	<div class="bar"></div >
-	<div class="percent">0%</div >
-</div>
-
-<div id="status"></div>
-
-<img id="show-picture" src="about:blank">
-  
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="http://fat.github.io/zoom.js/js/zoom.js"></script>
@@ -186,6 +175,7 @@ $(function() {
 		$(".kor,.eng,.title_kor,.title_eng").toggleClass("hidden");
 	});
 
+	// 브라우저가 영어권으로 셋팅되어있으면 영어가 기본셋팅
 	{% if englishLanguage === true %}
 	$("#language").click();
 	{% endif %}
@@ -195,44 +185,18 @@ $(function() {
 		$(this).closest(".collapse-boundary").find(".collapse").collapse("toggle");
 	});
 
-
 	// 사진찍기 버튼은 공통의 form을 사용하도록 별도 file input을 click하게 만든다.
 	$(".take-photo").click(function() {
 		$("#foodId").val($(this).closest(".food").data("food-id"));
-		$("#photo-file-input").val("");	// 같은 파일을 업로드해도 업로드 되도록 초기화
-		$("#photo-file-input").click();
+		$("#foodPhoto").val("");	// 같은 파일을 업로드해도 동작하도록 초기화
+		$("#foodPhoto").click();
 	});
     
 	// 파일을 서버로 전송
-	$("#photo-file-input").change(function (event) {
+	$("#foodPhoto").change(function (event) {
  		$("form").ajaxSubmit();
 	});
 	
-	var bar = $('.bar');
-	var percent = $('.percent');
-	var status = $('#status');
-	   
-	$('form').ajaxForm({
-	    beforeSend: function() {
-	        status.empty();
-	        var percentVal = '0%';
-	        bar.width(percentVal)
-	        percent.html(percentVal);
-	    },
-	    uploadProgress: function(event, position, total, percentComplete) {
-	        var percentVal = percentComplete + '%';
-	        bar.width(percentVal)
-	        percent.html(percentVal);
-	    },
-	    success: function() {
-	        var percentVal = '100%';
-	        bar.width(percentVal)
-	        percent.html(percentVal);
-	    },
-		complete: function(xhr) {
-			status.html(xhr.responseText);
-		}
-	});
 });
 </script>
 </body>
