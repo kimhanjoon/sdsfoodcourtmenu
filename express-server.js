@@ -65,29 +65,22 @@ app.get('/jamsil', function(req, res){
 	
 });
 
-app.post('/uploadphoto', function(req, res){
 
-	console.log(JSON.stringify(req.files));
-	
-	var serverPath = 'photo/' + req.files.userPhoto.name;
-
-    require('fs').rename(
-		req.files.userPhoto.path,
-		serverPath,
-		function(error) {
-			if(error) {
-				res.send({
-		        	error: 'Ah crap! Something bad happened'
-				});
-            	return;
-            }
-	
-            res.send({
-            	path: serverPath
-            });
-		}
-    );
+var multer  = require('multer');
+var storage = multer.diskStorage({
+	destination : function(req, file, cb) {
+		cb(null, 'photo');
+	},
+	filename : function(req, file, cb) {
+		cb(null, req.body.foodId + '-' + Date.now());
+	}
 });
+var upload = multer({ storage: storage });
+app.post('/uploadphoto', upload.single('userPhoto'), function(req, res, next) {
+	
+	//TODO EMAIL
+});
+
 
 app.use('/static', express.static('public'));
 app.use('/image', express.static('image'));
