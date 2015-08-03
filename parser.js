@@ -105,10 +105,10 @@ exports.parse = function (html) {
 //	        				console.log('miss');
 	        				request({url: "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src, encoding: 'binary'}, function(error, response, body) {
 //	        					console.log('image');
-	        					fs.writeFile('image/' + food.id + '.png', body, 'binary', function(){
-	        						easyimg.convert({src:'image/' + food.id + '.png', dst: 'image/' + food.id + '.jpg', quality:60, background: 'white'}).then(function (file) {
+	        					fs.writeFile('photo/' + food.id + '.png', body, 'binary', function(){
+	        						easyimg.convert({src:'photo/' + food.id + '.png', dst: 'photo/' + food.id + '.jpg', quality:60, background: 'white'}).then(function (file) {
 //	        							console.log(file);
-	        							img_cache_map[food.id] = '/image/' + food.id + '.jpg';
+	        							img_cache_map[food.id] = '/photo/' + food.id + '.jpg';
 	        						});
 	        					});
 	        				});
