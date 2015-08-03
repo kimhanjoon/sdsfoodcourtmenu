@@ -77,6 +77,9 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 app.post('/uploadphoto', upload.single('foodPhoto'), function(req, res, next) {
+
+	var easyimg = require('easyimage');
+	easyimg.convert({src:'uploadphoto/' + req.file.filename, dst: 'uploadphoto/' + req.file.filename + '.jpg', quality:60, background: 'white'});
 	
 	//TODO EMAIL
 });
