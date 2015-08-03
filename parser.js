@@ -140,3 +140,7 @@ exports.render = function (option) {
     	, englishLanguage: option.english === true
     });
 };
+
+exports.addphoto = function(key, value) {
+	img_cache_map[key] = value;
+};
