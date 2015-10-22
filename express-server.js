@@ -88,6 +88,7 @@ app.post('/uploadphoto', upload.single('foodPhoto'), function(req, res, next) {
 app.use('/uploadphoto', express.static('uploadphoto'));
 app.use('/static', express.static('public'));
 app.use('/image', express.static('image'));
+app.use('/photo', express.static('photo'));
 
 //--port 80
 var port = argv.port || 80;
