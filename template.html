@@ -84,11 +84,13 @@
 		<div class="collapse">
 			<div>
 				<button type="button" class="btn btn-default btn-xs take-photo"><span class="kor">실제 사진찍기</span><span class="eng hidden">Take photo</span></button>
+				{% if food.thumbs %}
 				<div class="pull-right">
 					<span class="glyphicon glyphicon-thumbs-up"></span> {{food.thumbs_up}}
 					&nbsp;&nbsp;
 					<span class="glyphicon glyphicon-thumbs-down"></span> {{food.thumbs_down}}
 				</div>
+				{% endif %}
 			</div>
 		</div>
 	</div>
