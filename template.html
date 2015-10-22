@@ -144,6 +144,15 @@
 
 </div>
 
+<div id="uploadPhotoConfirmMessage" class="hidden">
+	<span class="kor">보내주신 사진 외에는 다른 정보를 저장하지 않습니다. 
+	한번 보낸 사진은 취소가 불가능합니다.
+	사진을 보내겠습니까?</span>
+	<span class="eng hidden">Other information except the photos are not saved.
+	The uploaded photos would not be canceled.
+	Would you like to upload a photo?</span>
+</div>
+
 {% if googleAnalytics === true %}
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -183,7 +192,7 @@ $(function() {
 
 	// 사진찍기 버튼은 공통의 form을 사용하도록 별도 file input을 click하게 만든다.
 	$(".take-photo").click(function() {
-		if( confirm("보내주신 사진 외에는 다른 정보를 저장하지 않습니다. \n한번 보낸 사진은 취소가 불가능합니다. \n사진을 보내겠습니까?") ) {
+		if( confirm($("#uploadPhotoConfirmMessage span:not(.hidden)").text()) ) {
 			$("#foodId").val($(this).closest(".food").data("food-id"));
 			$("#foodPhoto").val("");	// 같은 파일을 업로드해도 동작하도록 초기화
 			$("#foodPhoto").click();

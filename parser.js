@@ -87,11 +87,11 @@ exports.parse = function (html) {
 
         	// 캐쉬해놓은 이미지 파일이 있는 경우
         	if( img_cache_map[food.id] ) {
-				console.log('hit');
+//				console.log('hit');
 				food.img_src = img_cache_map[food.id]; 
 			}
         	else {
-				console.log('miss');
+//				console.log('miss');
 
     	        food.img_src = $e.find("img").attr('src');
     	        	
@@ -106,10 +106,10 @@ exports.parse = function (html) {
 
             		// 캐쉬되도록 이미지 저장하고 캐쉬에 등록
     				request({url: "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src, encoding: 'binary'}, function(error, response, body) {
-    					console.log('image');
-    					fs.writeFile('photo/' + food.id + '.png', body, 'binary', function(){
-    						easyimg.convert({src:'photo/' + food.id + '.png', dst: 'photo/' + food.id + '.jpg', quality:60, background: 'white'}).then(function (file) {
-    							console.log(file);
+//    					console.log('image');
+    					fs.writeFile('downloadphoto/' + food.id + '.png', body, 'binary', function(){
+    						easyimg.convert({src:'downloadphoto/' + food.id + '.png', dst: 'photo/' + food.id + '.jpg', quality:60, background: 'white'}).then(function (file) {
+//    							console.log(file);
     							img_cache_map[food.id] = '/photo/' + food.id + '.jpg';
     						});
     					});
