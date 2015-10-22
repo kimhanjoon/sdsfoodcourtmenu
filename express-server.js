@@ -14,6 +14,14 @@ var requestsdsfoodcourtmenu = function(zonename, callback) {
 	});
 };
 
+if( argv.examplefile ) {
+	
+	var fs = require('fs');
+	requestsdsfoodcourtmenu = function(zonename, callback) {
+		return fs.readFile('./jamsilmenu/' + zonename + '.html', 'utf8', callback);
+	};
+}
+
 var express = require('express');
 var app = express();
 
@@ -57,8 +65,51 @@ app.get('/jamsil', function(req, res){
 	
 });
 
+
+var multer  = require('multer');
+var storage = multer.diskStorage({
+	destination : function(req, file, cb) {
+		cb(null, 'uploadphoto');
+	},
+	filename : function(req, file, cb) {
+		cb(null, req.body.foodId + '-' + Date.now());
+	}
+});
+var upload = multer({ storage: storage });
+app.post('/uploadphoto', upload.single('foodPhoto'), function(req, res, next) {
+
+	var easyimg = require('easyimage');
+	easyimg.convert({
+		src: 'uploadphoto/' + req.file.filename
+		, dst: 'uploadphoto/' + req.file.filename + '_convert.jpg'
+		, quality: 60
+		, background: 'white'
+	}).then(function (file) {
+		easyimg.resize({
+			src: 'uploadphoto/' + req.file.filename + '_convert.jpg'
+			, dst: 'photo/' + req.file.filename + '.jpg'
+			, width: 420
+			, height: 350
+		}).then(
+			function(image) {
+			},
+			function (err) {
+				console.log(err);
+			}
+		);
+    },
+	function (err) {
+		console.log(err);
+	});
+	
+	//TODO EMAIL
+});
+
+
+app.use('/uploadphoto', express.static('uploadphoto'));
 app.use('/static', express.static('public'));
 app.use('/image', express.static('image'));
+app.use('/photo', express.static('photo'));
 
 //--port 80
 var port = argv.port || 80;

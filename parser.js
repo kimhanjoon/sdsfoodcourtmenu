@@ -17,12 +17,26 @@ var mapperClassname2Cornername = {
 		, "DSDS017-group" : "XingFu China"
 		, "DSDS018-group" : "우리미각면"
 	};
-
-var img_cache_map = {};
+var _ = require('underscore');
+var fs = require('fs');
+var img_cache_map = _.chain(fs.readdirSync('photo')).filter(function(e) {
+	return e.indexOf('jpg', e.length - 'jpg'.length) !== -1;
+}).map(function(e) {
+	return e.substr(0, e.length - 3 - 1);
+}).map(function(e) {
+	return [e, '/photo/' + e + '.jpg'];
+}).object().value();
 
 var request = require('request');
-var fs = require('fs');
 var easyimg = require('easyimage');
+
+var toHex = function(str) {
+	var hex = '';
+	for(var i=0;i<str.length;i++) {
+		hex += ''+str.charCodeAt(i).toString(16);
+	}
+	return hex;
+};
 
 var cheerio = require('cheerio');
 exports.parse = function (html) {
@@ -38,6 +52,7 @@ exports.parse = function (html) {
 	        var food = {};
 	        food.title_kor = $e.find("span:nth-child(1)").text();
 	        food.title_eng = $e.find("span:nth-child(3)").text();
+	        food.id = toHex(food.title_kor);
 	        
 	        food.kcal = Number($e.find("span:nth-child(5)").text().replace(" kcal", ""));
 	        
@@ -69,52 +84,47 @@ exports.parse = function (html) {
 	            	food.payments = food.price - 2500; 
 	            }
 	        }
-	        
-	        food.img_src = $e.find("img").attr('src');
-	        if( food.img_src ) {
-	        	
-	        	// 이미지 파일이 없는 경우 No Image로 변경
-	        	if( food.img_src.indexOf("food_sold_out_01_01.png") > -1 ) {
-	        		food.img_src_data = true;
-	        		food.img_src = "/static/no_image_available.jpg";
-	        	}
-	        	else {
-	        		
-	        		// <img>태그의 src에서 jsessionid 제거
-	        		food.img_src = food.img_src.replace(/;.*\?/, "?");
 
-	        		var re = /menuId=.*$/; 
-	        		var m = re.exec(food.img_src);
-	        		
-	        		if ( m !== null ) {
-	        			food.img_src_menuId = m.input.substr(m.index + 7);
-	        			if( img_cache_map[food.img_src_menuId] ) {
-//	        				console.log('hit');
-	        				food.img_src_data = true;
-	        				food.img_src = img_cache_map[food.img_src_menuId]; 
-	        			}
-	        			else {
-//	        				console.log('miss');
-	        				request({url: "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src, encoding: 'binary'}, function(error, response, body) {
-//	        					console.log('image');
-	        					fs.writeFile('image/' + food.img_src_menuId + '.png', body, 'binary', function(){
-	        						easyimg.convert({src:'image/' + food.img_src_menuId + '.png', dst: 'image/' + food.img_src_menuId + '.jpg', quality:60, background: 'white'}).then(function (file) {
-//	        							console.log(file);
-	        							img_cache_map[food.img_src_menuId] = '/image/' + food.img_src_menuId + '.jpg';
-	        						});
-	        					});
-	        				});
-	        			}
-	        			
-	        		}
-	        		
-	        	}
+        	// 캐쉬해놓은 이미지 파일이 있는 경우
+        	if( img_cache_map[food.id] ) {
+//				console.log('hit');
+				food.img_src = img_cache_map[food.id]; 
+			}
+        	else {
+//				console.log('miss');
 
-	        	
-	        }
+    	        food.img_src = $e.find("img").attr('src');
+    	        	
+            	// 이미지 파일이 없는 경우 No Image로 변경
+            	if( food.img_src.indexOf("food_sold_out_01_01.png") > -1 ) {
+            		food.img_src = "/static/no_image_available.jpg";
+            	}
+            	else {
+            		
+            		// <img>태그의 src에서 jsessionid 제거
+            		food.img_src = food.img_src.replace(/;.*\?/, "?");
+
+            		// 캐쉬되도록 이미지 저장하고 캐쉬에 등록
+    				request({url: "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src, encoding: 'binary'}, function(error, response, body) {
+//    					console.log('image');
+    					fs.writeFile('downloadphoto/' + food.id + '.png', body, 'binary', function(){
+    						easyimg.convert({src:'downloadphoto/' + food.id + '.png', dst: 'photo/' + food.id + '.jpg', quality:60, background: 'white'}).then(function (file) {
+//    							console.log(file);
+    							img_cache_map[food.id] = '/photo/' + food.id + '.jpg';
+    						});
+    					});
+    				});
+    				
+    				// 실제 경로로 img_src 설정
+    				food.img_src = "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src;
+            	}
+        	}
 	        
 	        food.corner = mapperClassname2Cornername[$e.closest("div[class$=group]").attr("class")];
 	        food.floor = floor;
+//	        food.thumbs_up = 138;	//TODO 임시
+//	        food.thumbs_down = 21;	//TODO 임시
+//	        food.recommendation = "강추";	//TODO 임시
 	        return food;
 	    });
     return foods.get();
@@ -128,4 +138,8 @@ exports.render = function (option) {
     	, googleAnalytics: option.production === true
     	, englishLanguage: option.english === true
     });
+};
+
+exports.addphoto = function(key, value) {
+	img_cache_map[key] = value;
 };
