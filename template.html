@@ -57,11 +57,7 @@
 	<div class="list-group-item collapse-boundary food" data-food-id="{{food.id}}">
 		<div class="media">
 			<div class="media-left">
-				{% if food.img_src_data %}
 				<img class="media-object" src="{{food.img_src}}" style="width:80px;" data-action="zoom">
-				{% else %}
-		    	<img class="media-object" src="http://www.sdsfoodmenu.co.kr:9106/{{food.img_src}}" style="width:80px;" data-action="zoom">
-				{% endif %}
 			</div>
 		  <div class="media-body collapse-trigger">
 		    <h4 class="media-heading">
@@ -181,9 +177,9 @@ $(function() {
 	{% endif %}
 
 	// 아코디언 이벤트 걸기
-	$(".collapse-trigger").click(function() {
-		$(this).closest(".collapse-boundary").find(".collapse").collapse("toggle");
-	});
+// 	$(".collapse-trigger").click(function() {
+// 		$(this).closest(".collapse-boundary").find(".collapse").collapse("toggle");
+// 	});
 
 	// 사진찍기 버튼은 공통의 form을 사용하도록 별도 file input을 click하게 만든다.
 	$(".take-photo").click(function() {

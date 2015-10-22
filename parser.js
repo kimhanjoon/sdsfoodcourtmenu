@@ -17,11 +17,17 @@ var mapperClassname2Cornername = {
 		, "DSDS017-group" : "XingFu China"
 		, "DSDS018-group" : "우리미각면"
 	};
-
-var img_cache_map = {};
+var _ = require('underscore');
+var fs = require('fs');
+var img_cache_map = _.chain(fs.readdirSync('photo')).filter(function(e) {
+	return e.indexOf('jpg', e.length - 'jpg'.length) !== -1;
+}).map(function(e) {
+	return e.substr(0, e.length - 3 - 1);
+}).map(function(e) {
+	return [e, '/photo/' + e + '.jpg'];
+}).object().value();
 
 var request = require('request');
-var fs = require('fs');
 var easyimg = require('easyimage');
 
 var toHex = function(str) {
@@ -84,7 +90,6 @@ exports.parse = function (html) {
 	        	
 	        	// 이미지 파일이 없는 경우 No Image로 변경
 	        	if( food.img_src.indexOf("food_sold_out_01_01.png") > -1 ) {
-	        		food.img_src_data = true;
 	        		food.img_src = "/static/no_image_available.jpg";
 	        	}
 	        	else {
@@ -98,11 +103,11 @@ exports.parse = function (html) {
 	        		if ( m !== null ) {
 	        			if( img_cache_map[food.id] ) {
 //	        				console.log('hit');
-	        				food.img_src_data = true;
 	        				food.img_src = img_cache_map[food.id]; 
 	        			}
 	        			else {
 //	        				console.log('miss');
+	        				food.img_src = "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src;
 	        				request({url: "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src, encoding: 'binary'}, function(error, response, body) {
 //	        					console.log('image');
 	        					fs.writeFile('photo/' + food.id + '.png', body, 'binary', function(){
@@ -123,9 +128,9 @@ exports.parse = function (html) {
 	        
 	        food.corner = mapperClassname2Cornername[$e.closest("div[class$=group]").attr("class")];
 	        food.floor = floor;
-	        food.thumbs_up = 138;	//TODO 임시
-	        food.thumbs_down = 21;	//TODO 임시
-	        food.recommendation = "강추";	//TODO 임시
+//	        food.thumbs_up = 138;	//TODO 임시
+//	        food.thumbs_down = 21;	//TODO 임시
+//	        food.recommendation = "강추";	//TODO 임시
 	        return food;
 	    });
     return foods.get();
