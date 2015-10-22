@@ -79,7 +79,28 @@ var upload = multer({ storage: storage });
 app.post('/uploadphoto', upload.single('foodPhoto'), function(req, res, next) {
 
 	var easyimg = require('easyimage');
-	easyimg.convert({src:'uploadphoto/' + req.file.filename, dst: 'uploadphoto/' + req.file.filename + '.jpg', quality:60, background: 'white'});
+	easyimg.convert({
+		src: 'uploadphoto/' + req.file.filename
+		, dst: 'uploadphoto/' + req.file.filename + '_convert.jpg'
+		, quality: 60
+		, background: 'white'
+	}).then(function (file) {
+		easyimg.resize({
+			src: 'uploadphoto/' + req.file.filename + '_convert.jpg'
+			, dst: 'photo/' + req.file.filename + '.jpg'
+			, width: 420
+			, height: 350
+		}).then(
+			function(image) {
+			},
+			function (err) {
+				console.log(err);
+			}
+		);
+    },
+	function (err) {
+		console.log(err);
+	});
 	
 	//TODO EMAIL
 });
