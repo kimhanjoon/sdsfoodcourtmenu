@@ -102,17 +102,17 @@ exports.parse = function (html) {
 	        		
 	        		if ( m !== null ) {
 	        			if( img_cache_map[food.id] ) {
-//	        				console.log('hit');
+	        				console.log('hit');
 	        				food.img_src = img_cache_map[food.id]; 
 	        			}
 	        			else {
-//	        				console.log('miss');
+	        				console.log('miss');
 	        				food.img_src = "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src;
 	        				request({url: "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src, encoding: 'binary'}, function(error, response, body) {
-//	        					console.log('image');
+	        					console.log('image');
 	        					fs.writeFile('photo/' + food.id + '.png', body, 'binary', function(){
 	        						easyimg.convert({src:'photo/' + food.id + '.png', dst: 'photo/' + food.id + '.jpg', quality:60, background: 'white'}).then(function (file) {
-//	        							console.log(file);
+	        							console.log(file);
 	        							img_cache_map[food.id] = '/photo/' + food.id + '.jpg';
 	        						});
 	        					});
