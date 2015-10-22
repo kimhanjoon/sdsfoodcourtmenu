@@ -177,15 +177,17 @@ $(function() {
 	{% endif %}
 
 	// 아코디언 이벤트 걸기
-// 	$(".collapse-trigger").click(function() {
-// 		$(this).closest(".collapse-boundary").find(".collapse").collapse("toggle");
-// 	});
+	$(".collapse-trigger").click(function() {
+		$(this).closest(".collapse-boundary").find(".collapse").collapse("toggle");
+	});
 
 	// 사진찍기 버튼은 공통의 form을 사용하도록 별도 file input을 click하게 만든다.
 	$(".take-photo").click(function() {
-		$("#foodId").val($(this).closest(".food").data("food-id"));
-		$("#foodPhoto").val("");	// 같은 파일을 업로드해도 동작하도록 초기화
-		$("#foodPhoto").click();
+		if( confirm("보내주신 사진 외에는 다른 정보를 저장하지 않습니다. \n한번 보낸 사진은 취소가 불가능합니다. \n사진을 보내겠습니까?") ) {
+			$("#foodId").val($(this).closest(".food").data("food-id"));
+			$("#foodPhoto").val("");	// 같은 파일을 업로드해도 동작하도록 초기화
+			$("#foodPhoto").click();
+		}
 	});
     
 	// 파일을 서버로 전송
