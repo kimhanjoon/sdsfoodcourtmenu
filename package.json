@@ -1,8 +1,8 @@
 {
-  "name": "sdsfoodcourtmenu",
+  "name": "delacourt at a glance",
   "version": "0.9.0",
-  "description": "삼성SDS 지하식당 delacourt의 모든 메뉴를 한눈에 보는 웹페이지",
-  "main": "server.js",
+  "description": "삼성SDS 본사 지하식당 delacourt의 모든 메뉴를 한눈에 보는 웹페이지",
+  "main": "express-server.js",
   "directories": {
     "example": "delacourt 사이트 응답 html 모음"
   },
