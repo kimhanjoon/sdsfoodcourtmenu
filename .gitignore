@@ -1,6 +1,11 @@
-.git
-/node_modules
-nohup.out
+# image files
 /image
 /photo
 /uploadphoto
+
+# development
+/node_modules
+
+# deployment
+/deploy.sh
+/nohup.out
