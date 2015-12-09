@@ -30,7 +30,7 @@
 	<span class="kor">English</span><span class="eng hidden">한글</span>
 </button>
 
-<div class="container">
+<div class="container-fluid">
 
 <div class="page-header">
 	<h1>delacourt <small>at a glance</small></h1>
@@ -38,7 +38,6 @@
 
 {% macro display_foods(foods, floor) %}
 {% set foods_length = 0 %}
-<div class="list-group">
 {% for food in foods %}
 {% if food.floor === floor %}
 {% set foods_length += 1 %}
@@ -102,7 +101,6 @@
 		<span class="kor">지금은 영업하지 않습니다.</span><span class="eng hidden">We're closed now</span>
 	</div>
 {% endif %}
-</div>
 {% endmacro %}
 
 <div class="panel panel-primary">
@@ -110,7 +108,28 @@
 		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE01" class="btn btn-default btn-xs pull-right">Link</a>
 	</div>
 
-	{{ display_foods(foods, 'b1') }}
+	<div class="list-group">
+		{{ display_foods(foods, 'b1') }}
+		<div class="collapse-boundary">
+			<div class="list-group-item list-group-item-warning collapse-trigger">
+					<span class="title_kor">상세 메뉴를 보려면 클릭하세요.</span>
+					<span class="title_eng hidden">Click here for detail.</span>
+					<span class="corner badge pull-right">Snapsnack</span>
+			</div>
+			<div class="collapse" >
+				{% for food in foods %}
+				{% if food.floor === 'b1-snapsnack' %}
+					<div class="list-group-item">
+						<span class="title_kor">{{food.title_kor}}</span><span class="title_eng hidden">{{food.title_eng}}</span>
+						<span class="price payments"><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></span>
+					</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	
+	</div>
 </div>
 
 <div class="panel panel-primary">
@@ -118,7 +137,9 @@
 		<a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=ZONE02" class="btn btn-default btn-xs pull-right">Link</a>
 	</div>
 
+	<div class="list-group">
 	{{ display_foods(foods, 'b2') }}
+	</div>
 </div>
 
 <div class="panel panel-default">
