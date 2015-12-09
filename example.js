@@ -4,28 +4,20 @@ var readFileUtf8 = function(zonename, callback) {
 };
 
 var parser = require('./parser.js');
+var menu_snapsnack = require('./menu_snapsnack.json');
 var async = require('async');
 async.map(['ZONE01','ZONE02'], readFileUtf8, function(err, data){
     var menu1 = parser.parse(data[0]);
     var menu2 = parser.parse(data[1]);
-    var menu3 = [
-                           {floor: "b1-snapsnack", title_kor:"델라면", title_eng:"Del Ramen", price: 3800}
-                           , {floor: "b1-snapsnack", title_kor:"떡라면", title_eng:"Ramen with Rice Cake", price: 4200}
-                           , {floor: "b1-snapsnack", title_kor:"떡라면", title_eng:"Ramen with Rice Cake", price: 4200}
-                           , {floor: "b1-snapsnack", title_kor:"떡라면", title_eng:"Ramen with Rice Cake", price: 4200}
-                           , {floor: "b1-snapsnack", title_kor:"떡라면", title_eng:"Ramen with Rice Cake", price: 4200}
-                           , {floor: "b1-snapsnack", title_kor:"떡라면", title_eng:"Ramen with Rice Cake", price: 4200}
-                           , {floor: "b1-snapsnack", title_kor:"떡라면", title_eng:"Ramen with Rice Cake", price: 4200}
-                           , {floor: "b1-snapsnack", title_kor:"떡라면", title_eng:"Ramen with Rice Cake", price: 4200}
-                           , {floor: "b1-snapsnack", title_kor:"떡라면", title_eng:"Ramen with Rice Cake", price: 4200}
-                           , {floor: "b1-snapsnack", title_kor:"떡라면", title_eng:"Ramen with Rice Cake", price: 4200}
-                		];
-                	    console.log(menu1.concat(menu2).concat(menu3));
+    var menu3 = [];
+    if( data[0].indexOf("점심") >= 0 ) {
+    	menu3 = menu_snapsnack;
+    }
     
     var option = {
     		foods: menu1.concat(menu2).concat(menu3)
+    		, snapsnackCollapse: menu3.length > 1
 //    		, production: argv.production
-    		, language: 'en'
     };
     
     var html = parser.render(option);

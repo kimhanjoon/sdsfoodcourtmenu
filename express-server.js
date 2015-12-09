@@ -2,7 +2,7 @@ var argv = require('minimist')(process.argv.slice(2));
 
 var request = require('request');
 
-// --proxy http://70.10.15.10:8080
+// --proxy http://ipaddress:port
 if( argv.proxy ) {
 	console.log('using proxy : %s', argv.proxy);
 	request = request.defaults({'proxy': argv.proxy});
@@ -32,16 +32,22 @@ app.get('/', function(req, res, next) {
 
 var async = require('async');
 var parser = require('./parser.js');
+var menu_snapsnack = require('./menu_snapsnack.json');
 
 app.get('/jamsil', function(req, res){
 
 	async.map(['ZONE01','ZONE02'], requestsdsfoodcourtmenu, function(err, data){
 	    var menu1 = parser.parse(data[0]);
 	    var menu2 = parser.parse(data[1]);
+	    var menu3 = [];
+	    if( data[0].indexOf("점심") >= 0 ) {
+	    	menu3 = menu_snapsnack;
+	    }
 
     	// 운영환경일 때만 google analytics를 붙일 수 있도록 production 전달
 	    var option = {
-	    		foods: menu1.concat(menu2)
+	    		foods: menu1.concat(menu2).concat(menu3)
+	    		, snapsnackCollapse: menu3.length > 1
 	    		, production: argv.production
 	    };
 	    // 영어권 사용자는 바로 영어가 보이게끔 language 전달

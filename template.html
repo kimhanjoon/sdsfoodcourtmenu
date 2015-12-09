@@ -110,6 +110,7 @@
 
 	<div class="list-group">
 		{{ display_foods(foods, 'b1') }}
+		{% if snapsnackCollapse === true %}
 		<div class="collapse-boundary">
 			<div class="list-group-item list-group-item-warning collapse-trigger">
 					<span class="title_kor">상세 메뉴를 보려면 클릭하세요.</span>
@@ -127,6 +128,7 @@
 				{% endfor %}
 			</div>
 		</div>
+		{% endif %}
 	</div>
 	
 	</div>
