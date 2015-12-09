@@ -1,5 +1,5 @@
 var request = require('request');
-//var request = request.defaults({'proxy':'http://70.10.15.10:8080'});
+//var request = request.defaults({'proxy':'http://ipaddress:port'});
 
 var fs = require('fs');
 
