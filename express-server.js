@@ -100,13 +100,14 @@ app.post('/uploadphoto', upload.single('foodPhoto'), function(req, res, next) {
 			function(image) {
 			},
 			function (err) {
-				console.log(err);
+				console.error(err);
 			}
 		);
     },
 	function (err) {
-		console.log(err);
+		console.error(err);
 	});
+	res.end();
 	
 	//TODO EMAIL
 });
