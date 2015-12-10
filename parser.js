@@ -27,6 +27,7 @@ var toHex = function(str) {
 };
 
 var image_cache = require("./image_cache.js");
+image_cache.init();
 
 var cheerio = require('cheerio');
 exports.parse = function (html) {
