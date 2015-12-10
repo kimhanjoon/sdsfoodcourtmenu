@@ -15,14 +15,6 @@
 		overflow: visible;
 	}
 	</style>
-	
-	<link href="http://fat.github.io/zoom.js/css/zoom.css" rel="stylesheet">
-	<style>
-	.zoom-overlay-open .zoom-overlay {
-	  filter: "alpha(opacity=85)";
-	  opacity: 0.85;
-	}
-	</style>
 </head>
 <body>
 
@@ -56,7 +48,7 @@
 	<div class="list-group-item collapse-boundary food" data-food-id="{{food.id}}">
 		<div class="media">
 			<div class="media-left">
-				<img class="media-object" src="{{food.img_src}}" style="width:80px;" data-action="zoom">
+				<img class="media-object" src="{{food.img_src}}" style="width:80px;">
 			</div>
 		  <div class="media-body collapse-trigger">
 		    <h4 class="media-heading">
@@ -204,7 +196,6 @@
 
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="http://fat.github.io/zoom.js/js/zoom.js"></script>
 <script src="http://malsup.github.com/min/jquery.form.min.js"></script>
 <script type="text/javascript">
 $(function() {
