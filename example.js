@@ -4,7 +4,7 @@ var readFileUtf8 = function(zonename, callback) {
 };
 
 var parser = require('./parser.js');
-var menu_snapsnack = require('./menu_snapsnack.json');
+var menu_snapsnack = require('./jamsilmenu/menu_snapsnack.json');
 var async = require('async');
 async.map(['ZONE01','ZONE02'], readFileUtf8, function(err, data){
     var menu1 = parser.parse(data[0]);

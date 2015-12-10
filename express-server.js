@@ -32,7 +32,7 @@ app.get('/', function(req, res, next) {
 
 var async = require('async');
 var parser = require('./parser.js');
-var menu_snapsnack = require('./menu_snapsnack.json');
+var menu_snapsnack = require('./jamsilmenu/menu_snapsnack.json');
 
 app.get('/jamsil', function(req, res){
 
