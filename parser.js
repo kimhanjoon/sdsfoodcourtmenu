@@ -29,6 +29,9 @@ var toHex = function(str) {
 var image_cache = require("./image_cache.js");
 image_cache.init();
 
+var photo_cache = require("./photo_cache.js");
+photo_cache.init();
+
 var cheerio = require('cheerio');
 exports.parse = function (html) {
     var $ = cheerio.load(html);
@@ -103,6 +106,9 @@ exports.parse = function (html) {
 			else {
 				image_cache.put(food.id, food.img_src);
 			}
+			
+			// 업로드된 사진 사용
+			food.img_src_more = photo_cache.get(food.id);
 
 //	        food.thumbs_up = 138;	//TODO 임시
 //	        food.thumbs_down = 21;	//TODO 임시
