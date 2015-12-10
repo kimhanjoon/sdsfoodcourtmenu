@@ -1,3 +1,5 @@
+require("console-stamp")(console, { pattern : "yyyy-mm-dd HH:MM:ss" } );
+
 var argv = require('minimist')(process.argv.slice(2));
 
 var request = require('request');

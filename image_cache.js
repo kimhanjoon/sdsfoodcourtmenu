@@ -1,11 +1,9 @@
+var _log = function() {};
 
 var img_cache_map = {};
 
-
 var _ = require('underscore');
 var fs = require('fs');
-
-var _log = _.noop;
 
 exports.init = function(logger) {
 	img_cache_map = _.chain(fs.readdirSync("./photo/"))
@@ -42,6 +40,7 @@ exports.put = function(food_id, food_img_src) {
 			easyimg.convert({src:'./downloadphoto/' + food_id + '.png', dst: './photo/' + food_id + '.jpg', quality:60, background: 'white'}).then(function (file) {
 				_log("image converted : ", file.path);
 				img_cache_map[food_id] = './photo/' + food_id + '.jpg';
+				console.info("image cached initially : ", Object.keys(img_cache_map).length);
 			});
 		});
 	});

@@ -1,3 +1,5 @@
+require("console-stamp")(console, { pattern : "yyyy-mm-dd HH:MM:ss" } );
+
 var fs = require('fs');
 var readFileUtf8 = function(zonename, callback) {
     return fs.readFile('./jamsilmenu/' + zonename + '.html', 'utf8', callback);
