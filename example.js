@@ -10,7 +10,7 @@ async.map(['ZONE01','ZONE02'], readFileUtf8, function(err, data){
     var menu1 = parser.parse(data[0]);
     var menu2 = parser.parse(data[1]);
     var menu3 = [];
-    if( data[0].indexOf("점심") >= 0 ) {
+    if( data[0].indexOf("영업하지 않습니다") === -1 && data[0].indexOf("점심") >= 0 ) {
     	menu3 = menu_snapsnack;
     }
     
