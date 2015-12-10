@@ -30,10 +30,12 @@ app.get('/', function(req, res, next) {
 	next('route');
 });
 
-var async = require('async');
 var parser = require('./parser.js');
 var menu_snapsnack = require('./jamsilmenu/menu_snapsnack.json');
 
+var view = require('./view.js');
+
+var async = require('async');
 app.get('/jamsil', function(req, res){
 
 	async.map(['ZONE01','ZONE02'], requestsdsfoodcourtmenu, function(err, data){
@@ -58,13 +60,13 @@ app.get('/jamsil', function(req, res){
 
 	    // html -> json 순서로 response content-type을 정한다.
 	    if( req.accepts('html') ) {
-	    	res.write(parser.render(option));
+	    	res.write(view.render(option));
 	    }
 	    else if( req.accepts('json') ) {
 	    	res.write(JSON.stringify(option.foods));
 	    }
 	    else {
-	    	res.write(parser.render(option));
+	    	res.write(view.render(option));
 	    }
 	    res.end();
 	});

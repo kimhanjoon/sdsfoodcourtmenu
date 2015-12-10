@@ -130,17 +130,6 @@ exports.parse = function (html) {
     return foods.get();
 };
 
-var swig  = require('swig');
-var template = swig.compileFile('./template.html');
-exports.render = function (option) {
-    return template({
-    	foods: option.foods
-    	, snapsnackCollapse: option.snapsnackCollapse
-    	, googleAnalytics: option.production === true
-    	, englishLanguage: option.english === true
-    });
-};
-
 exports.addphoto = function(key, value) {
 	img_cache_map[key] = value;
 };

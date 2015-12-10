@@ -36,6 +36,8 @@ example.js : jamsilmenu/의 html으로 테스트해서 public의 jamsilmenu.html
 
 express-server.js : web server 실행, --port 포트번호 --proxy 프록시주소
 
-parse.js : html 파일을 파싱해서 메뉴정보를 자바스크립트 객체로 만들고 서비스할 결과 html까지 구성
+parse.js : html 파일을 파싱해서 메뉴정보를 자바스크립트 객체로 구성
 
-template.html : 서비스 대상 html의 템플릿 파일
+view.js : 메뉴정보를 입력받아서 서비스될 HTML 구성
+
+view_template.html : 서비스 대상 HTML의 템플릿 파일

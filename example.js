@@ -5,6 +5,9 @@ var readFileUtf8 = function(zonename, callback) {
 
 var parser = require('./parser.js');
 var menu_snapsnack = require('./jamsilmenu/menu_snapsnack.json');
+
+var view = require('./view.js');
+
 var async = require('async');
 async.map(['ZONE01','ZONE02'], readFileUtf8, function(err, data){
     var menu1 = parser.parse(data[0]);
@@ -20,7 +23,7 @@ async.map(['ZONE01','ZONE02'], readFileUtf8, function(err, data){
 //    		, production: argv.production
     };
     
-    var html = parser.render(option);
+    var html = view.render(option);
     fs.writeFile('./public/jamsilmenu.html', html, 'utf8', function(){});
 
     var json = JSON.stringify(option.foods);
