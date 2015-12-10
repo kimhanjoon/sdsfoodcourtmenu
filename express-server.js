@@ -76,6 +76,7 @@ app.get('/jamsil', function(req, res){
 });
 
 
+var easyimg = require('easyimage');
 var multer  = require('multer');
 var storage = multer.diskStorage({
 	destination : function(req, file, cb) {
@@ -88,16 +89,15 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 app.post('/uploadphoto', upload.single('foodPhoto'), function(req, res, next) {
 
-	var easyimg = require('easyimage');
 	easyimg.convert({
-		src: 'uploadphoto/' + req.file.filename
-		, dst: 'uploadphoto/' + req.file.filename + '_convert.jpg'
+		src: './uploadphoto/' + req.file.filename
+		, dst: './uploadphoto/' + req.file.filename + '_convert.jpg'
 		, quality: 60
 		, background: 'white'
 	}).then(function (file) {
 		easyimg.resize({
-			src: 'uploadphoto/' + req.file.filename + '_convert.jpg'
-			, dst: 'photo/' + req.file.filename + '.jpg'
+			src: './uploadphoto/' + req.file.filename + '_convert.jpg'
+			, dst: './uploadphoto/' + req.file.filename + '_resize.jpg'
 			, width: 420
 			, height: 350
 		}).then(
