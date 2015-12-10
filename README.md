@@ -36,6 +36,8 @@ example.js : jamsilmenu/의 html으로 테스트해서 public의 jamsilmenu.html
 
 express-server.js : web server 실행, --port 포트번호 --proxy 프록시주소
 
+image_cache.js : 다운로드받은 이미지파일을 읽어서 캐쉬로 사용, 캐쉬에 없는 이미지는 다운로드 받아서 저용량으로 변환
+
 parse.js : html 파일을 파싱해서 메뉴정보를 자바스크립트 객체로 구성
 
 view.js : 메뉴정보를 입력받아서 서비스될 HTML 구성
