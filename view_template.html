@@ -15,6 +15,7 @@
 		overflow: visible;
 	}
 	</style>
+	<link rel="stylesheet" href="http://www.jacklmoore.com/colorbox/example1/colorbox.css">
 </head>
 <body>
 
@@ -48,7 +49,11 @@
 	<div class="list-group-item collapse-boundary food" data-food-id="{{food.id}}">
 		<div class="media">
 			<div class="media-left">
-				<img class="media-object" src="{{food.img_src}}" style="width:80px;">
+				<img class="media-object image" src="{{food.img_src}}" style="width:80px;">
+				<a class="image hidden" rel="{{food.floor}}_{{food.id}}" href="{{food.img_src}}"></a>
+				{% for img_src_more in food.img_src_more %}
+				<a class="image hidden" rel="{{food.floor}}_{{food.id}}" href="{{img_src_more}}"></a>
+				{% endfor %}
 			</div>
 		  <div class="media-body collapse-trigger">
 		    <h4 class="media-heading">
@@ -197,6 +202,7 @@
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="http://malsup.github.com/min/jquery.form.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.3/jquery.colorbox-min.js"></script>
 <script type="text/javascript">
 $(function() {
 	$("#language").click(function() {
@@ -207,6 +213,14 @@ $(function() {
 	{% if englishLanguage === true %}
 	$("#language").click();
 	{% endif %}
+
+	// 사진박스 구성
+	$("a.image").colorbox({width:"100%"});
+	
+	// 사진 클릭 이벤트 걸기
+	$("img.image").click(function() {
+		$(this).next().click();
+	});
 
 	// 아코디언 이벤트 걸기
 	$(".collapse-trigger").click(function() {
