@@ -38,6 +38,8 @@ exports.parse = function (html) {
     	.filter(function(index, element) {
     		return $(element).find("span").text().indexOf("운영시간") === -1;
     	})
+    	
+    	// HTML 파싱
     	.map(function(index, element) {
 	        var $e = $(element);
 	        var food = {};
@@ -47,6 +49,24 @@ exports.parse = function (html) {
 	        
 	        food.kcal = Number($e.find("span:nth-child(5)").text().replace(" kcal", ""));
 	        
+	        // 판매종료된 메뉴는 <del> 태그가 들어가고 가격이 표시되지 않는다.
+	        food.soldout = $e.find("del").length > 0 ? true : false;
+	        if( !food.soldout ) {
+	            food.price = Number($e.find("span:nth-child(7)").text().replace("원", "").replace(",", ""));
+	        }
+
+	        // <img>태그의 src에 도메인주소 추가하고 jsessionid는 제거
+		    food.img_src = "http://www.sdsfoodmenu.co.kr:9106/" + $e.find("img").attr('src').replace(/;.*\?/, "?");
+
+	        food.corner = mapperClassname2Cornername[$e.closest("div[class$=group]").attr("class")];
+	        food.floor = floor;
+	        
+	        return food;
+	    })
+	    
+	    // 추가정보 및 이미지 캐쉬
+	    .each(function(index, food) {
+
 	        // 초저열량 - 저열량 - 고열량 - 초고열량 구분
 	        if( food.kcal <= 680 ) {
 	        	food.very_low_cal = true;
@@ -60,26 +80,17 @@ exports.parse = function (html) {
 	        else if( food.kcal >= 880 ) {
 	        	food.high_cal = true;
 	        }
-	        
-	        // 판매종료된 메뉴는 <del> 태그가 들어가고 가격이 표시되지 않는다.
-	        food.soldout = $e.find("del").length > 0 ? true : false;
-	        if( !food.soldout ) {
-	        	
-	            food.price = Number($e.find("span:nth-child(7)").text().replace("원", "").replace(",", ""));
 
-	            // 6000원 미만은 3000원 공제, 이상은 2500원 공제
-	            if( food.price < 6000 ) {
-	            	food.payments = food.price - 3000; 
-	            }
-	            else {
-	            	food.payments = food.price - 2500; 
-	            }
+            // 6000원 미만은 3000원 공제, 이상은 2500원 공제
+	        if( food.price ) {
+	        	if( food.price < 6000 ) {
+	        		food.payments = food.price - 3000; 
+	        	}
+	        	else {
+	        		food.payments = food.price - 2500; 
+	        	}
 	        }
 
-	        // <img>태그의 src에서 jsessionid 제거
-		    food.img_src = $e.find("img").attr('src').replace(/;.*\?/, "?");
-
-		    
 			// 캐쉬해놓은 이미지 파일이 있는 경우 사용
 			if( image_cache.get(food.id) ) {
 				food.img_src = image_cache.get(food.id);
@@ -88,18 +99,16 @@ exports.parse = function (html) {
 			else if( food.img_src.indexOf("food_sold_out_01_01.png") > -1 ) {
 				food.img_src = "/static/no_image_available.jpg";
 			}
-			// 실제 경로로 img_src 설정하고 캐쉬에 추가
+			// 캐쉬에 추가
 			else {
-				food.img_src = "http://www.sdsfoodmenu.co.kr:9106/" + food.img_src;
 				image_cache.put(food.id, food.img_src);
 			}
-			
-	        food.corner = mapperClassname2Cornername[$e.closest("div[class$=group]").attr("class")];
-	        food.floor = floor;
+
 //	        food.thumbs_up = 138;	//TODO 임시
 //	        food.thumbs_down = 21;	//TODO 임시
 //	        food.recommendation = "강추";	//TODO 임시
-	        return food;
-	    });
-    return foods.get();
+	    })
+	    .get();
+    
+    return foods;
 };
