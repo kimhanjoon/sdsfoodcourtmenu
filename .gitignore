@@ -2,6 +2,7 @@
 /image
 /photo
 /uploadphoto
+/downloadphoto
 
 # development
 /node_modules
