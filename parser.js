@@ -30,7 +30,7 @@ var image_cache = require("./image_cache.js");
 image_cache.init();
 
 var photo_cache = require("./photo_cache.js");
-photo_cache.init();
+photo_cache.init(console.log);
 
 var cheerio = require('cheerio');
 exports.parse = function (html) {

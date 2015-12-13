@@ -75,45 +75,13 @@ app.get('/jamsil', function(req, res){
 	
 });
 
+var photo_management = require("./photo_management.js");
+app.post('/uploadphoto', photo_management.getUploadFn(), function(req, res, next) {
 
-var easyimg = require('easyimage');
-var multer  = require('multer');
-var storage = multer.diskStorage({
-	destination : function(req, file, cb) {
-		cb(null, 'uploadphoto');
-	},
-	filename : function(req, file, cb) {
-		cb(null, req.body.foodId + '-' + Date.now());
-	}
-});
-var upload = multer({ storage: storage });
-app.post('/uploadphoto', upload.single('foodPhoto'), function(req, res, next) {
+	photo_management.makePhoto(req.file.filename);
 
-	easyimg.convert({
-		src: './uploadphoto/' + req.file.filename
-		, dst: './uploadphoto/' + req.file.filename + '_convert.jpg'
-		, quality: 60
-		, background: 'white'
-	}).then(function (file) {
-		easyimg.resize({
-			src: './uploadphoto/' + req.file.filename + '_convert.jpg'
-			, dst: './uploadphoto/' + req.file.filename + '_resize.jpg'
-			, width: 420
-			, height: 350
-		}).then(
-			function(image) {
-			},
-			function (err) {
-				console.error(err);
-			}
-		);
-    },
-	function (err) {
-		console.error(err);
-	});
-	res.end();
-	
 	//TODO EMAIL
+	res.end();
 });
 
 
