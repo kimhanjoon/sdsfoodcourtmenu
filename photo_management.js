@@ -61,17 +61,9 @@ exports.makePhoto = function(filename) {
 };
 
 exports.registerPhoto = function(filename) {
-
-	try {
-		fs.accessSync('./uploadphoto/' + filename, fs.R_OK);
-	}
-	catch(err) {
-		return;
-	}
-	
 	try {
 		fs.createReadStream('./uploadphoto/' + filename)
-		.pipe(fs.createWriteStream('./photo/' + filename.replace(/_[0-9]{5}$/, '')));
+		.pipe(fs.createWriteStream('./photo/' + filename.replace(/_[0-9]{5}/, '')));
 	}
 	catch(err) {
 		console.error(err);
