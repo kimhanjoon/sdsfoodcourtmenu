@@ -60,10 +60,17 @@ exports.makePhoto = function(filename) {
 	});
 };
 
+var photo_cache = require("./photo_cache.js");
+
 exports.registerPhoto = function(filename) {
 	try {
+		var food_id = filename.split('-')[0];
+		var food_filename = filename.replace(/_[0-9]{5}/, '');
+		
 		fs.createReadStream('./uploadphoto/' + filename)
-		.pipe(fs.createWriteStream('./photo/' + filename.replace(/_[0-9]{5}/, '')));
+		.pipe(fs.createWriteStream('./photo/' + food_filename);
+		
+		photo_cache.put(food_id, food_filename)
 	}
 	catch(err) {
 		console.error(err);

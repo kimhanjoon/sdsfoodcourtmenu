@@ -18,7 +18,7 @@ exports.sendNewPhotoUploaded = function(filename) {
 	var html = photo_email_template({
     	filename: filename
     });
-	console.log(html);
+
 	// setup e-mail data with unicode symbols 
 	var mailOptions = {
 	    to: email_properties.to.email, // list of receivers 
