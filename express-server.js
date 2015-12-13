@@ -78,9 +78,8 @@ app.get('/jamsil', function(req, res){
 var photo_management = require("./photo_management.js");
 app.post('/uploadphoto', photo_management.getUploadFn(), function(req, res, next) {
 
-	photo_management.makePhoto(req.file.filename);
-
-	//TODO EMAIL
+	var photo_info = photo_management.makePhoto(req.file.filename);
+	
 	res.end();
 });
 

@@ -4,6 +4,9 @@
 /uploadphoto
 /downloadphoto
 
+# properties
+email_properties.json
+
 # development
 /node_modules
 
