@@ -68,7 +68,7 @@ exports.registerPhoto = function(filename) {
 		var food_filename = filename.replace(/_[0-9]{5}/, '');
 		
 		fs.createReadStream('./uploadphoto/' + filename)
-		.pipe(fs.createWriteStream('./photo/' + food_filename);
+		.pipe(fs.createWriteStream('./photo/' + food_filename));
 		
 		photo_cache.put(food_id, food_filename)
 	}
