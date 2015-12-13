@@ -56,3 +56,21 @@ exports.makePhoto = function(filename) {
 		console.error(err);
 	});
 };
+
+exports.registerPhoto = function(filename) {
+
+	try {
+		fs.accessSync('./uploadphoto/' + filename, fs.R_OK);
+	}
+	catch(err) {
+		return;
+	}
+	
+	try {
+		fs.createReadStream('./uploadphoto/' + filename)
+		.pipe(fs.createWriteStream('./photo/' + filename.replace(/_[0-9]{5}$/, '.jpg')));
+	}
+	catch(err) {
+		console.error(err);
+	}
+}

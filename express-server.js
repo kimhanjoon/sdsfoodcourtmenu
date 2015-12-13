@@ -84,6 +84,11 @@ app.post('/uploadphoto', photo_management.getUploadFn(), function(req, res, next
 	res.end();
 });
 
+app.get('/registerphoto', function(req, res, next) {
+
+	photo_management.registerPhoto(req.query.filename);
+	res.end();
+});
 
 app.use('/uploadphoto', express.static('uploadphoto'));
 app.use('/static', express.static('public'));
