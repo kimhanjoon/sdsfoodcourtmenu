@@ -48,7 +48,7 @@ exports.makePhoto = function(filename) {
 				fs.createReadStream(filenamewithpath + '_resize.jpg')
 				.pipe(fs.createWriteStream(filenamewithpath + '_' + randomNumber + '.jpg'));
 				
-				photo_email.sendNewPhotoUploaded(filenamewithpath + '_' + randomNumber + '.jpg');
+				photo_email.sendNewPhotoUploaded(filename + '_' + randomNumber + '.jpg');
 			},
 			function (err) {
 				console.error(err);
