@@ -119,7 +119,7 @@
 				{% if food.floor === 'b1-snapsnack' %}
 					<div class="list-group-item">
 						<span class="title_kor">{{food.title_kor}}</span><span class="title_eng hidden">{{food.title_eng}}</span>
-						<span class="price payments"><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></span>
+						<span class="price payments"><del><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{food.payments}} <span class="kor">원</span></span>
 					</div>
 				{% endif %}
 				{% endfor %}

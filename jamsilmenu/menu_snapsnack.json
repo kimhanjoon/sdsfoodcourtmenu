@@ -1,19 +1,19 @@
 [
-   {"floor": "b1-snapsnack", "title_kor":"델라면", "title_eng":"Del Ramen", "price": 3800}
-   , {"floor": "b1-snapsnack", "title_kor":"떡라면", "title_eng":"Ramen with Rice Cake", "price": 4200}
-   , {"floor": "b1-snapsnack", "title_kor":"치즈라면", "title_eng":"Cheese Ramen", "price": 4200}
-   , {"floor": "b1-snapsnack", "title_kor":"짬뽕라면", "title_eng":"Spicy Seafood Ramen", "price": 4500}
-   , {"floor": "b1-snapsnack", "title_kor":"델떡볶이", "title_eng":"Spicy Topokki", "price": 4300}
-   , {"floor": "b1-snapsnack", "title_kor":"뚝배기국물떡볶이(단품)", "title_eng":"Spicy Soup Topokki", "price": 4300}
-   , {"floor": "b1-snapsnack", "title_kor":"치즈떡볶이", "title_eng":"Cheese Spicy Soup Topokki", "price": 4700}
-   , {"floor": "b1-snapsnack", "title_kor":"모듬튀김", "title_eng":"Deep-fried Vegetables and Seafood", "price": 4000}
-   , {"floor": "b1-snapsnack", "title_kor":"델순대", "title_eng":"Steamed Korean Sausage", "price": 3500}
-   , {"floor": "b1-snapsnack", "title_kor":"떡라면", "title_eng":"Ramen with Rice Cake", "price": 4200}
-   , {"floor": "b1-snapsnack", "title_kor":"델김밥", "title_eng":"Dried Seaweed Rolls (Korean Rolls)", "price": 3500}
-   , {"floor": "b1-snapsnack", "title_kor":"돈까스김밥", "title_eng":"Dried Seaweed Rolls with Pork Cutlet", "price": 4000}
-   , {"floor": "b1-snapsnack", "title_kor":"야채쌈제육김밥", "title_eng":"Dried Seaweed Rolls with Stir-Fried Pork", "price": 4000}
-   , {"floor": "b1-snapsnack", "title_kor":"와사비참치마요김밥", "title_eng":"Dried Seaweed Rolls with Wasabi Tuna", "price": 4000}
-   , {"floor": "b1-snapsnack", "title_kor":"콤보A (떡볶이½ + 순대½)", "title_eng":"Topokki(half) + Steamed Korean Sausage(half)", "price": 3900}
-   , {"floor": "b1-snapsnack", "title_kor":"콤보B (떡볶이½ + 튀김½)", "title_eng":"Topokki(half) + Deep Fried(half)", "price": 4200}
-   , {"floor": "b1-snapsnack", "title_kor":"콤보C (델라면 + 델김밥½)", "title_eng":"Del Ramen + Dried Seaweed Rolls(half)", "price": 4600}
+   {"floor": "b1-snapsnack", "title_kor":"델라면", "title_eng":"Del Ramen", "price": 3800, "payments": 1800}
+   , {"floor": "b1-snapsnack", "title_kor":"떡라면", "title_eng":"Ramen with Rice Cake", "price": 4200, "payments": 2200}
+   , {"floor": "b1-snapsnack", "title_kor":"치즈라면", "title_eng":"Cheese Ramen", "price": 4200, "payments": 2200}
+   , {"floor": "b1-snapsnack", "title_kor":"짬뽕라면", "title_eng":"Spicy Seafood Ramen", "price": 4500, "payments": 2500}
+   , {"floor": "b1-snapsnack", "title_kor":"델떡볶이", "title_eng":"Spicy Topokki", "price": 4300, "payments": 2300}
+   , {"floor": "b1-snapsnack", "title_kor":"뚝배기국물떡볶이(단품)", "title_eng":"Spicy Soup Topokki", "price": 4300, "payments": 2300}
+   , {"floor": "b1-snapsnack", "title_kor":"치즈떡볶이", "title_eng":"Cheese Spicy Soup Topokki", "price": 4700, "payments": 2700}
+   , {"floor": "b1-snapsnack", "title_kor":"모듬튀김", "title_eng":"Deep-fried Vegetables and Seafood", "price": 4000, "payments": 2000}
+   , {"floor": "b1-snapsnack", "title_kor":"델순대", "title_eng":"Steamed Korean Sausage", "price": 3500, "payments": 1500}
+   , {"floor": "b1-snapsnack", "title_kor":"떡라면", "title_eng":"Ramen with Rice Cake", "price": 4200, "payments": 2200}
+   , {"floor": "b1-snapsnack", "title_kor":"델김밥", "title_eng":"Dried Seaweed Rolls (Korean Rolls)", "price": 3500, "payments": 1500}
+   , {"floor": "b1-snapsnack", "title_kor":"돈까스김밥", "title_eng":"Dried Seaweed Rolls with Pork Cutlet", "price": 4000, "payments": 2000}
+   , {"floor": "b1-snapsnack", "title_kor":"야채쌈제육김밥", "title_eng":"Dried Seaweed Rolls with Stir-Fried Pork", "price": 4000, "payments": 2000}
+   , {"floor": "b1-snapsnack", "title_kor":"와사비참치마요김밥", "title_eng":"Dried Seaweed Rolls with Wasabi Tuna", "price": 4000, "payments": 2000}
+   , {"floor": "b1-snapsnack", "title_kor":"콤보A (떡볶이½ + 순대½)", "title_eng":"Topokki(half) + Steamed Korean Sausage(half)", "price": 3900, "payments": 1900}
+   , {"floor": "b1-snapsnack", "title_kor":"콤보B (떡볶이½ + 튀김½)", "title_eng":"Topokki(half) + Deep Fried(half)", "price": 4200, "payments": 2200}
+   , {"floor": "b1-snapsnack", "title_kor":"콤보C (델라면 + 델김밥½)", "title_eng":"Del Ramen + Dried Seaweed Rolls(half)", "price": 4600, "payments": 2600}
 ]
