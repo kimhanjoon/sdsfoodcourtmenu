@@ -6,5 +6,6 @@ exports.render = function (option) {
     	, snapsnackCollapse: option.snapsnackCollapse
     	, googleAnalytics: option.production === true
     	, englishLanguage: option.english === true
+    	, redirect: option.redirect === true
     });
 };

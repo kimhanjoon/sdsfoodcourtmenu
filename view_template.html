@@ -19,11 +19,23 @@
 </head>
 <body>
 
-<button type="button" class="btn btn-primary btn-sm pull-right" id="language" style="margin-top: 5px; margin-right: 5px;">
-	<span class="kor">English</span><span class="eng hidden">한글</span>
-</button>
+{% if redirect %}
+<div class="container-fluid">
+	<div class="alert alert-warning alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <span class="title_kor">접속 주소가 <strong><a href="http://daag.pe.kr">daag.pe.kr</a></strong>로 바뀌었습니다.</span>
+	  <span class="title_eng hidden">Page Address changed to <strong><a href="http://daag.pe.kr">daag.pe.kr</strong></a>.</span>
+	</div>
+	<script type="text/javascript">
+	history.replaceState({}, "", "/");
+	</script>
+</div>
+{% endif %}
 
 <div class="container-fluid">
+<button type="button" class="btn btn-primary btn-sm pull-right" id="language">
+	<span class="kor">English</span><span class="eng hidden">한글</span>
+</button>
 
 <div class="page-header">
 	<h1>delacourt <small>at a glance</small></h1>

@@ -27,6 +27,22 @@ if( argv.examplefile ) {
 var express = require('express');
 var app = express();
 
+// 예전 주소로 접속한 경우 새 주소로 리다이렉트 시킨다.
+app.all('*', function(req, res, next){
+	var requesthost = req.get('host');
+	if( requesthost && requesthost.indexOf("kr.pe") > -1 ) {
+		console.info("kr.pe requested.")
+		res.redirect(301, 'http://daag.pe.kr/?redirect=true');
+		res.end();
+		return;
+	}
+	if( req.query.redirect ) {
+		req.url = '/';
+	}
+
+	next();	
+});
+
 app.get('/', function(req, res, next) {
 	req.url = '/jamsil';
 	next('route');
@@ -53,6 +69,7 @@ app.get('/jamsil', function(req, res){
 	    		foods: menu1.concat(menu2).concat(menu3)
 	    		, snapsnackCollapse: menu3.length > 1
 	    		, production: argv.production
+	    		, redirect: req.query.redirect === "true"
 	    };
 	    // 영어권 사용자는 바로 영어가 보이게끔 language 전달
 	    var languages = req.acceptsLanguages();
