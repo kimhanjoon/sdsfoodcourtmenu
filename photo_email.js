@@ -16,7 +16,8 @@ var photo_email_template = swig.compileFile('./photo_email_template.html');
 exports.sendNewPhotoUploaded = function(filename) {
 
 	var html = photo_email_template({
-    	filename: filename
+		host: email_properties.host
+    	, filename: filename
     });
 
 	// setup e-mail data with unicode symbols 
