@@ -60,7 +60,7 @@ app.get('/jamsil', function(req, res){
 	    var menu1 = parser.parse(data[0]);
 	    var menu2 = parser.parse(data[1]);
 	    var menu3 = [];
-	    if( data[0].indexOf("영업하지 않습니다") === -1 && data[0].indexOf("점심") >= 0 ) {
+	    if( data[0].indexOf("영업하지 않습니다") === -1 && (data[0].indexOf("점심") >= 0 || data[0].indexOf("저녁") >= 0) ) {
 	    	menu3 = menu_snapsnack;
 	    }
 
