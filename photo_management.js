@@ -69,8 +69,26 @@ exports.registerPhoto = function(filename) {
 		
 		fs.createReadStream('./uploadphoto/' + filename)
 		.pipe(fs.createWriteStream('./photo/' + food_filename));
+
+		var food_filename_prefix = filename.replace(/_[0-9]{5}\.jpg/, '');
+		fs.renameSync('./uploadphoto/' + food_filename_prefix + "*", './registerphoto/');
 		
-		photo_cache.put(food_id, food_filename)
+		photo_cache.put(food_id, food_filename);
+		
+		return filename + " has registered.";
+	}
+	catch(err) {
+		console.error(err);
+	}
+}
+
+exports.rejectPhoto = function(filename) {
+	try {
+		var food_filename_prefix = filename.replace(/_[0-9]{5}\.jpg/, '');
+		
+		fs.renameSync('./uploadphoto/' + food_filename_prefix + "*", './rejectphoto/');
+		
+		return filename + " has rejected.";
 	}
 	catch(err) {
 		console.error(err);
