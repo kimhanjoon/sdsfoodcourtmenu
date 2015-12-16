@@ -17,14 +17,7 @@ var mapperClassname2Cornername = {
 		, "DSDS017-group" : "XingFu China"
 		, "DSDS018-group" : "우리미각면"
 	};
-
-var toHex = function(str) {
-	var hex = '';
-	for(var i=0;i<str.length;i++) {
-		hex += ''+str.charCodeAt(i).toString(16);
-	}
-	return hex;
-};
+var hex = require("./hex.js");
 
 var image_cache = require("./image_cache.js");
 image_cache.init();
@@ -48,7 +41,7 @@ exports.parse = function (html) {
 	        var food = {};
 	        food.title_kor = $e.find("span:nth-child(1)").text();
 	        food.title_eng = $e.find("span:nth-child(3)").text();
-	        food.id = toHex(food.title_kor);
+	        food.id = hex.to4Hex(food.title_kor);
 	        
 	        food.kcal = Number($e.find("span:nth-child(5)").text().replace(" kcal", ""));
 	        
