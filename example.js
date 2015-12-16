@@ -7,6 +7,7 @@ var readFileUtf8 = function(zonename, callback) {
 
 var parser = require('./parser.js');
 var menu_snapsnack = require('./jamsilmenu/menu_snapsnack.json');
+var menu_takeout = require('./jamsilmenu/menu_takeout.json');
 
 var view = require('./view.js');
 
@@ -15,13 +16,18 @@ async.map(['ZONE01','ZONE02'], readFileUtf8, function(err, data){
     var menu1 = parser.parse(data[0]);
     var menu2 = parser.parse(data[1]);
     var menu3 = [];
-    if( data[0].indexOf("영업하지 않습니다") === -1 && data[0].indexOf("점심") >= 0 ) {
+    if( data[0].indexOf("영업하지 않습니다") === -1 && (data[0].indexOf("점심") >= 0 || data[0].indexOf("저녁") >= 0) ) {
     	menu3 = menu_snapsnack;
+    }
+    var menu4 = [];
+    if( data[0].indexOf("영업하지 않습니다") === -1 && data[0].indexOf("점심") >= 0 ) {
+    	menu4 = menu_takeout;
     }
     
     var option = {
-    		foods: menu1.concat(menu2).concat(menu3)
+    		foods: menu1.concat(menu2).concat(menu3).concat(menu4)
     		, snapsnackCollapse: menu3.length > 1
+    		, takeoutCollapse: menu4.length > 1
 //    		, production: argv.production
     };
     

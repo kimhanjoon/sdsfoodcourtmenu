@@ -1,0 +1,14 @@
+[
+   {"floor": "b1-takeout", "title_kor":"한식도시락", "title_eng":"한식도시락", "price": 6000, "payments": 3500}
+   , {"floor": "b1-takeout", "title_kor":"양식도시락", "title_eng":"양식도시락", "price": 6000, "payments": 3500}
+   , {"floor": "b1-takeout", "title_kor":"헬스기빙도시락", "title_eng":"헬스기빙도시락", "price": 5500, "payments": 3000}
+   , {"floor": "b1-takeout", "title_kor":"샌드위치", "title_eng":"샌드위치", "price": 5500, "payments": 3000}
+   , {"floor": "b1-takeout", "title_kor":"과일팩(음료포함)", "title_eng":"과일팩(음료포함)", "price": 6000, "payments": 3500}
+   , {"floor": "b1-takeout", "title_kor":"샐러드팩", "title_eng":"샐러드팩", "price": 6000, "payments": 3500}
+   , {"floor": "b1-takeout", "title_kor":"유부초밥", "title_eng":"유부초밥", "price": 5500, "payments": 3000}
+   , {"floor": "b1-takeout", "title_kor":"쌈밥", "title_eng":"쌈밥", "price": 5500, "payments": 3000}
+   , {"floor": "b1-takeout", "title_kor":"죽", "title_eng":"죽", "price": 5500, "payments": 3000}
+   , {"floor": "b1-takeout", "title_kor":"리코타치즈샐러드", "title_eng":"리코타치즈샐러드", "price": 6500, "payments": 4000}
+   , {"floor": "b1-takeout", "title_kor":"단호박견과류꿀", "title_eng":"단호박견과류꿀", "price": 6000, "payments": 3500}
+   , {"floor": "b1-takeout", "title_kor":"플러스김밥(음료)", "title_eng":"플러스김밥(음료)", "price": 5500, "payments": 3000}
+]

@@ -50,6 +50,7 @@ app.get('/', function(req, res, next) {
 
 var parser = require('./parser.js');
 var menu_snapsnack = require('./jamsilmenu/menu_snapsnack.json');
+var menu_takeout = require('./jamsilmenu/menu_takeout.json');
 
 var view = require('./view.js');
 
@@ -63,11 +64,16 @@ app.get('/jamsil', function(req, res){
 	    if( data[0].indexOf("영업하지 않습니다") === -1 && (data[0].indexOf("점심") >= 0 || data[0].indexOf("저녁") >= 0) ) {
 	    	menu3 = menu_snapsnack;
 	    }
+	    var menu4 = [];
+	    if( data[0].indexOf("영업하지 않습니다") === -1 && data[0].indexOf("점심") >= 0 ) {
+	    	menu4 = menu_takeout;
+	    }
 
     	// 운영환경일 때만 google analytics를 붙일 수 있도록 production 전달
 	    var option = {
-	    		foods: menu1.concat(menu2).concat(menu3)
+	    		foods: menu1.concat(menu2).concat(menu3).concat(menu4)
 	    		, snapsnackCollapse: menu3.length > 1
+	    		, takeoutCollapse: menu4.length > 1
 	    		, production: argv.production
 	    		, redirect: req.query.redirect === "true"
 	    };
