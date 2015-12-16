@@ -12,11 +12,15 @@ var transporter = nodemailer.createTransport({
 
 var swig = require('swig');
 var photo_email_template = swig.compileFile('./photo_email_template.html');
+var hex = require('./hex.js');
 
 exports.sendNewPhotoUploaded = function(filename) {
 
 	var html = photo_email_template({
 		host: email_properties.host
+		, food_id: filename.split("-")[0]
+		, food_title: hex.from4Hex(filename.split("-")[0])
+		, uploadtime: new Date(new Number(filename.split("-")[1].split("_")[0])).toLocaleString()
     	, filename: filename
     });
 

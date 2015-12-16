@@ -1,3 +1,8 @@
-	<h1>delacourt <small>at a glance</small></h1>
-	<img class="media-object image" src="http://{{host}}/uploadphoto/{{filename}}" style="width:80px;">
-	<a class="image hidden" href="http://{{host}}/registerphoto?filename={{filename}}">Register Photo</a>
+<h1>delacourt <small>at a glance</small></h1>
+<p>{{food_title}} ( {{food_id}} )</p>
+<p>{{filename}} @ {{uploadtime}}</p>
+<p><img src="http://{{host}}/uploadphoto/{{filename}}" /></p>
+<p>
+	<a href="http://{{host}}/registerphoto?filename={{filename}}">Register Photo</a>
+	<a href="http://{{host}}/rejectphoto?filename={{filename}}">Reject Photo</a>
+</p>
