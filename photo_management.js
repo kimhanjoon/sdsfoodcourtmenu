@@ -23,6 +23,7 @@ function getRandomFiveDigits() {
 	return getRandomInt(10000, 99999);
 }
 
+var _ = require('underscore');
 var fs = require('fs');
 var easyimg = require('easyimage');
 var photo_email = require("./photo_email.js");
@@ -71,7 +72,11 @@ exports.registerPhoto = function(filename) {
 		.pipe(fs.createWriteStream('./photo/' + food_filename));
 
 		var food_filename_prefix = filename.replace(/_[0-9]{5}\.jpg/, '');
-		fs.renameSync('./uploadphoto/' + food_filename_prefix + "*", './registerphoto/');
+		_.each(fs.readdirSync("./uploadphoto/"), function(e) {
+			if( e.indexOf(food_filename_prefix) > -1 ) {
+				fs.renameSync('./uploadphoto/' + e, './registerphoto/' + e);
+			}
+		});
 		
 		photo_cache.put(food_id, food_filename);
 		
@@ -86,7 +91,11 @@ exports.rejectPhoto = function(filename) {
 	try {
 		var food_filename_prefix = filename.replace(/_[0-9]{5}\.jpg/, '');
 		
-		fs.renameSync('./uploadphoto/' + food_filename_prefix + "*", './rejectphoto/');
+		_.each(fs.readdirSync("./uploadphoto/"), function(e) {
+			if( e.indexOf(food_filename_prefix) > -1 ) {
+				fs.renameSync('./uploadphoto/' + e, './rejectphoto/' + e);
+			}
+		});
 		
 		return filename + " has rejected.";
 	}
