@@ -89,15 +89,17 @@ exports.parse = function (html) {
 
 			// 캐쉬해놓은 이미지 파일이 있는 경우 사용
 			if( image_cache.get(food.id) ) {
+				food.hasImg = true;
 				food.img_src = image_cache.get(food.id);
 			}
 			// 이미지 파일이 없는 경우 No Image 사용
 			else if( food.img_src.indexOf("food_sold_out_01_01.png") > -1 ) {
-				food.no_img = true;
+				food.hasImg = false;
 				food.img_src = "/static/no_image_available.jpg";
 			}
 			// 캐쉬에 추가
 			else {
+				food.hasImg = true;
 				image_cache.put(food.id, food.img_src);
 			}
 			
@@ -105,8 +107,8 @@ exports.parse = function (html) {
 			food.img_src_more = photo_cache.get(food.id);
 
 			// 이미지 파일이 없는데 업로드된 사진이 있으면 사용
-			if( food.no_img && food.img_src_more && food.img_src_more.length > 0 ) {
-				food.no_img = false;
+			if( food.hasImg === false && food.img_src_more && food.img_src_more.length > 0 ) {
+				food.hasImg = true;
 				food.img_src = food.img_src_more[0];
 				food.img_src_more = food.img_src_more.slice(1);
 			}

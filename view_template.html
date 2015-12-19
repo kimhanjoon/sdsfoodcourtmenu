@@ -61,7 +61,7 @@
 	<div class="list-group-item collapse-boundary food" data-food-id="{{food.id}}">
 		<div class="media">
 			<div class="media-left">
-				<img class="media-object image" src="{{food.img_src}}" style="width:80px;">
+				<img class="media-object {% if food.hasImg === true %}image{% endif %}" src="{{food.img_src}}" style="width:80px;">
 				<a class="image hidden" rel="{{food.floor}}_{{food.id}}" href="{{food.img_src}}"></a>
 				{% for img_src_more in food.img_src_more %}
 				<a class="image hidden" rel="{{food.floor}}_{{food.id}}" href="{{img_src_more}}"></a>
