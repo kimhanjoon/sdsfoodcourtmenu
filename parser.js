@@ -93,6 +93,7 @@ exports.parse = function (html) {
 			}
 			// 이미지 파일이 없는 경우 No Image 사용
 			else if( food.img_src.indexOf("food_sold_out_01_01.png") > -1 ) {
+				food.no_img = true;
 				food.img_src = "/static/no_image_available.jpg";
 			}
 			// 캐쉬에 추가
@@ -103,6 +104,13 @@ exports.parse = function (html) {
 			// 업로드된 사진 사용
 			food.img_src_more = photo_cache.get(food.id);
 
+			// 이미지 파일이 없는데 업로드된 사진이 있으면 사용
+			if( food.no_img && food.img_src_more && food.img_src_more.length > 0 ) {
+				food.no_img = false;
+				food.img_src = food.img_src_more[0];
+				food.img_src_more = food.img_src_more.slice(1);
+			}
+			
 //	        food.thumbs_up = 138;	//TODO 임시
 //	        food.thumbs_down = 21;	//TODO 임시
 //	        food.recommendation = "강추";	//TODO 임시
