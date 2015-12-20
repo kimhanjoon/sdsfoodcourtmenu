@@ -69,6 +69,11 @@
 				{% for img_src_more in food.img_src_more %}
 				<a class="image hidden" rel="{{food.floor}}_{{food.id}}" href="{{img_src_more}}"></a>
 				{% endfor %}
+				{% if food.hasImg === false %}
+				<button type="button" class="btn btn-default btn-xs take-photo" style="width:80px;">
+					<span class="kor">사진찍기</span><span class="eng hidden">Take photo</span>
+				</button>
+				{% endif %}
 			</div>
 		  <div class="media-body collapse-trigger">
 		    <h4 class="media-heading">
