@@ -103,6 +103,12 @@ exports.parse = function (html) {
 				image_cache.put(food.id, food.img_src);
 			}
 			
+			// 헬스기빙과 쉐프추천은 전혀 다른 이미지이므로 이미지 없는 것처럼 처리함
+			if( food.corner === "Chef's Counter" ) {
+				food.hasImg = false;
+				food.img_src = "/static/no_image_available.jpg";
+			}
+			
 			// 업로드된 사진 사용
 			food.img_src_more = photo_cache.get(food.id);
 
