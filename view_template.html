@@ -87,11 +87,6 @@
 			    <br />
 			    <span class="price payments"><del><span class="eng hidden">&#8361;</span> {{food.price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{food.payments}} <span class="kor">원</span></span>
 		    </div>
-		    <div class="pull-right">
-		    	<h4>
-			    	{{food.recommendation}}
-		    	</h4>
-	    	</div>
 		  </div>
 		</div>
 		<div class="collapse">
@@ -100,13 +95,6 @@
 				<button type="button" class="btn btn-default btn-xs take-photo" style="width:80px;">
 					<span class="kor">사진찍기</span><span class="eng hidden">Take photo</span>
 				</button>
-				{% endif %}
-				{% if food.thumbs %}
-				<div class="pull-right">
-					<span class="glyphicon glyphicon-thumbs-up"></span> {{food.thumbs_up}}
-					&nbsp;&nbsp;
-					<span class="glyphicon glyphicon-thumbs-down"></span> {{food.thumbs_down}}
-				</div>
 				{% endif %}
 			</div>
 		</div>

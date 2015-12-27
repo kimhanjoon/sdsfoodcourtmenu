@@ -119,9 +119,6 @@ exports.parse = function (html) {
 				food.img_src_more = food.img_src_more.slice(1);
 			}
 			
-//	        food.thumbs_up = 138;	//TODO 임시
-//	        food.thumbs_down = 21;	//TODO 임시
-//	        food.recommendation = "강추";	//TODO 임시
 	    })
 	    .get();
     
