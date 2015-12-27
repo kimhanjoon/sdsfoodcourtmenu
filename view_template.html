@@ -33,12 +33,6 @@
 {% endif %}
 
 <div class="container-fluid">
-<button type="button" class="btn btn-danger btn-sm pull-left" id="letitsnow">
-	Let it snow
-</button>
-<button type="button" class="btn btn-danger btn-sm pull-left hidden" id="clearsnow">
-	Clear
-</button>
 <button type="button" class="btn btn-primary btn-sm pull-right" id="language">
 	<span class="kor">English</span><span class="eng hidden">한글</span>
 </button>
@@ -264,20 +258,9 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="http://malsup.github.com/min/jquery.form.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.3/jquery.colorbox-min.js"></script>
-<script src='/static/snowfall.jquery.js'></script>
 <script type="text/javascript">
 $(function() {
 
-	$("#letitsnow").click(function() {
-		$(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 150, flakeColor: "#e1e1e1"});
-		$("#letitsnow,#clearsnow").toggleClass("hidden");
-	});
-
-	$("#clearsnow").click(function() {
-		$(document).snowfall("clear");
-		$("#letitsnow,#clearsnow").toggleClass("hidden");
-	});
-	
 	$("#language").click(function() {
 		$(".kor,.eng,.title_kor,.title_eng").toggleClass("hidden");
 	});
