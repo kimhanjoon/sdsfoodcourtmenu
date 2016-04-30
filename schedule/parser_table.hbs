@@ -1,0 +1,41 @@
+<table class="table table-striped table-bordered table-condensed">
+<colgroup>
+    <col width="100">
+    <col width="50">
+    <col width="150">
+    <col width="200">
+    <col width="200">
+    <col width="200">
+    <col width="200">
+    <col width="200">
+    <col width="200">
+</colgroup>
+<thead>
+    <tr>
+        <th>시간</th>
+        <th>층</th>
+        <th>식당</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+        <th>토</th>
+    </tr>
+</thead>
+<tbody>
+{{#each this}}
+    <tr>
+        <td>{{time}}</td>
+        <td>{{floor}}</td>
+        <td>{{corner}}</td>
+        <td>{{day1}}</td>
+        <td>{{day2}}</td>
+        <td>{{day3}}</td>
+        <td>{{day4}}</td>
+        <td>{{day5}}</td>
+        <td>{{day6}}</td>
+    </tr>
+{{/each}}
+</tbody>
+</table>
