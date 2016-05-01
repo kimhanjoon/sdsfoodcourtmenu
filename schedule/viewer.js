@@ -5,39 +5,31 @@ var fs = require('fs');
 var jsonfile = require('jsonfile');
 var _ = require('underscore');
 
+var main_template = Handlebars.compile(fs.readFileSync('./main.hbs').toString());
+Handlebars.registerPartial('weekday_menu', fs.readFileSync('./main_weekday_menu.hbs').toString());
+Handlebars.registerPartial('time_floor_menu', fs.readFileSync('./main_time_floor_menu.hbs').toString());
+
+//TODO 캐쉬로 읽도록...
+var food_schedule = jsonfile.readFileSync('./database/jamsil_20160502.json');
+
 exports.renderHTML = function (option) {
 
-	//TODO 바깥으로...
-	var main_template = Handlebars.compile(fs.readFileSync('./main.hbs').toString());
-	Handlebars.registerPartial('weekday_menu', fs.readFileSync('./main_weekday_menu.hbs').toString());
-	Handlebars.registerPartial('time_floor_menu', fs.readFileSync('./main_time_floor_menu.hbs').toString());
 
-	var food_schedule = jsonfile.readFileSync('./database/jamsil_20160403.json');
+	var menu = null;
 
-	var foods = {
-		day1 : _getTitleKor(food_schedule.schedule, "day1"),
-		day2 : _getTitleKor(food_schedule.schedule, "day2"),
-		day3 : _getTitleKor(food_schedule.schedule, "day3"),
-		day4 : _getTitleKor(food_schedule.schedule, "day4"),
-		day5 : _getTitleKor(food_schedule.schedule, "day5"),
-		day6 : _getTitleKor(food_schedule.schedule, "day6"),
-	};
-
-	foods.day1.weekday = weekdayMap.day1;
-	foods.day1.date = food_schedule.weekday.day1;
-	foods.day2.weekday = weekdayMap.day2;
-	foods.day2.date = food_schedule.weekday.day2;
-	foods.day3.weekday = weekdayMap.day3;
-	foods.day3.date = food_schedule.weekday.day3;
-	foods.day4.weekday = weekdayMap.day4;
-	foods.day4.date = food_schedule.weekday.day4;
-	foods.day5.weekday = weekdayMap.day5;
-	foods.day5.date = food_schedule.weekday.day5;
-	foods.day6.weekday = weekdayMap.day6;
-	foods.day6.date = food_schedule.weekday.day6;
+	if( food_schedule.schedule ) {
+		menu = {
+		    day1 : _getDayMenu(food_schedule, "day1"),
+		    day2 : _getDayMenu(food_schedule, "day2"),
+		    day3 : _getDayMenu(food_schedule, "day3"),
+		    day4 : _getDayMenu(food_schedule, "day4"),
+		    day5 : _getDayMenu(food_schedule, "day5"),
+		    day6 : _getDayMenu(food_schedule, "day6"),
+		}
+	}
 
     return main_template({
-    	foods: foods
+    	menu: menu
     	, googleAnalytics: option.production === true
     	, redirect: option.redirect === true
 	});
@@ -51,6 +43,14 @@ exports.renderJSON = function (option) {
 };
 
 var weekdayMap = {day1: "월요일", day2: "화요일", day3: "수요일", day4: "목요일", day5: "금요일", day6: "토요일"};
+
+function _getDayMenu(schedule, day) {
+	return {
+        date: schedule.weekday[day],
+        weekday: weekdayMap[day],
+        foods: _getTitleKor(schedule.schedule, day),
+    }
+}
 
 function _getTitleKor(list, day) {
 	var foods = _.chain(list)

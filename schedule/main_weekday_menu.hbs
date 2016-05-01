@@ -8,30 +8,30 @@
     </div>
 </div>
 
-{{#if breakfast}}
+{{#if foods.breakfast}}
 <div class="panel panel-primary">
     <div class="panel-heading"><span class="kor">아침 지하1층</span><span class="eng hidden">B1</span></div>
-    {{> time_floor_menu breakfast}}
+    {{> time_floor_menu foods.breakfast}}
 </div>
 {{/if}}
 
-{{#if lunchb1}}
+{{#if foods.lunchb1}}
 <div class="panel panel-primary">
     <div class="panel-heading"><span class="kor">점심 지하1층</span><span class="eng hidden">B1</span></div>
-    {{> time_floor_menu lunchb1}}
+    {{> time_floor_menu foods.lunchb1}}
 </div>
 {{/if}}
 
-{{#if lunchb2}}
+{{#if foods.lunchb2}}
 <div class="panel panel-primary">
     <div class="panel-heading"><span class="kor">점심 지하2층</span><span class="eng hidden">B2</span></div>
-    {{> time_floor_menu lunchb2}}
+    {{> time_floor_menu foods.lunchb2}}
 </div>
 {{/if}}
 
-{{#if dinner}}
+{{#if foods.dinner}}
 <div class="panel panel-primary">
     <div class="panel-heading"><span class="kor">저녁 지하1층</span><span class="eng hidden">B1</span></div>
-    {{> time_floor_menu dinner}}
+    {{> time_floor_menu foods.dinner}}
 </div>
 {{/if}}

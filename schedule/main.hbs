@@ -6,16 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
     <style>
-    .container {
-        padding-right: 0px;
-        padding-left: 0px;
-    }
-    .media {
-        overflow: visible;
+    .swiper-button-disabled {
+        display: none;
     }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
 </head>
 <body>
 
@@ -36,19 +32,26 @@
 <div class="container-fluid">
 
 <div class="page-header">
+    <span class="label label-info pull-right">schedule</span>
     <h1>delacourt <small>at a glance</small></h1>
 </div>
 
+{{#if menu}}
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">{{> weekday_menu foods.day1}}</div>
-        <div class="swiper-slide">{{> weekday_menu foods.day2}}</div>
-        <div class="swiper-slide">{{> weekday_menu foods.day3}}</div>
-        <div class="swiper-slide">{{> weekday_menu foods.day4}}</div>
-        <div class="swiper-slide">{{> weekday_menu foods.day5}}</div>
-        <div class="swiper-slide">{{> weekday_menu foods.day6}}</div>
+        <div class="swiper-slide">{{> weekday_menu menu.day1}}</div>
+        <div class="swiper-slide">{{> weekday_menu menu.day2}}</div>
+        <div class="swiper-slide">{{> weekday_menu menu.day3}}</div>
+        <div class="swiper-slide">{{> weekday_menu menu.day4}}</div>
+        <div class="swiper-slide">{{> weekday_menu menu.day5}}</div>
+        <div class="swiper-slide">{{> weekday_menu menu.day6}}</div>
     </div>
 </div>
+{{else}}
+<div class="panel panel-danger">
+    <div class="panel-heading">아직 주간식단일정이 입력되지 않았습니다.</div>
+</div>
+{{/if}}
 
 <div class="panel panel-default">
     <div class="panel-heading"><span class="kor">운영시간 안내</span><span class="eng hidden">Hours of Operation</span></div>
