@@ -50,7 +50,25 @@ app.get('/jamsil', function(req, res){
     res.end();
 });
 
-app.use('/image', express.static('./image'));
+var sendFileOptions = {
+    root: __dirname,
+};
+
+app.get('/jamsil/parser', function(req, res){
+	res.sendFile("parser.html", sendFileOptions);
+});
+
+var jsonfile = require('jsonfile');
+
+app.post('/jamsil', function(req, res){
+
+	console.log(req.body);
+
+	jsonfile.writeFile("database/jamsil_", req.body, function (err) {
+	    console.error(err);
+	});
+	res.end();
+});
 
 //--port 80
 var port = argv.port || 80;

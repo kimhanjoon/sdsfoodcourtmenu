@@ -9,22 +9,10 @@
 </head>
 <body>
 
-<textarea id="schedule_jamsil"></textarea>
-<button id="parse_jamsil">변환</button>
+<textarea class="form-control" rows="3" id="schedule_jamsil"></textarea>
+<button class="btn btn-info" id="parse_jamsil">변환</button>
+<button class="btn btn-success" id="save_jamsil" disabled>저장</button>
 <div id="result_jamsil">
-
-<textarea id="schedule_sangam"></textarea>
-<button class="btn parse">변환</button>
-<div class="result parse"></div>
-
-<textarea id="schedule_bundang"></textarea>
-<button class="btn parse">변환</button>
-<div class="result parse"></div>
-
-<textarea id="schedule_suwon"></textarea>
-<button class="btn parse">변환</button>
-<div class="result parse"></div>
-
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -33,28 +21,74 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
+<script id="parser_table_template" type="text/x-handlebars-template">
+<table class="table table-striped table-bordered table-condensed">
+<colgroup>
+    <col width="100">
+    <col width="50">
+    <col width="150">
+    <col width="200">
+    <col width="200">
+    <col width="200">
+    <col width="200">
+    <col width="200">
+    <col width="200">
+</colgroup>
+<thead>
+    <tr>
+        <th>시간</th>
+        <th>층</th>
+        <th>식당</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+        <th>토</th>
+    </tr>
+</thead>
+<tbody>
+{{#each this}}
+    <tr>
+        <td>{{time}}</td>
+        <td>{{floor}}</td>
+        <td>{{corner}}</td>
+        <td>{{day1}}</td>
+        <td>{{day2}}</td>
+        <td>{{day3}}</td>
+        <td>{{day4}}</td>
+        <td>{{day5}}</td>
+        <td>{{day6}}</td>
+    </tr>
+{{/each}}
+</tbody>
+</table>
+</script>
 <script>
 $(function() {
 
-    var filterOutPretextList = ["삼성SDS타워", "구분", "*테이크아웃은", "*상기메뉴는", "*allergy"];
 
+    //XXX pre-complie
+    var parser_table_template = Handlebars.compile($("#parser_table_template").html());
+
+    var filterOutPretextList = ["삼성SDS타워", "구분", "*테이크아웃은", "*상기메뉴는", "*allergy"];
     $("#parse_jamsil").click(function() {
     	var parsed_data = Papa.parse($("#schedule_jamsil").val(), {skipEmptyLines: true});
 
     	//TOOD 에러체크
 
-    	var weekdays = _.chain(parsed_data.data)
+    	var weekday = _.chain(parsed_data.data)
     	.filter(function(e) {
     		return e[0] === "구분";
     	})
     	.map(function(e) {
     		return {
-    			day1: moment(e[2], "M월 D일").toDate(),
-    			day2: moment(e[3], "M월 D일").toDate(),
-    			day3: moment(e[4], "M월 D일").toDate(),
-    			day4: moment(e[5], "M월 D일").toDate(),
-    			day5: moment(e[6], "M월 D일").toDate(),
-    			day6: moment(e[7], "M월 D일").toDate()
+    			day1: moment(e[2], "M월 D일").format('YYYY MM DD'),
+    			day2: moment(e[3], "M월 D일").format('YYYY MM DD'),
+    			day3: moment(e[4], "M월 D일").format('YYYY MM DD'),
+    			day4: moment(e[5], "M월 D일").format('YYYY MM DD'),
+    			day5: moment(e[6], "M월 D일").format('YYYY MM DD'),
+    			day6: moment(e[7], "M월 D일").format('YYYY MM DD')
     		}
     	})
     	.value();
@@ -123,13 +157,14 @@ $(function() {
     	})
     	.value();
 
-    	$("#result_jamsil").html(parser_table_template(schedule));
-    });
+    	$("#save_jamsil").off("click").removeAttr("disabled").click(function() {
+            $.post("/jamsil", {
+                weekday: weekday,
+                schedule: schedule
+            });
+        });
 
-    //XXX pre-complie
-    var parser_table_template;
-    $.get("parser_table.hbs", function(template_text){
-    	parser_table_template = Handlebars.compile(template_text);
+    	$("#result_jamsil").html(parser_table_template(schedule));
     });
 
 });
