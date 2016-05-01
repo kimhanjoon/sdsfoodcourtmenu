@@ -1,0 +1,37 @@
+<div class="panel panel-primary">
+
+
+    <div class="panel-heading text-center">
+        <h4 class="menu-prev pull-left">&lt;</h4>
+        <h4 class="menu-next pull-right">&gt;</h4>
+        <h4 class="kor">{{date}} {{weekday}}</h4><h4 class="eng hidden">{{date}} {{weekday}}</h4>
+    </div>
+</div>
+
+{{#if breakfast}}
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">아침 지하1층</span><span class="eng hidden">B1</span></div>
+    {{> time_floor_menu breakfast}}
+</div>
+{{/if}}
+
+{{#if lunchb1}}
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">점심 지하1층</span><span class="eng hidden">B1</span></div>
+    {{> time_floor_menu lunchb1}}
+</div>
+{{/if}}
+
+{{#if lunchb2}}
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">점심 지하2층</span><span class="eng hidden">B2</span></div>
+    {{> time_floor_menu lunchb2}}
+</div>
+{{/if}}
+
+{{#if dinner}}
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">저녁 지하1층</span><span class="eng hidden">B1</span></div>
+    {{> time_floor_menu dinner}}
+</div>
+{{/if}}
