@@ -1,20 +1,23 @@
 require("console-stamp")(console, { pattern : "yyyy-mm-dd HH:MM:ss" } );
 
 var cache_map = {};
+var cache_list = [];
 
 var fs = require('fs');
-var jsonfile = require('jsonfile')
+var jsonfile = require('jsonfile');
+var _ = require('underscore');
 
 exports.init = function() {
-	cache_map = jsonfile.readFileSync("./telegrambot_user.json");
-	console.info("user cache initialized : ", Object.keys(cache_map).length);
+	cache_list = jsonfile.readFileSync("./telegrambot_user.json");
+	cache_map = _.object(_.pluck(cache_list, "chat_id"), cache_list);
+	console.info("user cache initialized : ", cache_list.length);
 };
 
 exports.write = function() {
 
-	jsonfile.writeFile("./telegrambot_user.json", cache_map, function (err) {
-    console.error(err)
-  });
+	jsonfile.writeFile("./telegrambot_user.json", cache_list, function (err) {
+	    console.error(err)
+	});
 };
 
 exports.put = function(user_id, key, value) {
@@ -60,4 +63,13 @@ exports.print = function(user_id) {
 	else {
 		console.log(cache_map);
 	}
+};
+
+exports.each = function(callback) {
+
+	var key_lists = _.keys(cache_map);
+
+	_.each(key_lists, function(e) {
+		callback(cache_map[e]);
+	});
 };
