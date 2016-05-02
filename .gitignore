@@ -5,11 +5,17 @@
 /downloadphoto
 
 # properties
-email_properties.json
+/email_properties.json
+
+# database
+/schedule/database
+/telegrambot/telegrambot_user.json
 
 # development
 /node_modules
 
 # deployment
-/deploy.sh
+/deploy.*
 /nohup.out
+/telegrambot/deploy.*
+/telegrambot/nohup.out
