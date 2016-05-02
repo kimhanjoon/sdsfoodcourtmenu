@@ -15,7 +15,7 @@ exports.init = function() {
 
 exports.write = function() {
 
-	jsonfile.writeFile("./telegrambot_user.json", cache_list, function (err) {
+	jsonfile.writeFile("./telegrambot_user.json", _.values(cache_map), function (err) {
 	    console.error(err)
 	});
 };
