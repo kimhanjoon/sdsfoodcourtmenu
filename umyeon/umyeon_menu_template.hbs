@@ -1,0 +1,39 @@
+{{#if foods.breakfast}}
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">아침 지하1층</span><span class="eng hidden">B1</span></div>
+    {{> time_floor_menu foods.breakfast}}
+</div>
+{{/if}}
+
+<ul class="list-group">
+{{#each this}}
+  <li class="list-group-item">
+    <span class="badge">{{corner}}</span>
+    {{title_kor}}
+  </li>
+{{/each}}
+</ul>
+
+<div class="list-group-item" data-food-id="{{id}}">
+	<div class="media">
+		<div class="media-left">
+			<img class="media-object" src="{{img_src}}" style="width:80px;">
+		</div>
+	  <div class="media-body">
+	    <h4 class="media-heading">
+	    	<span class="title_kor">{{title_kor}}</span>
+	    	<span class="title_eng hidden">{{title_eng}}</span>
+	    	<span class="corner badge pull-right">{{corner}}</span>
+	    </h4>
+	    <div class="pull-left">
+		    <span class="kcal">{{kcal}} kcal</span>
+            {{#if very_high_cal }}<span class="label label-danger"><span class="kor">초고칼로리</span><span class="eng hidden">Very High Calorie</span></span>{{/if}}
+            {{#if high_cal }}<span class="label label-warning"><span class="kor">고칼로리</span><span class="eng hidden">High Calorie</span></span>{{/if}}
+            {{#if low_cal }}<span class="label label-info"><span class="kor">저칼로리</span><span class="eng hidden">Low Calorie</span></span>{{/if}}
+            {{#if very_low_cal }}<span class="label label-success"><span class="kor">초저칼로리</span><span class="eng hidden">Very Low Calorie</span></span>{{/if}}
+		    <br />
+            {{description_kor}}
+	    </div>
+	  </div>
+	</div>
+</div>

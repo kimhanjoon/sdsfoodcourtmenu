@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>delacourt at a glance</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container-fluid">
+
+<button type="button" class="btn btn-primary btn-sm pull-right" id="language">
+	<span class="kor">잠실</span><span class="eng hidden">잠실</span>
+</button>
+
+<div class="page-header">
+	<h1>delacourt <small>at a glance</small></h1>
+</div>
+
+{{#if foods.cafeteria1}}
+<div class="panel panel-primary">
+	<div class="panel-heading"><span class="kor">Cafeteria 1</span><span class="eng hidden">Cafeteria 1</span>
+		<a href="http://welstory.com/menu/seoulrnd/menu.jsp" class="btn btn-default btn-xs pull-right">Link</a>
+	</div>
+    {{> umyeon_menu foods.cafeteria1}}
+</div>
+{{/if}}
+
+{{#if foods.cafeteria2}}
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">Cafeteria 2</span><span class="eng hidden">Cafeteria 2</span>
+        <a href="http://welstory.com/menu/seoulrnd/menu.jsp" class="btn btn-default btn-xs pull-right">Link</a>
+    </div>
+    {{> umyeon_menu foods.cafeteria2}}
+</div>
+{{/if}}
+
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="kor">제작자 알림</span><span class="eng hidden">Notice</span></div>
+	<ul class='list-group'>
+		<li class="list-group-item">
+			<span class="kor">이곳에 표시하는 모든 데이터의 권한은 <a href="http://welstory.com/menu/seoulrnd/menu.jsp">welstory.com</a>에 있습니다.</span>
+			<span class="eng hidden">Rights of all data belong to <a href="http://welstory.com/menu/seoulrnd/menu.jsp">welstory.com</a>.</span>
+		</li>
+		<li class="list-group-item">
+			<span class="kor">이 사이트를 더 좋게 만들어주세요.</span><span class="eng hidden">Any contribution is welcome.</span>
+			<a href="https://github.com/kimhanjoon/sdsfoodcourtmenu">GitHub</a>
+		</li>
+	</ul>
+</div>
+
+</div>
+
+
+{{#if googleAnalytics}}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62912065-1', 'auto');
+  ga('send', 'pageview');
+</script>
+{{/if}}
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+</body>
+</html>

@@ -13,6 +13,7 @@
     "easyimage": "^2.0.3",
     "express": "^4.12.4",
     "handlebars": "^4.0.5",
+    "iconv-lite": "^0.4.13",
     "jsonfile": "^2.3.0",
     "minimist": "^1.1.1",
     "multer": "^1.0.1",

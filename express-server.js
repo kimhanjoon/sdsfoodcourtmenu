@@ -17,7 +17,7 @@ var requestsdsfoodcourtmenu = function(zonename, callback) {
 };
 
 if( argv.examplefile ) {
-	
+
 	var fs = require('fs');
 	requestsdsfoodcourtmenu = function(zonename, callback) {
 		return fs.readFile('./jamsilmenu/' + zonename + '.html', 'utf8', callback);
@@ -40,7 +40,7 @@ app.all('*', function(req, res, next){
 		req.url = '/';
 	}
 
-	next();	
+	next();
 });
 
 app.get('/', function(req, res, next) {
@@ -95,7 +95,37 @@ app.get('/jamsil', function(req, res){
 	    }
 	    res.end();
 	});
-	
+
+});
+
+var iconv = require('iconv-lite');
+//iconv.extendNodeEncodings();
+
+var umyeon_parser = require('./umyeon/umyeon_parser.js');
+var umyeon_viewer = require('./umyeon/umyeon_viewer.js');
+app.get('/umyeon', function(req, res){
+	request({uri: "http://welstory.com/menu/seoulrnd/menu.jsp", encoding: 'binary'}, function(error, response, body) {
+
+		var utf8_body = iconv.decode(new Buffer(body, 'binary'), 'utf-8')
+
+		console.log(utf8_body);
+	    var option = {
+    		foods: umyeon_parser.parse(utf8_body)
+    		, production: argv.production
+	    };
+
+	    // html -> json 순서로 response content-type을 정한다.
+	    if( req.accepts('html') ) {
+	    	res.write(umyeon_viewer.render(option));
+	    }
+	    else if( req.accepts('json') ) {
+	    	res.write(JSON.stringify(option.foods));
+	    }
+	    else {
+	    	res.write(umyeon_viewer.render(option));
+	    }
+	    res.end();
+	});
 });
 
 var photo_management = require("./photo_management.js");
