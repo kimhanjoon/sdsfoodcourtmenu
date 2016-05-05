@@ -4,14 +4,14 @@
     <title>delacourt at a glance</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
 	<style>
 	.container {
 		padding-right: 0px;
 		padding-left: 0px;
 	}
-	.media { 
+	.media {
 		overflow: visible;
 	}
 	</style>
@@ -19,18 +19,6 @@
 </head>
 <body>
 
-{% if redirect %}
-<div class="container-fluid">
-	<div class="alert alert-warning alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  <span class="title_kor">접속 주소가 <strong><a href="http://daag.pe.kr">daag.pe.kr</a></strong>로 바뀌었습니다.</span>
-	  <span class="title_eng hidden">Page Address changed to <strong><a href="http://daag.pe.kr">daag.pe.kr</strong></a>.</span>
-	</div>
-	<script type="text/javascript">
-	history.replaceState({}, "", "/");
-	</script>
-</div>
-{% endif %}
 
 <div class="container-fluid">
 <button type="button" class="btn btn-primary btn-sm pull-right" id="language">
@@ -40,6 +28,23 @@
 <div class="page-header">
 	<h1>delacourt <small>at a glance</small></h1>
 </div>
+
+{% if redirect %}
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <span class="title_kor">접속 주소가 <strong><a href="http://daag.pe.kr">daag.pe.kr</a></strong>로 바뀌었습니다.</span>
+      <span class="title_eng hidden">Page Address changed to <strong><a href="http://daag.pe.kr">daag.pe.kr</strong></a>.</span>
+    </div>
+    <script type="text/javascript">
+    history.replaceState({}, "", "/");
+    </script>
+{% endif %}
+
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <span class="title_kor">우면동 식당 메뉴도 볼 수 있어요! <strong><a href="/umyeon">daag.pe.kr/umyeon</a></strong></span>
+      <span class="title_eng hidden">Umyeon's menu is ready! <strong><a href="/umyeon">daag.pe.kr/umyeon</a></strong></span>
+    </div>
 
 {% macro display_foods(foods, floor) %}
 {% set foods_length = 0 %}
@@ -79,7 +84,7 @@
 		    	<span class="corner badge pull-right">{{food.corner}}</span>
 		    </h4>
 		    <div class="pull-left">
-			    <span class="kcal">{{food.kcal}} kcal</span> 
+			    <span class="kcal">{{food.kcal}} kcal</span>
 			    {% if food.very_high_cal %}<span class="label label-danger"><span class="kor">초고칼로리</span><span class="eng hidden">Very High Calorie</span></span>{% endif %}
 			    {% if food.high_cal %}<span class="label label-warning"><span class="kor">고칼로리</span><span class="eng hidden">High Calorie</span></span>{% endif %}
 			    {% if food.low_cal %}<span class="label label-info"><span class="kor">저칼로리</span><span class="eng hidden">Low Calorie</span></span>{% endif %}
@@ -163,7 +168,7 @@
 		</div>
 		{% endif %}
 	</div>
-	
+
 </div>
 
 <div class="panel panel-primary">
@@ -180,16 +185,30 @@
 	<div class="panel-heading"><span class="kor">운영시간 안내</span><span class="eng hidden">Hours of Operation</span></div>
 	<div class="panel-body">
 		<p>
-		ㅁ<span class="kor">월요일 - 금요일</span><span class="eng hidden">Monday - Friday</span><br>	
-		<span class="kor">아침</span><span class="eng hidden">Breakfast</span> 06:30 - 08:15</span><br>	
-		<span class="kor">점심</span><span class="eng hidden">Lunch</span> 11:30 - 13:15</span><br> 
+		ㅁ<span class="kor">월요일 - 금요일</span><span class="eng hidden">Monday - Friday</span><br>
+		<span class="kor">아침</span><span class="eng hidden">Breakfast</span> 06:30 - 08:15</span><br>
+		<span class="kor">점심</span><span class="eng hidden">Lunch</span> 11:30 - 13:15</span><br>
 		<span class="kor">저녁</span><span class="eng hidden">Dinner</span> 18:00 - 19:00</span>
 		</p>
 		<p>
-		ㅁ<span><span class="kor">토요일</span><span class="eng hidden">Saturday</span></span><br>	
+		ㅁ<span><span class="kor">토요일</span><span class="eng hidden">Saturday</span></span><br>
 		<span><span class="kor">점심</span><span class="eng hidden">Lunch</span> 11:30 - 12:30</span>
 		</p>
 	</div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="kor">모든 지역 메뉴 목록</span><span class="eng hidden">All Location</span></div>
+    <ul class='list-group'>
+        <li class="list-group-item">
+            <span class="kor"><a href="/jamsil">잠실</a></span>
+            <span class="eng hidden"><a href="/jamsil">jamsil</a></span>
+        </li>
+        <li class="list-group-item">
+            <span class="kor"><a href="/umyeon">우면</a></span>
+            <span class="eng hidden"><a href="/umyeon">Umyeon</a></span>
+        </li>
+    </ul>
 </div>
 
 <div class="panel panel-default">
@@ -209,7 +228,7 @@
 </div>
 
 <div id="uploadPhotoConfirmMessage" class="hidden">
-	<span class="kor">보내주신 사진 외에는 다른 정보를 저장하지 않습니다. 
+	<span class="kor">보내주신 사진 외에는 다른 정보를 저장하지 않습니다.
 	한번 보낸 사진은 취소가 불가능합니다.
 	사진을 보내겠습니까?</span>
 	<span class="eng hidden">Other information except the photo will not be saved.
@@ -217,8 +236,8 @@
 	Would you like to upload a photo?</span>
 </div>
 <div id="uploadPhotoSuccessMessage" class="hidden">
-	<span class="kor">사진 전송이 완료되었습니다. 
-	관리자의 판단에 따라 사용되지 않을 수 있습니다. 
+	<span class="kor">사진 전송이 완료되었습니다.
+	관리자의 판단에 따라 사용되지 않을 수 있습니다.
 	감사합니다.</span>
 	<span class="eng hidden">The transfer is completed.
 	Photo may not be used at the discretion of the site manager.
@@ -260,7 +279,7 @@ $(function() {
 
 	// 사진박스 구성
 	$("a.image").colorbox({width:"100%"});
-	
+
 	// 사진 클릭 이벤트 걸기
 	$("img.image").click(function() {
 		$(this).next().click();
@@ -279,16 +298,16 @@ $(function() {
 			$("#foodPhoto").click();
 		}
 	});
-    
+
 	// 파일을 서버로 전송
 	$("#foodPhoto").change(function (event) {
  		$("form").ajaxSubmit({
- 			success: function() { 
- 		        alert($("#uploadPhotoSuccessMessage span:not(.hidden)").text()); 
+ 			success: function() {
+ 		        alert($("#uploadPhotoSuccessMessage span:not(.hidden)").text());
  		    }
  		});
 	});
-	
+
 });
 </script>
 </body>
