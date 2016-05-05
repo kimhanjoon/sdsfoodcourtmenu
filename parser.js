@@ -3,11 +3,11 @@
 var mapperClassname2Cornername = {
 		"DEPT001-group" : "KOREAN 1"
 		, "DEPT002-group" : "KOREAN 2"
-		, "DEPT003-group" : "탕맛기픈"
-		, "DEPT004-group" : "가츠엔"
+		, "DEPT003-group" : "湯탕맛기픈"
+		, "DEPT004-group" : "가츠&엔"
 		, "DEPT005-group" : "WESTERN"
 		, "DEPT006-group" : "Snapsnack"		// class만 있고, 실제 데이터는 없음
-		, "DEPT007-group" : "TAKEOUT"		// class만 있고, 실제 데이터는 없음
+		, "DEPT007-group" : "Take me Out"		// class만 있고, 실제 데이터는 없음
 		, "DSDS011-group" : "KOREAN 1"
 		, "DSDS012-group" : "KOREAN 2"
 		, "DSDS013-group" : "Napolipoli"
@@ -15,7 +15,7 @@ var mapperClassname2Cornername = {
 		, "DSDS015-group" : "고슬고슬비빈"
 		, "DSDS016-group" : "Chef's Counter"
 		, "DSDS017-group" : "XingFu China"
-		, "DSDS018-group" : "우리미각면"
+		, "DSDS018-group" : "우리味각면"
 	};
 var hex = require("./hex.js");
 
@@ -34,7 +34,7 @@ exports.parse = function (html) {
     	.filter(function(index, element) {
     		return $(element).find("span").text().indexOf("운영시간") === -1;
     	})
-    	
+
     	// HTML 파싱
     	.map(function(index, element) {
 	        var $e = $(element);
@@ -42,9 +42,9 @@ exports.parse = function (html) {
 	        food.title_kor = $e.find("span:nth-child(1)").text();
 	        food.title_eng = $e.find("span:nth-child(3)").text();
 	        food.id = hex.to4Hex(food.title_kor);
-	        
+
 	        food.kcal = Number($e.find("span:nth-child(5)").text().replace(" kcal", ""));
-	        
+
 	        // 판매종료된 메뉴는 <del> 태그가 들어가고 가격이 표시되지 않는다.
 	        food.soldout = $e.find("del").length > 0 ? true : false;
 	        if( !food.soldout ) {
@@ -56,10 +56,10 @@ exports.parse = function (html) {
 
 	        food.corner = mapperClassname2Cornername[$e.closest("div[class$=group]").attr("class")];
 	        food.floor = floor;
-	        
+
 	        return food;
 	    })
-	    
+
 	    // 추가정보 및 이미지 캐쉬
 	    .each(function(index, food) {
 
@@ -80,10 +80,10 @@ exports.parse = function (html) {
             // 6000원 미만은 3000원 공제, 이상은 2500원 공제
 	        if( food.price ) {
 	        	if( food.price < 6000 ) {
-	        		food.payments = food.price - 3000; 
+	        		food.payments = food.price - 3000;
 	        	}
 	        	else {
-	        		food.payments = food.price - 2500; 
+	        		food.payments = food.price - 2500;
 	        	}
 	        }
 
@@ -102,13 +102,13 @@ exports.parse = function (html) {
 				food.hasImg = true;
 				image_cache.put(food.id, food.img_src);
 			}
-			
+
 			// 헬스기빙과 쉐프추천은 전혀 다른 이미지이므로 이미지 없는 것처럼 처리함
 			if( food.corner === "Chef's Counter" ) {
 				food.hasImg = false;
 				food.img_src = "/static/no_image_available.jpg";
 			}
-			
+
 			// 업로드된 사진 사용
 			food.img_src_more = photo_cache.get(food.id);
 
@@ -118,9 +118,9 @@ exports.parse = function (html) {
 				food.img_src = food.img_src_more[0];
 				food.img_src_more = food.img_src_more.slice(1);
 			}
-			
+
 	    })
 	    .get();
-    
+
     return foods;
 };

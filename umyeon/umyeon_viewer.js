@@ -1,16 +1,22 @@
-var Handlebars = require('handlebars');
 var fs = require('fs');
+var Handlebars = require('handlebars');
+var _ = require('underscore');
+
 var main_template = Handlebars.compile(fs.readFileSync('./umyeon/umyeon_main_template.hbs').toString());
 Handlebars.registerPartial('umyeon_menu', fs.readFileSync('./umyeon/umyeon_menu_template.hbs').toString());
 
-var _ = require('underscore');
-
 exports.render = function (option) {
-//	console.log(option.foods);
-//	console.log(_.groupBy(option.foods, "floor"));
+
+	// 시간,분류별로 나눠서 표시하기 위해 미리 나눔
+	var foods = _.chain(option.foods)
+		.groupBy("time")
+		.mapObject(function(e) {
+			return _.groupBy(e, "floor");
+		})
+		.value();
 
     return main_template({
-    	foods: _.groupBy(option.foods, "floor")
+    	foods: foods
     	, googleAnalytics: option.production === true
     });
 };

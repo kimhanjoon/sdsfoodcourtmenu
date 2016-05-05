@@ -99,16 +99,14 @@ app.get('/jamsil', function(req, res){
 });
 
 var iconv = require('iconv-lite');
-//iconv.extendNodeEncodings();
 
 var umyeon_parser = require('./umyeon/umyeon_parser.js');
 var umyeon_viewer = require('./umyeon/umyeon_viewer.js');
 app.get('/umyeon', function(req, res){
-	request({uri: "http://welstory.com/menu/seoulrnd/menu.jsp", encoding: 'binary'}, function(error, response, body) {
+	request({uri: "http://welstory.com/menu/seoulrnd/menu.jsp?meal_type=2&course=AA&dt=20160508&dtFlag=2", encoding: 'binary'}, function(error, response, body) {
 
-		var utf8_body = iconv.decode(new Buffer(body, 'binary'), 'utf-8')
+		var utf8_body = iconv.decode(new Buffer(body, 'binary'), 'euc-kr');
 
-		console.log(utf8_body);
 	    var option = {
     		foods: umyeon_parser.parse(utf8_body)
     		, production: argv.production

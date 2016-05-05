@@ -11,31 +11,55 @@
 
 <div class="container-fluid">
 
-<button type="button" class="btn btn-primary btn-sm pull-right" id="language">
-	<span class="kor">잠실</span><span class="eng hidden">잠실</span>
-</button>
-
 <div class="page-header">
 	<h1>delacourt <small>at a glance</small></h1>
 </div>
 
-{{#if foods.cafeteria1}}
+{{#if foods.breakfast.cafeteria1}}
 <div class="panel panel-primary">
-	<div class="panel-heading"><span class="kor">Cafeteria 1</span><span class="eng hidden">Cafeteria 1</span>
-		<a href="http://welstory.com/menu/seoulrnd/menu.jsp" class="btn btn-default btn-xs pull-right">Link</a>
-	</div>
-    {{> umyeon_menu foods.cafeteria1}}
+    <div class="panel-heading"><span class="kor">아침, Cafeteria 1</span><span class="eng hidden">Cafeteria 1</span>
+    </div>
+    {{> umyeon_menu foods.breakfast.cafeteria1}}
 </div>
 {{/if}}
 
-{{#if foods.cafeteria2}}
+{{#if foods.lunch.cafeteria1}}
 <div class="panel panel-primary">
-    <div class="panel-heading"><span class="kor">Cafeteria 2</span><span class="eng hidden">Cafeteria 2</span>
-        <a href="http://welstory.com/menu/seoulrnd/menu.jsp" class="btn btn-default btn-xs pull-right">Link</a>
+    <div class="panel-heading"><span class="kor">점심, Cafeteria 1</span><span class="eng hidden">Cafeteria 1</span>
     </div>
-    {{> umyeon_menu foods.cafeteria2}}
+    {{> umyeon_menu foods.lunch.cafeteria1}}
 </div>
 {{/if}}
+
+{{#if foods.lunch.cafeteria2}}
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">점심, Cafeteria 2</span><span class="eng hidden">Cafeteria 1</span>
+    </div>
+    {{> umyeon_menu foods.lunch.cafeteria2}}
+</div>
+{{/if}}
+
+{{#if foods.dinner.cafeteria1}}
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">저녁, Cafeteria 1</span><span class="eng hidden">Cafeteria 1</span>
+    </div>
+    {{> umyeon_menu foods.dinner.cafeteria1}}
+</div>
+{{/if}}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="kor">모든 지역 메뉴 목록</span><span class="eng hidden">All Location</span></div>
+    <ul class='list-group'>
+        <li class="list-group-item">
+            <span class="kor"><a href="/jamsil">잠실</a></span>
+            <span class="eng hidden"><a href="/jamsil">jamsil</a></span>
+        </li>
+        <li class="list-group-item">
+            <span class="kor"><a href="/umyeon">우면</a></span>
+            <span class="eng hidden"><a href="/umyeon">Umyeon</a></span>
+        </li>
+    </ul>
+</div>
 
 <div class="panel panel-default">
 	<div class="panel-heading"><span class="kor">제작자 알림</span><span class="eng hidden">Notice</span></div>
