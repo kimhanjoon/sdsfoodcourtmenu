@@ -15,6 +15,13 @@
 	<h1>delacourt <small>at a glance</small></h1>
 </div>
 
+{{#if isClosed}}
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">오늘은 영업하지 않습니다.</span><span class="eng hidden">We're closed today</span>
+    </div>
+</div>
+{{/if}}
+
 {{#if foods.breakfast.cafeteria1}}
 <div class="panel panel-primary">
     <div class="panel-heading"><span class="kor">아침, Cafeteria 1</span><span class="eng hidden">Cafeteria 1</span>

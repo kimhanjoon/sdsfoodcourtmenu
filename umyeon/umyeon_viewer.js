@@ -17,6 +17,7 @@ exports.render = function (option) {
 
     return main_template({
     	foods: foods
+    	, isClosed: option.foods.length === 0
     	, googleAnalytics: option.production === true
     });
 };

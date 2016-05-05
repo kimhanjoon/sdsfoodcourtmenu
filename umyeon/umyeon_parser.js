@@ -78,9 +78,7 @@ exports.parse = function (html) {
     	else if( food.kcal >= 880 ) {
     		food.high_cal = true;
     	}
-
-    	food.hasImg = false;
-    	food.img_src = "/static/no_image_available.jpg";
     });
+
     return foods;
 };
