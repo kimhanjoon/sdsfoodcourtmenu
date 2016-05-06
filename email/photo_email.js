@@ -1,7 +1,7 @@
 var nodemailer = require('nodemailer');
 var email_properties = require('./email_properties.json');
 
-// create reusable transporter object using SMTP transport 
+// create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
     service: email_properties.service,
     auth: {
@@ -10,8 +10,8 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-var swig = require('swig');
-var photo_email_template = swig.compileFile('./photo_email_template.html');
+var Handlebars = require('handlebars');
+var photo_email_template = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'photo_email_template.hbs')).toString());
 var hex = require('./hex.js');
 
 exports.sendNewPhotoUploaded = function(filename) {
@@ -24,14 +24,14 @@ exports.sendNewPhotoUploaded = function(filename) {
     	, filename: filename
     });
 
-	// setup e-mail data with unicode symbols 
+	// setup e-mail data with unicode symbols
 	var mailOptions = {
-	    to: email_properties.to.email, // list of receivers 
-	    subject: 'New photo has uploaded.', // Subject line 
-	    html: html // html body 
+	    to: email_properties.to.email, // list of receivers
+	    subject: 'New photo has uploaded.', // Subject line
+	    html: html // html body
 	};
-	
-	// send mail with defined transport object 
+
+	// send mail with defined transport object
 	transporter.sendMail(mailOptions, function(error, info){
 	    if(error){
 	        return console.error(error);

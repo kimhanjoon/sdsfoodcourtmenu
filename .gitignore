@@ -5,7 +5,7 @@
 /downloadphoto
 
 # properties
-/email_properties.json
+/email/email_properties.json
 
 # database
 /schedule/database

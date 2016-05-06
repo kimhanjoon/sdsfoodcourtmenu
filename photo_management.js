@@ -26,9 +26,9 @@ function getRandomFiveDigits() {
 var _ = require('underscore');
 var fs = require('fs');
 var easyimg = require('easyimage');
-var photo_email = require("./photo_email.js");
+var photo_email = require("./email/photo_email.js");
 exports.makePhoto = function(filename) {
-	
+
 	var randomNumber = getRandomFiveDigits();
 	var filenamewithpath = './uploadphoto/' + filename;
 	easyimg.convert({
@@ -48,7 +48,7 @@ exports.makePhoto = function(filename) {
 				// 파일명에 랜덤5자리 숫자를 붙인 이름으로 복사한다.
 				fs.createReadStream(filenamewithpath + '_resize.jpg')
 				.pipe(fs.createWriteStream(filenamewithpath + '_' + randomNumber + '.jpg'));
-				
+
 				photo_email.sendNewPhotoUploaded(filename + '_' + randomNumber + '.jpg');
 			},
 			function (err) {
@@ -67,7 +67,7 @@ exports.registerPhoto = function(filename) {
 	try {
 		var food_id = filename.split('-')[0];
 		var food_filename = filename.replace(/_[0-9]{5}/, '');
-		
+
 		fs.createReadStream('./uploadphoto/' + filename)
 		.pipe(fs.createWriteStream('./photo/' + food_filename));
 
@@ -77,9 +77,9 @@ exports.registerPhoto = function(filename) {
 				fs.renameSync('./uploadphoto/' + e, './registerphoto/' + e);
 			}
 		});
-		
+
 		photo_cache.put(food_id, food_filename);
-		
+
 		return filename + " has registered.";
 	}
 	catch(err) {
@@ -90,13 +90,13 @@ exports.registerPhoto = function(filename) {
 exports.rejectPhoto = function(filename) {
 	try {
 		var food_filename_prefix = filename.replace(/_[0-9]{5}\.jpg/, '');
-		
+
 		_.each(fs.readdirSync("./uploadphoto/"), function(e) {
 			if( e.indexOf(food_filename_prefix) > -1 ) {
 				fs.renameSync('./uploadphoto/' + e, './rejectphoto/' + e);
 			}
 		});
-		
+
 		return filename + " has rejected.";
 	}
 	catch(err) {
