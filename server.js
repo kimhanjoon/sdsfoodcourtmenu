@@ -4,12 +4,6 @@ var argv = require('minimist')(process.argv.slice(2));
 
 var request = require('request');
 
-// --proxy http://ipaddress:port
-if( argv.proxy ) {
-	console.log('using proxy : %s', argv.proxy);
-	request = request.defaults({'proxy': argv.proxy});
-}
-
 var requestsdsfoodcourtmenu = function(zonename, callback) {
 	return request("http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=" + zonename, function(error, response, body) {
 	    return callback(error, body);
@@ -18,22 +12,6 @@ var requestsdsfoodcourtmenu = function(zonename, callback) {
 
 var express = require('express');
 var app = express();
-
-// 예전 주소로 접속한 경우 새 주소로 리다이렉트 시킨다.
-app.all('*', function(req, res, next){
-	var requesthost = req.get('host');
-	if( requesthost && requesthost.indexOf("kr.pe") > -1 ) {
-		console.info("kr.pe requested.")
-		res.redirect(301, 'http://daag.pe.kr/?redirect=true');
-		res.end();
-		return;
-	}
-	if( req.query.redirect ) {
-		req.url = '/';
-	}
-
-	next();
-});
 
 app.get('/', function(req, res, next) {
 	req.url = '/jamsil';
@@ -54,7 +32,6 @@ app.get('/jamsil', function(req, res){
 	    var option = {
 	    		foods: menu1.concat(menu2)
 	    		, production: argv.production
-	    		, redirect: req.query.redirect === "true"
 	    };
 	    // 영어권 사용자는 바로 영어가 보이게끔 language 전달
 	    var languages = req.acceptsLanguages();
