@@ -28,18 +28,18 @@
 
 ## delacourt at a glance 파일 구조
 
-jamsilmenu/ : 식사시간이 아니어도 테스트할 수 있도록 특정일자의 html을 보관
+jamsil/ : 잠실캠퍼스 식당 메뉴 파싱,템플릿
 
-jamsilmenu/fetch-html.js : 실제 서버에 실시간 접속하여 지하1층,2층 html 저장
+umyeon/ : 우면동 연구소 식당 메뉴 파싱,템플릿
 
-example.js : jamsilmenu/의 html으로 테스트해서 public의 jamsilmenu.html과 .json 파일 생성
+email/ : 관리자에게 이메일 전송
 
-express-server.js : web server 실행, --port 포트번호 --proxy 프록시주소
+schedule/ : 사용자가 주간메뉴를 업로드
+
+telegrambot/ : 텔레그램봇 모듈
 
 image_cache.js : 다운로드받은 이미지파일을 읽어서 캐쉬로 사용, 캐쉬에 없는 이미지는 다운로드 받아서 저용량으로 변환
 
-parse.js : html 파일을 파싱해서 메뉴정보를 자바스크립트 객체로 구성
+photo_cache.js : 사용자가 업로드한 이미지파일을 읽어서 캐쉬로 사용
 
-view.js : 메뉴정보를 입력받아서 서비스될 HTML 구성
-
-view_template.html : 서비스 대상 HTML의 템플릿 파일
+server.js : web server 실행, --port 포트번호
