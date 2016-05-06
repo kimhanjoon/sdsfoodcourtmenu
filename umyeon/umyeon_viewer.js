@@ -1,9 +1,10 @@
 var fs = require('fs');
+var path = require('path');
 var Handlebars = require('handlebars');
 var _ = require('underscore');
 
-var main_template = Handlebars.compile(fs.readFileSync('./umyeon/umyeon_main_template.hbs').toString());
-Handlebars.registerPartial('umyeon_menu', fs.readFileSync('./umyeon/umyeon_menu_template.hbs').toString());
+var main_template = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'umyeon_main_template.hbs')).toString());
+Handlebars.registerPartial('umyeon_menu', fs.readFileSync(path.join(__dirname, 'umyeon_menu_template.hbs')).toString());
 
 exports.render = function (option) {
 
