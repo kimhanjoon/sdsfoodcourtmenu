@@ -52,7 +52,7 @@ var parser = require('./parser.js');
 var menu_snapsnack = require('./jamsilmenu/menu_snapsnack.json');
 var menu_takeout = require('./jamsilmenu/menu_takeout.json');
 
-var view = require('./view.js');
+var jamsil_viewer = require('./jamsil/jamsil_viewer.js');
 
 var async = require('async');
 app.get('/jamsil', function(req, res){
@@ -85,13 +85,13 @@ app.get('/jamsil', function(req, res){
 
 	    // html -> json 순서로 response content-type을 정한다.
 	    if( req.accepts('html') ) {
-	    	res.write(view.render(option));
+	    	res.write(jamsil_viewer.render(option));
 	    }
 	    else if( req.accepts('json') ) {
 	    	res.write(JSON.stringify(option.foods));
 	    }
 	    else {
-	    	res.write(view.render(option));
+	    	res.write(jamsil_viewer.render(option));
 	    }
 	    res.end();
 	});
