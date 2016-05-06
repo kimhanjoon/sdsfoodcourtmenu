@@ -16,14 +16,6 @@ var requestsdsfoodcourtmenu = function(zonename, callback) {
 	});
 };
 
-if( argv.examplefile ) {
-
-	var fs = require('fs');
-	requestsdsfoodcourtmenu = function(zonename, callback) {
-		return fs.readFile('./jamsilmenu/' + zonename + '.html', 'utf8', callback);
-	};
-}
-
 var express = require('express');
 var app = express();
 
@@ -48,32 +40,19 @@ app.get('/', function(req, res, next) {
 	next('route');
 });
 
-var parser = require('./parser.js');
-var menu_snapsnack = require('./jamsilmenu/menu_snapsnack.json');
-var menu_takeout = require('./jamsilmenu/menu_takeout.json');
-
+var jamsil_parser = require('./jamsil/jamsil_parser.js');
 var jamsil_viewer = require('./jamsil/jamsil_viewer.js');
 
 var async = require('async');
 app.get('/jamsil', function(req, res){
 
 	async.map(['ZONE01','ZONE02'], requestsdsfoodcourtmenu, function(err, data){
-	    var menu1 = parser.parse(data[0]);
-	    var menu2 = parser.parse(data[1]);
-	    var menu3 = [];
-	    if( data[0].indexOf("영업하지 않습니다") === -1 && (data[0].indexOf("점심") >= 0 || data[0].indexOf("저녁") >= 0) ) {
-	    	menu3 = menu_snapsnack;
-	    }
-	    var menu4 = [];
-	    if( data[0].indexOf("영업하지 않습니다") === -1 && data[0].indexOf("점심") >= 0 ) {
-	    	menu4 = menu_takeout;
-	    }
+	    var menu1 = jamsil_parser.parse(data[0]);
+	    var menu2 = jamsil_parser.parse(data[1]);
 
     	// 운영환경일 때만 google analytics를 붙일 수 있도록 production 전달
 	    var option = {
-	    		foods: menu1.concat(menu2).concat(menu3).concat(menu4)
-	    		, snapsnackCollapse: menu3.length > 1
-	    		, takeoutCollapse: menu4.length > 1
+	    		foods: menu1.concat(menu2)
 	    		, production: argv.production
 	    		, redirect: req.query.redirect === "true"
 	    };

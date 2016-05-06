@@ -17,12 +17,12 @@ var mapperClassname2Cornername = {
 		, "DSDS017-group" : "XingFu China"
 		, "DSDS018-group" : "우리味각면"
 	};
-var hex = require("./hex.js");
+var hex = require("../hex.js");
 
-var image_cache = require("./image_cache.js");
+var image_cache = require("../image_cache.js");
 image_cache.init();
 
-var photo_cache = require("./photo_cache.js");
+var photo_cache = require("../photo_cache.js");
 photo_cache.init(console.log);
 
 var cheerio = require('cheerio');

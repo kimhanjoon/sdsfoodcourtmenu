@@ -10,9 +10,11 @@ var transporter = nodemailer.createTransport({
     }
 });
 
+var fs = require('fs');
+var path = require('path');
 var Handlebars = require('handlebars');
 var photo_email_template = Handlebars.compile(fs.readFileSync(path.join(__dirname, 'photo_email_template.hbs')).toString());
-var hex = require('./hex.js');
+var hex = require('../hex.js');
 
 exports.sendNewPhotoUploaded = function(filename) {
 
