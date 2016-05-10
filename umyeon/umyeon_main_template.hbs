@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -17,45 +17,64 @@
 
 {{#if isClosed}}
 <div class="panel panel-primary">
-    <div class="panel-heading"><span class="kor">오늘은 영업하지 않습니다.</span><span class="eng hidden">We're closed today</span>
+    <div class="panel-heading">
+    	<span class="kor">오늘은 영업하지 않습니다.</span><span class="eng hidden">We're closed today</span>
     </div>
 </div>
 {{/if}}
 
-{{#if foods.breakfast.cafeteria1}}
+{{#if foods.breakfast.cafeteria2}}
 <div class="panel panel-primary">
-    <div class="panel-heading"><span class="kor">아침, Cafeteria 1</span><span class="eng hidden">Cafeteria 1</span>
+    <div class="panel-heading" data-toggle="collapse" data-target="#breakfast-cafetria1">
+    	<span class="kor">아침, Cafeteria 2</span><span class="eng hidden">Breakfast, Cafeteria 2</span>
+    	<i class="indicator glyphicon glyphicon-chevron-down pull-right"></i>
     </div>
-    {{> umyeon_menu foods.breakfast.cafeteria1}}
+    <div class="collapse in" id="breakfast-cafetria1">
+    	{{> umyeon_menu foods.breakfast.cafeteria2}}
+    </div>
 </div>
 {{/if}}
 
 {{#if foods.lunch.cafeteria1}}
 <div class="panel panel-primary">
-    <div class="panel-heading"><span class="kor">점심, Cafeteria 1</span><span class="eng hidden">Cafeteria 1</span>
+    <div class="panel-heading" data-toggle="collapse" data-target="#lunch-cafetria1">
+    	<span class="kor">점심, Cafeteria 1</span><span class="eng hidden">Lunch, Cafeteria 1</span>
+    	<i class="indicator glyphicon glyphicon-chevron-up pull-right"></i>
     </div>
+    <div class="collapse" id="lunch-cafetria1">
     {{> umyeon_menu foods.lunch.cafeteria1}}
+    </div>
 </div>
 {{/if}}
 
 {{#if foods.lunch.cafeteria2}}
 <div class="panel panel-primary">
-    <div class="panel-heading"><span class="kor">점심, Cafeteria 2</span><span class="eng hidden">Cafeteria 1</span>
+    <div class="panel-heading" data-toggle="collapse" data-target="#lunch-cafeteria2">
+    	<span class="kor">점심, Cafeteria 2</span><span class="eng hidden">Lunch, Cafeteria 2</span>
+    	<i class="indicator glyphicon glyphicon-chevron-down pull-right"></i>
     </div>
+    <div class="collapse in" id="lunch-cafeteria2">
     {{> umyeon_menu foods.lunch.cafeteria2}}
+    </div>
 </div>
 {{/if}}
 
-{{#if foods.dinner.cafeteria1}}
+{{#if foods.dinner.cafeteria2}}
 <div class="panel panel-primary">
-    <div class="panel-heading"><span class="kor">저녁, Cafeteria 1</span><span class="eng hidden">Cafeteria 1</span>
+    <div class="panel-heading" data-toggle="collapse" data-target="#dinner-cafeteria2">
+    	<span class="kor">저녁, Cafeteria 2</span><span class="eng hidden">Dinner, Cafeteria 2</span>
+    	<i class="indicator glyphicon glyphicon-chevron-down pull-right"></i>
     </div>
-    {{> umyeon_menu foods.dinner.cafeteria1}}
+    <div class="collapse in" id="dinner-cafeteria2">
+    {{> umyeon_menu foods.dinner.cafeteria2}}
+    </div>
 </div>
 {{/if}}
 
 <div class="panel panel-default">
-    <div class="panel-heading"><span class="kor">모든 지역 메뉴 목록</span><span class="eng hidden">All Location</span></div>
+    <div class="panel-heading">
+    	<span class="kor">모든 지역 메뉴 목록</span><span class="eng hidden">All Location</span>
+    </div>
     <ul class='list-group'>
         <li class="list-group-item">
             <span class="kor"><a href="/jamsil">잠실</a></span>
@@ -97,6 +116,19 @@
 </script>
 {{/if}}
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script>
+$(function() {
+	
+	// 아코디언 토글할때마다 화살표 변경
+	$('body').on('hidden.bs.collapse shown.bs.collapse', function toggleChevron(e) {
+	    $(e.target)
+        .prev('.panel-heading')
+        .find("i.indicator")
+        .toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+	});
+});
+</script>
 </body>
 </html>

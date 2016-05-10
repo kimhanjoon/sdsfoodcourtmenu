@@ -6,8 +6,8 @@ var mapperId2Time = {
 	"layer3" : "dinner",
 };
 var mapperClass2Floor = {
-	"container_CafeA" : "cafeteria1",
-	"container_CafeB" : "cafeteria2",
+	"container_CafeA" : "cafeteria2",
+	"container_CafeB" : "cafeteria1",
 };
 var mapperImgSrc2Corner = {
 	"/img/menu/seoulrnd/dayMenu/cafeteria_1_menu_01.gif" : "봄이온소반",
