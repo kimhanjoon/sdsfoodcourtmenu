@@ -4,6 +4,12 @@ var argv = require('minimist')(process.argv.slice(2));
 
 var request = require('request');
 
+// --proxy http://ipaddress:port
+if( argv.proxy ) {
+	console.log('using proxy : %s', argv.proxy);
+	request = request.defaults({'proxy': argv.proxy});
+}
+
 var requestsdsfoodcourtmenu = function(zonename, callback) {
 	return request("http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=" + zonename, function(error, response, body) {
 	    return callback(error, body);
