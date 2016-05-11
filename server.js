@@ -70,7 +70,8 @@ app.get('/umyeon', function(req, res){
 		var utf8_body = iconv.decode(new Buffer(body, 'binary'), 'euc-kr');
 
 	    var option = {
-    		foods: umyeon_parser.parse(utf8_body)
+	    	time: umyeon_parser.parseTime(utf8_body)
+    		, foods: umyeon_parser.parseFoods(utf8_body)
     		, production: argv.production
 	    };
 
