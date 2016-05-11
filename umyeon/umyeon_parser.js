@@ -41,7 +41,23 @@ var mapperImgSrc2Corner = {
 };
 
 var cheerio = require('cheerio');
-exports.parse = function (html) {
+exports.parseTime = function (html) {
+
+    var $ = cheerio.load(html);
+    var imgId = $("img[src*='board_on_']").attr("id");
+    if( imgId === "img01" ) {
+    	return "breakfast";
+    }
+    if( imgId === "img01" ) {
+    	return "lunch";
+    }
+    if( imgId === "img01" ) {
+    	return "dinner";
+    }
+    return null;
+};
+
+exports.parseFoods = function (html) {
 
     var $ = cheerio.load(html);
 	var foods = $(".container_CafeA,.container_CafeB").map(function(i, e) {
@@ -78,7 +94,8 @@ exports.parse = function (html) {
     	else if( food.kcal >= 880 ) {
     		food.high_cal = true;
     	}
-    });
+    })
+    .get();
 
     return foods;
 };
