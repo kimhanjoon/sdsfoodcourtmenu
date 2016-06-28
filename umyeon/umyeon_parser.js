@@ -68,6 +68,14 @@ exports.parseFoods = function (html) {
 		title = title.replace("[선택식]", "").replace(/\(.*:.*\)/, "");
 
 		var txt = $e.find(".cafeA_txt,.cafeB_txt").text();
+		
+		var kcal = txt.match(/[0-9]+Kcal/);
+		if( kcal && kcal[0] && kcal[0].replace ) {
+			kcal = Number(kcal[0].replace("Kcal",""));
+		}
+		else {
+			kcal = undefined;
+		}
 
 		return {
 			time: mapperId2Time[$e.closest(".container").attr("id")],
@@ -75,7 +83,7 @@ exports.parseFoods = function (html) {
 			corner: mapperImgSrc2Corner[$e.find("img").attr("src")],
 			title_kor: title,
 			description_kor: txt.replace(/[0-9]+Kcal/,"").trim().replace(/,$/,""),
-			kcal: Number(txt.match(/[0-9]+Kcal/)[0].replace("Kcal",""))
+			kcal: kcal
 		}
 	})
 	// 추가정보 및 이미지 캐쉬

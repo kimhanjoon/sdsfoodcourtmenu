@@ -9,12 +9,14 @@
                 <span class="corner badge pull-right">{{corner}}</span>
             </h4>
             <div class="pull-left">
+            	{{#if kcal}}
                 <span class="kcal">{{kcal}} kcal</span>
                 {{#if very_high_cal }}<span class="label label-danger"><span class="kor">초고칼로리</span><span class="eng hidden">Very High Calorie</span></span>{{/if}}
                 {{#if high_cal }}<span class="label label-warning"><span class="kor">고칼로리</span><span class="eng hidden">High Calorie</span></span>{{/if}}
                 {{#if low_cal }}<span class="label label-info"><span class="kor">저칼로리</span><span class="eng hidden">Low Calorie</span></span>{{/if}}
                 {{#if very_low_cal }}<span class="label label-success"><span class="kor">초저칼로리</span><span class="eng hidden">Very Low Calorie</span></span>{{/if}}
                 <br />
+                {{/if}}
                 {{description_kor}}
             </div>
           </div>
