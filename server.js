@@ -50,12 +50,15 @@ app.get('/jamsil', function(req, res){
 
 	    // html -> json 순서로 response content-type을 정한다.
 	    if( req.accepts('html') ) {
+	    	res.set('Content-Type', 'text/html; charset=utf-8');
 	    	res.write(jamsil_viewer.render(option));
 	    }
 	    else if( req.accepts('json') ) {
+	    	res.set('Content-Type', 'application/json; charset=utf-8');
 	    	res.write(JSON.stringify(option.foods));
 	    }
 	    else {
+	    	res.set('Content-Type', 'text/html; charset=utf-8');
 	    	res.write(jamsil_viewer.render(option));
 	    }
 	    res.end();
@@ -80,12 +83,15 @@ app.get('/umyeon', function(req, res){
 
 	    // html -> json 순서로 response content-type을 정한다.
 	    if( req.accepts('html') ) {
+	    	res.set('Content-Type', 'text/html; charset=utf-8');
 	    	res.write(umyeon_viewer.render(option));
 	    }
 	    else if( req.accepts('json') ) {
+	    	res.set('Content-Type', 'application/json; charset=utf-8');
 	    	res.write(JSON.stringify(option.foods));
 	    }
 	    else {
+	    	res.set('Content-Type', 'text/html; charset=utf-8');
 	    	res.write(umyeon_viewer.render(option));
 	    }
 	    res.end();
