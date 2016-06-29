@@ -19,6 +19,9 @@ var requestsdsfoodcourtmenu = function(zonename, callback) {
 var express = require('express');
 var app = express();
 
+var compress = require('compression');
+app.use(compress());
+
 app.get('/', function(req, res, next) {
 	req.url = '/jamsil';
 	next('route');
