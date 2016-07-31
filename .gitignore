@@ -1,8 +1,6 @@
 # image files
-/public/image
-/public/photo
-/private/image
-/private/photo
+/private
+/public/image/food/
 
 # database
 /schedule/database

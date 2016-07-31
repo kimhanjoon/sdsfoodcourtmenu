@@ -1,3 +1,4 @@
+var imageConverter = require("./image.converter")('jamsil');
 
 // class로만 어떤 코너인지 구분이 가능하여 미리 class명을 key로 하는 객체를 구성한다.
 var mapperClassname2Cornername = {
@@ -18,12 +19,6 @@ var mapperClassname2Cornername = {
 	, "DSDS018-group" : "우리味각면"
 };
 var hex = require("./hex");
-
-// var image_cache = require("../image_cache.js");
-// image_cache.init();
-
-// var photo_cache = require("../photo_cache.js");
-// photo_cache.init(console.log);
 
 var cheerio = require('cheerio');
 exports.parse = function (html) {
@@ -60,7 +55,7 @@ exports.parse = function (html) {
 		return food;
 	})
 
-	// 추가정보 및 이미지 캐쉬
+	// 추가정보 및 이미지주소 변경
 	.each(function(index, food) {
 
 		// 초저열량 - 저열량 - 고열량 - 초고열량 구분
@@ -86,39 +81,20 @@ exports.parse = function (html) {
 				food.payments = food.price - 2500;
 			}
 		}
+		
+		// 캐쉬체크 없이 항상 foodId로 접근하도록 한다. (항상 이미지를 준비해놓도록 할 것이므로)
+		// 그리고 사용자가 업로드한 사진도 이미지에 붙여놓을 것이므로 따로 주소를 전달하지 않는다.
 
-		// // 캐쉬해놓은 이미지 파일이 있는 경우 사용
-		// if( image_cache.get(food.id) ) {
-		// 	food.hasImg = true;
-		// 	food.img_src = image_cache.get(food.id);
-		// }
-		// // 이미지 파일이 없는 경우 No Image 사용
-		// else if( food.img_src.indexOf("food_sold_out_01_01.png") > -1 ) {
-		// 	food.hasImg = false;
-		// 	food.img_src = "/static/no_image_available.jpg";
-		// }
-		// // 캐쉬에 추가
-		// else {
-		// 	food.hasImg = true;
-		// 	image_cache.put(food.id, food.img_src);
-		// }
-		//
-		// // 헬스기빙과 쉐프추천은 전혀 다른 이미지이므로 이미지 없는 것처럼 처리함
-		// if( food.corner === "Chef's Counter" ) {
-		// 	food.hasImg = false;
-		// 	food.img_src = "/static/no_image_available.jpg";
-		// }
-		//
-		// // 업로드된 사진 사용
-		// food.img_src_more = photo_cache.get(food.id);
-		//
-		// // 이미지 파일이 없는데 업로드된 사진이 있으면 사용
-		// if( food.hasImg === false && food.img_src_more && food.img_src_more.length > 0 ) {
-		// 	food.hasImg = true;
-		// 	food.img_src = food.img_src_more[0];
-		// 	food.img_src_more = food.img_src_more.slice(1);
-		// }
+		// 그러나 이미지 파일이 없는 경우 No Image 사용
+		if( food.img_src.indexOf("food_sold_out_01_01.png") > -1 ) {
+			food.img_src = "/no_image_available.jpg";
+		}
+		else {
+			// 이미지 처리
+			imageConverter.put(food.id, food.img_src);
 
+			food.img_src = "/image/food/jamsil/" + food.id + ".jpg";
+		}
 	})
 	.get();
 

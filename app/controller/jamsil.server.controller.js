@@ -11,6 +11,14 @@ var requestsdsfoodcourtmenu = function(zonename, callback) {
 	});
 };
 
+if( process.env.NODE_ENV === "test" ) {
+	
+	var fs = require('fs');
+	requestsdsfoodcourtmenu = function(zonename, callback) {
+		return fs.readFile('./test/jamsilmenu/' + zonename + '.html', 'utf8', callback);
+	};
+}
+
 module.exports = function(app) {
 
 	app.get('/', function(req, res, next) {

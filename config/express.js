@@ -36,7 +36,7 @@ module.exports = function() {
 		partialsDir: 'app/view/partial/'
 	}));
 
-	// app.use('/static', express.static('public'));
+	app.use(express.static('public'));
 	// app.use('/image', express.static('image'));
 	// app.use('/photo', express.static('photo'));
 
