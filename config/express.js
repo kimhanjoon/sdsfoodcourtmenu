@@ -4,6 +4,7 @@ var morgan = require('morgan');
 var compress = require('compression');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
+var Swag = require('swag');
 
 module.exports = function() {
 
@@ -26,15 +27,19 @@ module.exports = function() {
 
 	// parse application/json
 	app.use(bodyParser.json())
-
-	app.set('views', 'app/view/')
-	app.set('view engine', '.hbs');
-	app.engine('.hbs', exphbs({
+	
+	var hbs = exphbs.create({
 		defaultLayout: 'default',
 		extname: '.hbs',
 		layoutsDir: 'app/view/layout/',
 		partialsDir: 'app/view/partial/'
-	}));
+	});
+
+	app.set('views', 'app/view/')
+	app.set('view engine', '.hbs');
+	app.engine('.hbs', hbs);
+	
+	Swag.registerHelpers(hbs.handlebars);
 
 	app.use(express.static('public'));
 	// app.use('/image', express.static('image'));

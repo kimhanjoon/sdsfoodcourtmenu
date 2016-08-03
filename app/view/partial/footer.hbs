@@ -9,3 +9,17 @@
   ga('send', 'pageview');
 </script>
 {{/if}}
+<script>
+$(function() {
+
+	$("#language").click(function() {
+		$(".kor,.eng,.title_kor,.title_eng").toggleClass("hidden");
+	});
+
+	// 브라우저가 영어권으로 셋팅되어있으면 영어가 기본셋팅
+	{{#if englishLanguage}}
+	$("#language").click();
+	{{/if}}
+
+});
+</script>
