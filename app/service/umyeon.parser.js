@@ -48,10 +48,10 @@ exports.parseTime = function (html) {
     if( imgId === "img01" ) {
     	return "breakfast";
     }
-    if( imgId === "img01" ) {
+    if( imgId === "img02" ) {
     	return "lunch";
     }
-    if( imgId === "img01" ) {
+    if( imgId === "img03" ) {
     	return "dinner";
     }
     return null;
