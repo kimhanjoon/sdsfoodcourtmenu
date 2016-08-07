@@ -37,7 +37,7 @@ module.exports = function() {
 
 	app.set('views', 'app/view/')
 	app.set('view engine', '.hbs');
-	app.engine('.hbs', hbs);
+	app.engine('.hbs', hbs.engine);
 	
 	Swag.registerHelpers(hbs.handlebars);
 
