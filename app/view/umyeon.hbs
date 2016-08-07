@@ -6,61 +6,42 @@
 </div>
 {{/if}}
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" {{#is time 'breakfast'}}class="active"{{/is}}><a href="#breakfast-tab" aria-controls="breakfast" role="tab" data-toggle="tab"><span class="kor">아침</span><span class="eng hidden">Breakfast</span></a></li>
-    <li role="presentation" {{#is time 'lunch'}}class="active"{{/is}}><a href="#lunch-tab" aria-controls="lunch" role="tab" data-toggle="tab"><span class="kor">점심</span><span class="eng hidden">Lunch</span></a></li>
-    <li role="presentation" {{#is time 'dinner'}}class="active"{{/is}}><a href="#dinner-tab" aria-controls="dinner" role="tab" data-toggle="tab"><span class="kor">저녁</span><span class="eng hidden">Dinner</span></a></li>
-  </ul>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" {{#is time 'breakfast'}}class="active"{{/is}}><a href="#breakfast-tab" aria-controls="breakfast" role="tab" data-toggle="tab"><span class="kor">아침</span><span class="eng hidden">Breakfast</span></a></li>
+  <li role="presentation" {{#is time 'lunch'}}class="active"{{/is}}><a href="#lunch-tab" aria-controls="lunch" role="tab" data-toggle="tab"><span class="kor">점심</span><span class="eng hidden">Lunch</span></a></li>
+  <li role="presentation" {{#is time 'dinner'}}class="active"{{/is}}><a href="#dinner-tab" aria-controls="dinner" role="tab" data-toggle="tab"><span class="kor">저녁</span><span class="eng hidden">Dinner</span></a></li>
+</ul>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane {{#is time 'breakfast'}}active{{/is}}" id="breakfast-tab">
+<!-- Tab panes -->
+<div class="tab-content">
 
-{{#if foods.breakfast.cafeteria2}}
-<div class="panel panel-primary">
-    <div class="panel-heading">
-    	<span class="kor">Cafeteria 2</span><span class="eng hidden">Cafeteria 2</span>
-    </div>
-    	{{> umyeonMenu foods.breakfast.cafeteria2}}
-</div>
-{{/if}}
-    
-    </div>
-    <div role="tabpanel" class="tab-pane {{#is time 'lunch'}}active{{/is}}" id="lunch-tab">
-
-{{#if foods.lunch.cafeteria2}}
-<div class="panel panel-primary">
-    <div class="panel-heading">
-    	<span class="kor">Cafeteria 2</span><span class="eng hidden">Cafeteria 2</span>
-    </div>
-    {{> umyeonMenu foods.lunch.cafeteria2}}
-</div>
-{{/if}}
-
-{{#if foods.lunch.cafeteria1}}
-<div class="panel panel-primary">
-    <div class="panel-heading">
-    	<span class="kor">Cafeteria 1</span><span class="eng hidden">Cafeteria 1</span>
-    </div>
-    {{> umyeonMenu foods.lunch.cafeteria1}}
-</div>
-{{/if}}
-    
-    </div>
-    <div role="tabpanel" class="tab-pane {{#is time 'dinner'}}active{{/is}}" id="dinner-tab">
-
-{{#if foods.dinner.cafeteria2}}
-<div class="panel panel-primary">
-    <div class="panel-heading">
-    	<span class="kor">Cafeteria 2</span><span class="eng hidden">Cafeteria 2</span>
-    </div>
-    {{> umyeonMenu foods.dinner.cafeteria2}}
-</div>
-{{/if}}
-    
+  <div role="tabpanel" class="tab-pane {{#is time 'breakfast'}}active{{/is}}" id="breakfast-tab">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Cafeteria 2</div>
+      {{> umyeonMenu foods.breakfast.cafeteria2}}
     </div>
   </div>
+
+  <div role="tabpanel" class="tab-pane {{#is time 'lunch'}}active{{/is}}" id="lunch-tab">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Cafeteria 2</div>
+      {{> umyeonMenu foods.lunch.cafeteria2}}
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">Cafeteria 1</div>
+      {{> umyeonMenu foods.lunch.cafeteria1}}
+    </div>
+  </div>
+
+  <div role="tabpanel" class="tab-pane {{#is time 'dinner'}}active{{/is}}" id="dinner-tab">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Cafeteria 2</div>
+      {{> umyeonMenu foods.dinner.cafeteria2}}
+    </div>
+  </div>
+
+</div>
 
 {{> locations}}
 
@@ -78,9 +59,5 @@
 	</ul>
 </div>
 
-</div>
-
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
