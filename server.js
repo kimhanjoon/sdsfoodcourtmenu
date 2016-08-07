@@ -4,10 +4,12 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'local';
 
 var imageConverter = require('./app/service/image.converter');
 
-var app = require('./config/express')();
+var express = require('./config/express');
 
-app.listen(3080);
+var app = express();
+
+app.listen(4080);
 
 module.exports = app;
 
-console.log("Server running at http://localhost:3080/");
+console.log("Server running at http://localhost:8080/");
