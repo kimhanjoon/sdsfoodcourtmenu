@@ -29,7 +29,11 @@
     "telegram-bot-api": "^1.0.0",
     "underscore": "^1.8.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^2.5.3",
+    "should": "^10.0.0",
+    "supertest": "^2.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kimhanjoon/sdsfoodcourtmenu.git"
