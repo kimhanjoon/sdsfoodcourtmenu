@@ -40,23 +40,25 @@ var mapperImgSrc2Corner = {
 	"/img/menu/seoulrnd/dayMenu/menu_b_woori.gif" : "우리味각면",
 };
 
-var cheerio = require('cheerio');
+var moment = require('moment');
 exports.parseTime = function (html) {
 
-    var $ = cheerio.load(html);
-    var imgId = $("img[src*='board_on_']").attr("id");
-    if( imgId === "img01" ) {
+	//XXX html에서 기본 선택된 탭으로 판단했었지만, 어느 순간 잘 안되서 시간으로 판단
+	var hour = moment().hour();
+
+    if( hour < 10 || 20 <= hour ) {
     	return "breakfast";
     }
-    if( imgId === "img02" ) {
+    if( 10 <= hour && hour < 14 ) {
     	return "lunch";
     }
-    if( imgId === "img03" ) {
+    if( 14 <= hour && hour < 20 ) {
     	return "dinner";
     }
     return null;
 };
 
+var cheerio = require('cheerio');
 exports.parseFoods = function (html) {
 
     var $ = cheerio.load(html);
