@@ -15,7 +15,7 @@
 	<div class="list-group-item collapse-boundary food" data-food-id="{{id}}">
 		<div class="media">
 			<div class="media-left">
-				<img class="media-object" src="{{img_src}}" style="width:80px;">
+				<img class="media-object" src="{{img_src}}" style="width:60px;">
 			</div>
 		  <div class="media-body collapse-trigger">
 		    <h4 class="media-heading">
@@ -29,13 +29,15 @@
 			    {{#if high_cal}}<span class="label label-warning"><span class="kor">고칼로리</span><span class="eng hidden">High Calorie</span></span>{{/if}}
 			    {{#if low_cal}}<span class="label label-info"><span class="kor">저칼로리</span><span class="eng hidden">Low Calorie</span></span>{{/if}}
 			    {{#if very_low_cal}}<span class="label label-success"><span class="kor">초저칼로리</span><span class="eng hidden">Very Low Calorie</span></span>{{/if}}
-			    <br />
-			    <span class="price payments"><del><span class="eng hidden">&#8361;</span> {{price}} <span class="kor">원</span></del><span class="eng hidden">&#8361;</span> {{payments}} <span class="kor">원</span></span>
+		    </div>
+		    <div class="pull-right payments">
+		    	<span class="eng hidden">&#8361;</span> {{payments}} <span class="kor">원</span>
 		    </div>
 		  </div>
 		</div>
 		<div class="collapse">
 			<div>
+				<img class="media-object" src="{{img_src}}" style="width:100%;">
 			</div>
 		</div>
 	</div>
