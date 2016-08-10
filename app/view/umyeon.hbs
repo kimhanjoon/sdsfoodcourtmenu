@@ -1,0 +1,75 @@
+{{#if isClosed}}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    	<span class="kor">오늘은 영업하지 않습니다.</span><span class="eng hidden">We're closed today</span>
+    </div>
+</div>
+{{/if}}
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="text-center {{#is time 'breakfast'}}active{{/is}}" style="width:33%;">
+    <a href="#breakfast-tab" aria-controls="breakfast" role="tab" data-toggle="tab">
+      <span class="kor">아침</span><span class="eng hidden">Breakfast</span>
+    </a>
+  </li>
+  <li role="presentation" class="text-center {{#is time 'lunch'}}active{{/is}}" style="width:34%;">
+    <a href="#lunch-tab" aria-controls="lunch" role="tab" data-toggle="tab">
+      <span class="kor">점심</span><span class="eng hidden">Lunch</span>
+    </a>
+  </li>
+  <li role="presentation" class="text-center {{#is time 'dinner'}}active{{/is}}" style="width:33%;">
+    <a href="#dinner-tab" aria-controls="dinner" role="tab" data-toggle="tab">
+      <span class="kor">저녁</span><span class="eng hidden">Dinner</span>
+    </a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+
+  <div role="tabpanel" class="tab-pane fade {{#is time 'breakfast'}}in active{{/is}}" id="breakfast-tab">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Cafeteria 2</div>
+      {{> umyeonMenu foods.breakfast.cafeteria2}}
+    </div>
+  </div>
+
+  <div role="tabpanel" class="tab-pane fade {{#is time 'lunch'}}in active{{/is}}" id="lunch-tab">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Cafeteria 2</div>
+      {{> umyeonMenu foods.lunch.cafeteria2}}
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">Cafeteria 1</div>
+      {{> umyeonMenu foods.lunch.cafeteria1}}
+    </div>
+  </div>
+
+  <div role="tabpanel" class="tab-pane fade {{#is time 'dinner'}}in active{{/is}}" id="dinner-tab">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Cafeteria 2</div>
+      {{> umyeonMenu foods.dinner.cafeteria2}}
+    </div>
+  </div>
+
+</div>
+
+{{> locations}}
+
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="kor">제작자 알림</span><span class="eng hidden">Notice</span></div>
+	<ul class='list-group'>
+		<li class="list-group-item">
+			<span class="kor">이곳에 표시하는 모든 데이터의 권한은 <a href="http://welstory.com/menu/seoulrnd/menu.jsp">welstory.com</a>에 있습니다.</span>
+			<span class="eng hidden">Rights of all data belong to <a href="http://welstory.com/menu/seoulrnd/menu.jsp">welstory.com</a>.</span>
+		</li>
+		<li class="list-group-item">
+			<span class="kor">이 사이트를 더 좋게 만들어주세요.</span><span class="eng hidden">Any contribution is welcome.</span>
+			<a href="https://github.com/kimhanjoon/sdsfoodcourtmenu">GitHub</a>
+		</li>
+	</ul>
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>

@@ -1,11 +1,6 @@
 # image files
-/image
-/photo
-/uploadphoto
-/downloadphoto
-
-# properties
-/email/email_properties.json
+/private
+/public/image/food/
 
 # database
 /schedule/database
@@ -13,9 +8,3 @@
 
 # development
 /node_modules
-
-# deployment
-/deploy.*
-/nohup.out
-/telegrambot/deploy.*
-/telegrambot/nohup.out

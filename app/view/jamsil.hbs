@@ -1,0 +1,51 @@
+{{#if isClosed}}
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">오늘은 영업하지 않습니다.</span><span class="eng hidden">We're closed today</span>
+    </div>
+</div>
+{{/if}}
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">지하 1층</span><span class="eng hidden">B1</span></div>
+    {{> jamsilMenu foods.b1}}
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><span class="kor">지하 2층</span><span class="eng hidden">B2</span></div>
+    {{> jamsilMenu foods.b2}}
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="kor">운영시간 안내</span><span class="eng hidden">Hours of Operation</span></div>
+    <ul class='list-group'>
+        <li class="list-group-item">
+            <strong><span class="kor">월요일 - 금요일</span><span class="eng hidden">Monday - Friday</span></strong><br>
+            <span class="kor">아침</span><span class="eng hidden">Breakfast</span> 06:30 - 08:15<br>
+            <span class="kor">점심</span><span class="eng hidden">Lunch</span> 11:30 - 13:15<br>
+            <span class="kor">저녁</span><span class="eng hidden">Dinner</span> 18:00 - 19:00
+        </li>
+        <li class="list-group-item">
+    		<strong><span class="kor">토요일</span><span class="eng hidden">Saturday</span></strong><br>
+    		<span class="kor">점심</span><span class="eng hidden">Lunch</span> 11:30 - 12:30
+        </li>
+    </ul>
+</div>
+
+{{> locations}}
+
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="kor">제작자 알림</span><span class="eng hidden">Notice</span></div>
+	<ul class='list-group'>
+		<li class="list-group-item">
+			<span class="kor">이곳에 표시하는 모든 데이터(이미지 포함)의 권한은 <a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list">sdsfoodmenu</a>에 있습니다.</span>
+			<span class="eng hidden">Rights of all data including images belong to <a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list">sdsfoodmenu</a>.</span>
+		</li>
+		<li class="list-group-item">
+			<span class="kor">이 사이트를 더 좋게 만들어주세요.</span><span class="eng hidden">Any contribution is welcome.</span>
+			<a href="https://github.com/kimhanjoon/sdsfoodcourtmenu">GitHub</a>
+		</li>
+	</ul>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
