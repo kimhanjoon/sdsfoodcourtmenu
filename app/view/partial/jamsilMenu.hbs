@@ -13,11 +13,11 @@
 	</div>
 	{{else}}
 	<div class="list-group-item collapse-boundary food" data-food-id="{{id}}">
-		<div class="media">
+		<div class="media collapse-trigger">
 			<div class="media-left">
 				<img class="media-object" src="{{img_src}}" style="width:60px;">
 			</div>
-		  <div class="media-body collapse-trigger">
+		  <div class="media-body">
 		    <h4 class="media-heading">
 		    	<span class="title_kor">{{title_kor}}</span>
 		    	<span class="title_eng hidden">{{title_eng}}</span>
@@ -36,7 +36,7 @@
 		  </div>
 		</div>
 		<div class="collapse">
-			<div>
+			<div class="collapse-trigger">
 				<img class="media-object" src="{{img_src}}" style="width:100%;">
 			</div>
 		</div>
