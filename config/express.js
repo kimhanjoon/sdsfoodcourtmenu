@@ -45,6 +45,7 @@ module.exports = function() {
 
 	require('../app/controller/jamsil.server.controller.js')(app);
 	require('../app/controller/umyeon.server.controller.js')(app);
+	require('../app/controller/sangam.server.controller.js')(app);
 
 	return app;
 };
