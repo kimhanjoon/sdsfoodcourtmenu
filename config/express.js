@@ -42,12 +42,9 @@ module.exports = function() {
 	Swag.registerHelpers(hbs.handlebars);
 
 	app.use(express.static('public'));
-	// app.use('/image', express.static('image'));
-	// app.use('/photo', express.static('photo'));
 
 	require('../app/controller/jamsil.server.controller.js')(app);
 	require('../app/controller/umyeon.server.controller.js')(app);
-	// require('../app/controller/photo.server.controller.js')(app);
 
 	return app;
 };
