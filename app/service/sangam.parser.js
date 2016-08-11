@@ -3,7 +3,7 @@ var imageConverter = require("./image.converter")('sangam');
 // class로만 어떤 코너인지 구분이 가능하여 미리 class명을 key로 하는 객체를 구성한다.
 var mapperClassname2Cornername = {
 	"DSDSSA001-group" : "KOREAN"
-	// , "DSDSSA002-group" : "International"
+	, "DSDSSA002-group" : "International"
 	, "DSDSSA003-group" : "Snapsnack"
 };
 var hex = require("./hex");
