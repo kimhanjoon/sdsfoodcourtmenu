@@ -8,11 +8,16 @@ var mapperClassname2Cornername = {
 };
 var hex = require("./hex");
 
+var _s = require("underscore.string");
+
 var cheerio = require('cheerio');
 exports.parse = function (html) {
 	var $ = cheerio.load(html);
 	var foods = $("tr")
 	.slice(1)
+	.filter(function(index, element) {
+		return $(element).find("span").text().indexOf("운영시간") === -1;
+	})
 
 	// HTML 파싱
 	.map(function(index, element) {
@@ -21,12 +26,12 @@ exports.parse = function (html) {
 		food.title_kor = $e.find("span:nth-child(1)").text();
 		food.id = hex.to4Hex(food.title_kor);
 
-		food.kcal = Number($e.find("span:nth-child(3)").text().replace(" kcal", ""));
+		food.kcal = Number(_s.replaceAll($e.find("span:nth-child(3)").text(), " kcal", ""));
 
 		// 판매종료된 메뉴는 <del> 태그가 들어가고 가격이 표시되지 않는다.
 		food.soldout = $e.find("del").length > 0 ? true : false;
 		if( !food.soldout ) {
-			food.price = Number($e.find("span:nth-child(5)").text().replace("원", "").replace(",", ""));
+			food.price = Number(_s($e.find("span:nth-child(5)").text()).replaceAll("원", "").replaceAll(",", "").value());
 		}
 
 		// <img>태그의 src에 도메인주소 추가하고 jsessionid는 제거
@@ -79,8 +84,6 @@ exports.parse = function (html) {
 		}
 	})
 	.get();
-
-	console.log(foods);
 
 	return foods;
 };
