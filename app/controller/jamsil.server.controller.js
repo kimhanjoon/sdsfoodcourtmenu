@@ -38,9 +38,6 @@ module.exports = function(app) {
 				// 층별로 나눠서 표시하기 위해 미리 나눔
 				foods: _.groupBy(foods, 'floor')
 
-				// 영업종료시
-				, isClosed: foods.length === 0
-				
 				// 운영 환경일 때만 google analytics 포함
 				, googleAnalytics: config.googleAnalytics
 			};

@@ -27,9 +27,6 @@ module.exports = function(app) {
 				// 현재 바로 표시될 시간
 				time : umyeon_parser.parseTime(utf8_body),
 
-				// 영업종료시
-				isClosed: foods.length === 0,
-				
 				// 운영 환경일 때만 google analytics 포함
 				googleAnalytics: config.googleAnalytics
 			};
