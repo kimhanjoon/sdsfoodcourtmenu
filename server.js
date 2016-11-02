@@ -8,10 +8,16 @@ var imageConverter = require('./app/service/image.converter');
 
 var express = require('./config/express');
 
-var app = express();
+var app = require('letsencrypt-express').create({
+	server: config.https.server,
+	email: config.https.email,
+	agreeTos: true,
+	approveDomains: config.https.domains,
+	app: express()
+});
 
-app.listen(config.port);
+app.listen(config.port, config.https.port);
 
 module.exports = app;
 
-console.log("Server running at %d", config.port);
+console.log("Server running at %d, %d", config.port, config.https.port);
