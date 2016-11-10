@@ -37,6 +37,7 @@ var mapperImgSrc2Corner = {
 	"/img/menu/seoulrnd/dayMenu/menu_b_to_juice.gif" : "Take me Out", //"TAKE ME OUT 착즙",
 	"/img/menu/seoulrnd/dayMenu/menu_b_to_picnic.gif" : "Take me Out", //"TAKE ME OUT 피크닉",
 	"/img/menu/seoulrnd/dayMenu/menu_b_to_sandwich.gif" : "Take me Out", //"TAKE ME OUT 샌드위치",
+	"/img/menu/seoulrnd/dayMenu/menu_b_to_pizza.gif" : "Take me Out", //"TAKE ME OUT 피자",
 	"/img/menu/seoulrnd/dayMenu/menu_b_woori.gif" : "우리味각면",
 };
 
@@ -67,7 +68,7 @@ exports.parseFoods = function (html) {
 
 		// 메뉴명 : [선택식], (계육:국내산) 등 제거
 		var title = $e.find(".cafeA_tit,.cafeB_tit").text().trim();
-		title = title.replace("[선택식]", "").replace(/\(.*:.*\)/, "");
+		title = title.replace("[선택식]", "").replace(/\(([^:)]*?):(.*?)\)/g, "");
 
 		var txt = $e.find(".cafeA_txt,.cafeB_txt").text();
 		
