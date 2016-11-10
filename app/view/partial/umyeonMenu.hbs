@@ -1,7 +1,7 @@
 <div class="list-group">
 {{#each this}}
-    <div class="list-group-item" data-food-id="{{id}}">
-        <div class="media">
+    <div class="list-group-item collapse-boundary" data-food-id="{{id}}">
+        <div class="media collapse-trigger">
           <div class="media-body">
             <h4 class="media-heading">
                 <span class="title_kor">{{title_kor}}</span>
@@ -17,10 +17,14 @@
                 {{#if very_low_cal }}<span class="label label-success"><span class="kor">초저칼로리</span><span class="eng hidden">Very Low Calorie</span></span>{{/if}}
                 <br />
                 {{/if}}
-                {{description_kor}}
             </div>
           </div>
         </div>
+		<div class="collapse">
+			<div class="collapse-trigger">
+                {{description_kor}}
+			</div>
+		</div>
     </div>
 {{/each}}
 </div>

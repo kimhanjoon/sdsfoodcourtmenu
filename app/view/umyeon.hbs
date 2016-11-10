@@ -65,3 +65,11 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	// 아코디언 이벤트 걸기
+	$(".collapse-trigger").click(function() {
+		$(this).closest(".collapse-boundary").find(".collapse").collapse("toggle");
+	});
+})
+</script>
