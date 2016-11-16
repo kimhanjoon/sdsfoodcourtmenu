@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>delacourt at a glance</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+  <style>
+  .container {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .media {
+    overflow: visible;
+  }
+  </style>
+</head>
+<body>
+
+  <div class="container-fluid">
+  
+<button type="button" class="btn btn-primary btn-sm pull-right" id="language">
+	<span class="kor">English</span><span class="eng hidden">한글</span>
+</button>
+
+<div class="page-header">
+	<h2>delacourt <small>at a glance</small></h2>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="kor">제작자 알림</span><span class="eng hidden">Notice</span></div>
+	<ul class='list-group'>
+		<li class="list-group-item">
+			<span class="kor">네트워크 차단으로 잠실과 상암은 서비스가 당분간 불가합니다.</span>
+			<span class="eng hidden">Jamsil and Sangam are not available due to network blocking.</span>
+		</li>
+		<li class="list-group-item">
+			<span class="kor">메뉴 확인은 <a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=SA">sdsfoodmenu</a>에서 가능합니다.</span>
+			<span class="eng hidden">Visit <a href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list?zoneId=SA">sdsfoodmenu</a> to check out the menu.</span>
+		</li>
+		<li class="list-group-item">
+			<span class="kor">이 사이트를 더 좋게 만들어주세요.</span><span class="eng hidden">Any contribution is welcome.</span>
+			<a href="https://github.com/kimhanjoon/sdsfoodcourtmenu">GitHub</a>
+		</li>
+	</ul>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><span class="kor">모든 지역</span><span class="eng hidden">All Location</span></div>
+    <div class='list-group'>
+        <a href="/jamsil" class="list-group-item">
+            <span class="kor">잠실</span>
+            <span class="eng hidden">Jamsil</span>
+        </a>
+        <a href="/umyeon" class="list-group-item">
+            <span class="kor">우면</span>
+            <span class="eng hidden">Umyeon</span>
+        </a>
+        <a href="/sangam" class="list-group-item">
+            <span class="kor">상암</span>
+            <span class="eng hidden">Sangam</span>
+        </a>
+    </div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="kor">운영시간 안내</span><span class="eng hidden">Hours of Operation</span></div>
+    <ul class='list-group'>
+        <li class="list-group-item">
+            <strong><span class="kor">월요일 - 금요일</span><span class="eng hidden">Monday - Friday</span></strong><br>
+            <span class="kor">아침</span><span class="eng hidden">Breakfast</span> 06:30 - 08:15<br>
+            <span class="kor">점심</span><span class="eng hidden">Lunch</span> 11:30 - 13:15<br>
+            <span class="kor">저녁</span><span class="eng hidden">Dinner</span> 18:00 - 19:00
+        </li>
+        <li class="list-group-item">
+    		<strong><span class="kor">토요일</span><span class="eng hidden">Saturday</span></strong><br>
+    		<span class="kor">점심</span><span class="eng hidden">Lunch</span> 11:30 - 12:30
+        </li>
+    </ul>
+</div>
+
+
+  </div>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	
+	$("#language").click(function() {
+		$(".kor,.eng,.title_kor,.title_eng").toggleClass("hidden");
+	});
+});
+</script>
+
+</body>
+</html>

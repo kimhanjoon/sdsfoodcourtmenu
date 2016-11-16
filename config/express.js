@@ -44,9 +44,11 @@ module.exports = function() {
 
 	app.use(express.static('public'));
 
-	require('../app/controller/jamsil.server.controller.js')(app);
+//	require('../app/controller/jamsil.server.controller.js')(app);
+	require('../app/controller/jamsil.viewer.controller.js')(app);
 	require('../app/controller/umyeon.server.controller.js')(app);
-	require('../app/controller/sangam.server.controller.js')(app);
+//	require('../app/controller/sangam.server.controller.js')(app);
+	require('../app/controller/sangam.viewer.controller.js')(app);
 
 	app.use(function(req, res, next) {
 		res.status(404).sendFile(path.join(__dirname, '/../public/image/no_image_available.jpg'));
