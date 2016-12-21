@@ -28,7 +28,7 @@ module.exports = function() {
 
 	// parse application/json
 	app.use(bodyParser.json())
-	
+
 	var hbs = exphbs.create({
 		defaultLayout: 'default',
 		extname: '.hbs',
@@ -39,13 +39,13 @@ module.exports = function() {
 	app.set('views', 'app/view/')
 	app.set('view engine', '.hbs');
 	app.engine('.hbs', hbs.engine);
-	
+
 	Swag.registerHelpers(hbs.handlebars);
 
 	app.use(express.static('public'));
 
-//	require('../app/controller/jamsil.server.controller.js')(app);
-	require('../app/controller/jamsil.viewer.controller.js')(app);
+	require('../app/controller/jamsil.server.controller.js')(app);
+//	require('../app/controller/jamsil.viewer.controller.js')(app);
 	require('../app/controller/umyeon.server.controller.js')(app);
 //	require('../app/controller/sangam.server.controller.js')(app);
 	require('../app/controller/sangam.viewer.controller.js')(app);
@@ -53,6 +53,6 @@ module.exports = function() {
 	app.use(function(req, res, next) {
 		res.status(404).sendFile(path.join(__dirname, '/../public/image/no_image_available.jpg'));
 	});
-	
+
 	return app;
 };

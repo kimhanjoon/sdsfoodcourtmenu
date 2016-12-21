@@ -15,6 +15,7 @@
     "easyimage": "^2.0.3",
     "express": "^4.12.4",
     "express-handlebars": "^3.0.0",
+    "filecache": "^0.2.2",
     "handlebars": "^4.0.5",
     "iconv-lite": "^0.4.13",
     "jsonfile": "^2.3.0",
