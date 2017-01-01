@@ -2,6 +2,9 @@
 /private
 /public/image/food/
 
+# schedule files
+/public/json/
+
 # database
 /schedule/database
 /telegrambot/telegrambot_user.json

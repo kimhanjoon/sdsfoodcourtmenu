@@ -10,6 +10,8 @@ filecache(path.join(__dirname, '../../public/json/jamsil'), function(err, cache)
 var _ = require('underscore');
 var moment = require('moment');
 
+var fs = require('fs');
+
 module.exports = function(app) {
 
 	app.get('/', function(req, res, next) {
@@ -17,11 +19,20 @@ module.exports = function(app) {
 		next('route');
 	});
 
-	app.get('/jamsil', function(req, res){
-
+	app.get('/jamsil', function(req, res, next) {
 		var today = moment().format('YYYYMMDD');
-		var todayJson = '/' + today + '.json';
-		var foods = JSON.parse(foodSchedule[todayJson].toString('utf8'));
+		req.url = `/jamsil/${today}`;
+		next('route');
+	});
+
+	app.get('/jamsil/:date', function(req, res) {
+
+		var foods = {};
+
+		var todayJsonString = foodSchedule[`/${req.params.date}.json`];
+		if( todayJsonString ) {
+			foods = JSON.parse(todayJsonString.toString('utf8'));
+		}
 
 		var time;
 		if( moment().hour() < 10 ) {
@@ -31,7 +42,7 @@ module.exports = function(app) {
 			time = 'lunch';
 		}
 		else {
-			time = 'dinner';
+			time = 'dinner';		//TODO 20시 이후에는 다음날로 표시
 		}
 
 		var option = {
@@ -61,6 +72,17 @@ module.exports = function(app) {
 			res.render('jamsil', option);
 		}
 
+	});
+
+	app.post('/jamsil/:date', function(req, res) {
+
+		var date = req.params.date;
+		var bodyLength = req.body.length;
+		fs.writeFile(path.join(__dirname, `../../public/json/jamsil/${date}.json`), JSON.stringify(req.body), (err) => {
+			if (err) throw err;
+			console.log(`${date} : ${bodyLength} saved.`);
+		});
+		res.end();
 	});
 
 };
