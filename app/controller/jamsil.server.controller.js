@@ -11,6 +11,7 @@ var _ = require('underscore');
 var moment = require('moment');
 
 var fs = require('fs');
+var hex = require("../service/hex");
 
 module.exports = function(app) {
 
@@ -27,12 +28,16 @@ module.exports = function(app) {
 
 	app.get('/jamsil/:date', function(req, res) {
 
-		var foods = {};
+		var foods = [];
 
 		var todayJsonString = foodSchedule[`/${req.params.date}.json`];
 		if( todayJsonString ) {
 			foods = JSON.parse(todayJsonString.toString('utf8'));
 		}
+
+		_.each(foods, function(food) {
+			food.id = hex.to4Hex(food.title_kor);
+		});
 
 		var time;
 		if( moment().hour() < 10 ) {
