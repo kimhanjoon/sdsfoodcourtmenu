@@ -39,6 +39,13 @@ module.exports = function(app) {
 			food.id = hex.to4Hex(food.title_kor);
 		});
 
+		var dinner = _.where(foods, {time: 'dinner', floor: 'b1'});
+		_.each(foods, function(food) {
+			if( food.time === 'lunch' && _.findWhere(dinner, {id: food.id}) ) {
+				food.isInDinner = true;
+			}
+		});
+
 		var time;
 		if( moment().hour() < 10 ) {
 			time = 'breakfast';
