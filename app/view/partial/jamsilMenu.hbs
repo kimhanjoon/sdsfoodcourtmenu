@@ -14,15 +14,18 @@
 	{{else}}
 	<div class="list-group-item collapse-boundary food" data-food-id="{{id}}">
 		<div class="media collapse-trigger">
+		    {{#if img_src}}
 			<div class="media-left">
 				<img class="media-object" src="{{img_src}}" style="width:60px;">
 			</div>
-		  <div class="media-body">
+			{{/if}}
+			<div class="media-body">
 		    <h4 class="media-heading">
 		    	<span class="title_kor">{{title_kor}}</span>
 		    	<span class="title_eng hidden">{{#if title_eng}}{{title_eng}}{{else}}{{title_kor}}{{/if}}</span>
 		    	<span class="corner badge pull-right">{{corner}}</span>
 		    </h4>
+		    {{#if kcal}}
 		    <div class="pull-left">
 			    <span class="kcal">{{kcal}} kcal</span>
 			    {{#if very_high_cal}}<span class="label label-danger"><span class="kor">초고칼로리</span><span class="eng hidden">Very High Calorie</span></span>{{/if}}
@@ -30,14 +33,19 @@
 			    {{#if low_cal}}<span class="label label-info"><span class="kor">저칼로리</span><span class="eng hidden">Low Calorie</span></span>{{/if}}
 			    {{#if very_low_cal}}<span class="label label-success"><span class="kor">초저칼로리</span><span class="eng hidden">Very Low Calorie</span></span>{{/if}}
 		    </div>
+			{{/if}}
+		    {{#if payments}}
 		    <div class="pull-right payments">
 		    	<span class="eng hidden">&#8361;</span> {{payments}} <span class="kor">원</span>
 		    </div>
-		  </div>
+			{{/if}}
+			</div>
 		</div>
 		<div class="collapse">
 			<div class="collapse-trigger">
+				{{#if img_src}}
 				<img class="media-object" src="{{img_src}}" style="width:100%;">
+				{{/if}}
 			</div>
 		</div>
 	</div>
