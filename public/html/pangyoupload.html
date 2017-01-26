@@ -44,6 +44,8 @@ $(function() {
 		hot.loadData(exampleData);
 	});
 
+	var PRICE_CLEANSING_REGEXP = /P?[0-9],[0-9]+/g;
+	var FOOD_CLEANSING_REGEXP = /(^P\.)|(\(.*?산.*?\))/g;
 	var CORNER_NAME_REGEXP = /(탕맛기픈)|(추가배식대)|(Health[\s\n]+Giving[\s\n]+365)|(Snap[\s\n]+Snack)|(Take[\s\n]+me[\s\n]+out)|(도담찌개)|(가츠엔)|(싱푸차이나)/g;
 
 	$("#convert").click(function() {
@@ -51,27 +53,49 @@ $(function() {
 		var data = hot.getData();
 
 		data = _.chain(data)
-		.rest(1)
-		.filter(function(e) {
-			return _.every(e, function(ee) {
 
-				if( ee.indexOf("우리 식당") > -1 ) {
+		// 첫 줄 제거
+		.rest(1)
+
+		// 안내문구 제거
+		.filter(function(e) {
+			return _.every(e, function(text) {
+
+				if( text.indexOf("우리 식당") > -1 ) {
 					return false;
 				}
-				if( ee.indexOf("상기 메뉴") > -1 ) {
+				if( text.indexOf("상기 메뉴") > -1 ) {
 					return false;
 				}
-				if( ee.indexOf("특정식품") > -1 ) {
+				if( text.indexOf("특정식품") > -1 ) {
 					return false;
 				}
 				return true;
 			});
 		})
+
+		// 모든 줄이 비어 있는 것 제거
 		.filter(function(e) {
 			return _.any(e, function(ee) {
 				return !!ee;
 			});
 		})
+
+		// 금액,원산지 제거
+		.map(function(e) {
+			e = _.map(e, function(ee) {
+				return ee.replace(/[\n\s]+/g, " ").trim();
+			})
+			e[1] = e[1].replace(PRICE_CLEANSING_REGEXP, "").trim();
+			e[2] = e[2].replace(PRICE_CLEANSING_REGEXP, "").trim();
+			e[3] = e[3].replace(FOOD_CLEANSING_REGEXP, "").trim();
+			e[4] = e[4].replace(FOOD_CLEANSING_REGEXP, "").trim();
+			e[5] = e[5].replace(FOOD_CLEANSING_REGEXP, "").trim();
+			e[6] = e[6].replace(FOOD_CLEANSING_REGEXP, "").trim();
+			e[7] = e[7].replace(FOOD_CLEANSING_REGEXP, "").trim();
+			return e;
+		})
+
 		.map(function(e, i, list) {
 			if( e[0] && e[0].startsWith("Morning") ) {
 				e[0] = "breakfast";
@@ -86,31 +110,76 @@ $(function() {
 				e[0] = list[i-1][0];
 			}
 
-			var corner = e[1].match(CORNER_NAME_REGEXP);
-			if( corner && corner[0] ) {
-				e[1] = corner[0].replace(/[\n\s]+/g, " ").trim();	// 공백/줄바꿈 합치고, 트림
+			// // 매일 corner가 달라지는 경우 표시
+			// if( e[1].indexOf("or") > -1 ) {
+			// 	e[2] = "corner";
+			// }
+
+			// corner명 정제
+			var cornerArray = e[1].match(CORNER_NAME_REGEXP);
+			if( cornerArray ) {
+				e[1] = _.map(cornerArray, function(cornerRawFormat) {
+					return cornerRawFormat.replace(/[\n\s]+/g, " ").trim();	// 공백/줄바꿈 합치고, 트림
+				}).join(",");
 			}
 
+			// 윗줄 기반으로 아랫줄 채워서 빈칸 없게 만들기
 			if( i > 0 ) {
 				if( !e[1] ) {
 					e[1] = list[i-1][1];
+					if( !e[2] ) {
+						e[2] = list[i-1][2];
+					}
 				}
-				if( !e[2] ) {
-					e[2] = list[i-1][2];
+				else {
 				}
 			}
 			return e;
 		})
 		.value();
 
-		//TODO group by 후에 다시 전개해야함
-		var dataGroupByTimeCornerFood = _.groupBy(data, function(e) {
-			return e[0] + "_" + e[1] + "_" + e[2];
-		});
+		data = _.chain(data)
+			.groupBy(function(e) {
+				return e[0] + "_" + e[1] + "_" + e[2];
+			})
+			.mapObject(function(menu) {
+				var cornerName = null;
+				if( menu[0][1].indexOf(",") > -1 ) {
+					cornerName = menu[0];
+					cornerName[2] = "corner";
+					menu = menu.slice(1);
+				}
+				menu[0][2] = "title";
+				if( menu[1] ) {
+					 menu[1] = _.reduce(menu.slice(1), function(descriptionMemo, descriptionArray) {
+						 return _.chain(descriptionMemo)
+						 	.zip(descriptionArray)
+							.map(function(desciprtionZip) {
+								if( desciprtionZip[0] === desciprtionZip[1] ) {
+									return desciprtionZip[0];
+								}
+								else {
+									return desciprtionZip.join(",");
+								}
+							})
+							.value();
+					});
+					menu[1][2] = "description";
+				}
+
+				if( cornerName ) {
+					menu.unshift(cornerName);
+					return menu.slice(0,3);
+				}
+				return menu.slice(0,2);
+			})
+			.values()
+			.flatten(true)
+			.value();
 
 		data[0][0] = "time";
-		data[0][1] = "floor";
-		data[0][2] = "corner";
+		data[0][1] = "corner";
+		data[0][2] = "item";
 
 		var makeYMD = function(text) {
 			return moment(text, "M/DD").format("YYYYMMDD");	//ex 1/27 (금)
