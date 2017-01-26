@@ -85,7 +85,7 @@ exports.parseFoods = function (html) {
 			floor: mapperClass2Floor[$e.attr("class")],
 			corner: mapperImgSrc2Corner[$e.find("img").attr("src")],
 			title_kor: title,
-			description_kor: txt.replace(/[0-9]+Kcal/,"").trim().replace(/,$/,""),
+			description: txt.replace(/[0-9]+Kcal/,"").trim().replace(/,$/,""),
 			kcal: kcal
 		}
 	})
