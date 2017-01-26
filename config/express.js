@@ -49,6 +49,7 @@ module.exports = function() {
 	require('../app/controller/umyeon.server.controller.js')(app);
 //	require('../app/controller/sangam.server.controller.js')(app);
 	require('../app/controller/sangam.viewer.controller.js')(app);
+	require('../app/controller/pangyo.server.controller.js')(app);
 
 	app.use(function(req, res, next) {
 		res.status(404).sendFile(path.join(__dirname, '/../public/image/no_image_available.jpg'));
